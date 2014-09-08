@@ -1,0 +1,2640 @@
+ /*
+	Title:	 Hitechtrader
+	Date:	 June 10, 2014
+    Company: 2R Solution Ltd.
+    Website: www.2rsolution.com  
+--------------------------------------------------------------			
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+ caption {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 100%;
+vertical-align: baseline;
+background: transparent;
+}
+body {
+line-height: 1;
+}
+ol, ul {
+/*list-style: none; */
+margin-left:22px;
+float:left;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+/* remember to define focus styles! */
+:focus {
+outline: 0;
+}
+/* remember to highlight inserts somehow! */
+ins {
+text-decoration: none;
+}
+del {
+text-decoration: line-through;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+/* Clear Fix Styles */
+
+.clearfix:after {
+visibility: hidden;
+display: block;
+font-size: 0;
+content: " ";
+clear: both;
+height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+
+.clearfix
+{
+	display:block;
+}
+
+/** Global Styles **/
+
+html
+{
+	height: 100%;
+	overflow: auto;
+	
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+body
+{  
+    font-family: arial,helvetica,sans serif;
+	font-size: 14px;
+	color: #000;
+	padding:0;
+	background:#fff;
+}
+img
+{
+    border:0;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+::selection { background: #F33; color: #FFF; }
+::-moz-selection { background: #F33; color: #FFF; }
+
+a { color: #0000CC; text-decoration: none; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear; }
+a:hover { color: #FFF; }
+/* Default Links */	
+	A:link {text-decoration: none; color: #0000cc; font-size: 100%; font-weight: normal;}
+	A:visited {text-decoration: none; color: #0000cc; font-size: 100%; font-weight: bold;}
+	A:active {text-decoration: none; color: #cc0000; font-size: 100%; font-weight: bold; background-color: #eeeeee;}
+	A:hover {text-decoration: underline; color: #cc0000; font-size: 100%; font-weight: bold;}
+
+/** Layout Styles **/
+
+#page
+{
+    width:100%;
+    height:auto;
+    float:left;
+}
+.wrapper
+{
+   /* width:1024px;*/
+   width:1024px;
+    margin:0 auto;
+}
+/** Edit **/
+.container
+{
+    float:left;
+    width:100%;
+    height:auto;
+    border: 1px solid #006DAA;
+    margin:10px 0;
+}
+
+.menu
+{
+    float:left;
+    width:170px;
+    height:100%;	
+    background:#c3ddeb;
+}
+/** End Edit **/
+.nav 
+{
+    display:none;
+}
+
+.MenuBanners
+{
+    width:100%;
+    height:auto;   
+}
+
+.navigation
+{
+    font-size: 90%;
+    padding:0;
+    text-align: left;
+}
+.navigation ul
+{
+    clear: both;
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.navigation ul li
+{
+    display: block;
+    padding-bottom: 0.1em;
+    padding-top: 0.1em;
+    width: 170px;
+}
+.navigation ul li a
+{
+    display: block;
+    font-weight: bold;
+    margin: 0 0 0 7px;
+    padding: 3px 0;
+    width: 96%;
+    font-size: 13px;
+    text-decoration:none !important;
+}
+.navigation ul li a:hover
+{
+    color:#fff;       
+}
+
+.nav_bottom
+{
+	max-height:490px; 
+	padding-bottom: 20px; 
+	width: 95%; 
+	float:left;
+	overflow-x: hidden; 
+	overflow-y: scroll;
+}
+
+/*Mobile navigation*/
+
+.nav
+{
+    float:left;
+    bottom:0;
+    width:100%;
+    height:37px;
+    border-top:1px solid #e5e5e5;
+}
+
+
+.nav ul{
+    float:left;
+    margin:0;
+    padding:0;
+}
+.nav li{
+    float:left;
+    display:inline;
+    list-style:none;
+    padding:0 30px;
+}
+
+.nav .active 
+{
+    padding-left:105px;
+}
+.nav li a{
+    float:left;
+    display:block;
+    font-size:14px;
+    font-family:Arial;
+    color:#0000CC;
+    text-align:left;
+    text-transform:uppercase;
+    line-height:37px;
+    font-weight:bold;
+}
+.nav ul li a:hover, .nav li.active a
+{
+    color:#fff;
+    background:#92b8d7;
+    text-decoration:none;
+}
+.nav ul li:hover
+{
+    background:#92b8d7;
+}
+
+#pull
+{
+ display:none;
+ background:#C3DDEB url(images/menu-icon.png) right center no-repeat;
+ width:96%;
+ height:40px;
+ color:#000;
+ font-size:18px;
+ line-height: 40px;
+ text-align: left;
+ padding:0 2%;
+}
+
+#pull:hover{text-decoration:none;}
+
+
+/**style main**/
+
+.main
+{
+    width:854px;
+    height:auto;
+    float:left;
+    background:#fff;
+}
+
+.header {
+    color: #000000;
+    float: left;
+    height: auto;
+    margin: 0;
+    padding:1%;
+    text-align: center;
+    width: 834px;
+}
+.logo_left
+{
+	float:left; 
+	width:710px;
+}
+.logo
+{
+     height:29px;
+     margin:5px auto;
+}
+.service_img
+{
+    float: right;
+    height: 45px;
+    margin-right: 18px;
+    margin-top: 17px;
+    width: 106px;
+}
+.address
+{
+    width:60%;
+    margin:0 auto;
+    text-align:center;
+}
+.address span
+{
+    display: block;
+    font-size: 14px;
+    line-height: 18px;
+    width: 100%;
+}
+
+.address span a
+{
+    font-size:14px;
+    line-height:18px;
+}
+.search_form
+{
+    float:left;
+    width:100%;
+    margin:20px 0;
+}
+
+.searchfield
+{
+    width:70%;
+}
+
+
+/***style for content*****/
+
+.content{
+    color: #000000;
+    float: left;
+    margin: 0;
+    padding:1%;
+    text-align: left;
+    width: 836px;
+}
+
+
+.FeaturedHeading {
+    background-image: url("images/FeaturedLines.gif");
+    color: #CC0000;
+    font-size: 100%;
+    font-weight: bold;
+    margin: 0 0 2px;
+    padding: 1%;
+    text-align: center;
+    width: 98%;
+}
+.CategoryTitleHome {
+    background-color: #FFFFFF;
+    color: #CC0000;
+    font-size: 100%;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 260px;
+}
+.productcont
+{
+    width:100%;
+    height:auto;
+    float:left;
+}
+.productcont ul
+{
+    list-style:none;
+}
+
+.productcont ul li
+{
+    float:left;
+    padding: 1%;
+    vertical-align: top;
+    width: 30%;
+}
+
+.productcont ul li a
+{
+    display:block;
+    font-size: 90%;
+    padding: 5px 0;
+
+}
+
+.productcont ul li a:hover
+{
+    background:#eeeeee;
+    color:#cc0000;
+    font-size:90%;
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+.productcont span
+{
+    padding-bottom: 10px;
+}
+
+.FeaturedDisplay
+{
+    border: 1px solid #FFFFFF;
+    color: #CC0000;
+    font-weight: bold;
+    text-align: center;
+}
+.CatDisplay
+{
+    background-color: #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    font-size: 80%;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.CatDisplay a:hover
+{
+    display:block;
+    background:#eeeeee;
+    color:#cc0000;
+    font-size:90%;
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+.welcome
+{
+    width:96%;
+    margin: 10px 0;
+    float:left;
+    padding:0 2%;
+}
+
+.welcome h3
+{
+
+    color: #000099;
+    font-size: 18px;
+    font-weight: bold;
+    margin:10px 0;
+}
+
+.welcome p
+{
+    font-size: medium;
+    text-align:left;
+    margin:15px 0;
+    line-height:22px;
+}
+
+
+
+/*=======Footer========*/
+
+.footer
+{
+     border-top: 1px solid #cc0000;
+    float: left;
+    font-size: 100%;
+    margin-left: 0;
+    margin: 1% 2%;
+    padding:1% 0;
+    text-align: center;
+    width: 96%;
+}
+
+.FooterMenu 
+{
+    font-size: 95%;
+    margin: 0; 
+    padding: 0; 
+    width: 100%;
+    float:left;
+    margin:5px 0 15px 0;
+
+} 
+.FooterMenu ul {
+    list-style-type:none; 
+    margin:0; 
+    padding: 0; 
+    white-space: nowrap; 
+    width:100%;
+
+}
+.FooterMenu li {
+    display: inline; 
+}
+
+.FooterMenu li a 
+{
+    font-size:90%;
+}
+
+.footer_address
+{
+    float:left;
+    margin: 15px 0 5px;
+    width: 100%;
+
+}
+
+.warrenty_img
+{
+    float: right;
+    margin: 0 35px 0 0;
+}
+.footerImage
+{
+     float: left;
+    margin: 0 0 0 42px;
+}
+.PaymentLogos
+{
+    border: 0 none;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.footer_bottom
+{
+    float:left;
+    width:100%;
+    font-size:100%;
+}
+
+.footer_bottom p
+{
+    float: left;
+    font-size: 96%;
+    line-height: 18px;
+    width: 100%;
+}
+.footer .copy
+{
+    line-height: 40px;
+    font-size: 82%;
+}
+
+
+/*==========Pages CSS==============**/
+
+/*New Arrives*/
+
+.product_sort 
+{
+    float:left;
+    width:100%;
+    height:auto;
+}
+
+.product h3
+{
+    color:#000099;
+    font-size:16px;
+    font-weight:bold;
+    margin: 10px 0 10px 16px;
+    width: 80%;
+}
+.product h4
+{
+    color: #CC0000;
+    display: inline;
+    font-size: 95%;
+    font-weight: bold;
+    line-height: 25px;
+}
+.product p
+{
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.product_sort_left, .product_sort_right
+{
+    float:left;
+    width:50%;
+    height:100%;
+    background:#fff;
+
+}
+
+.product_sort_left span, .product_sort_right span
+{
+    float:left;
+    font-size:14px;
+    font-weight:bold;
+    display:block;
+    margin: 5px 10px;
+    width: 96%;
+}
+.product_sort_right span 
+{
+    text-align:right;
+    font-weight:normal;
+}
+
+.product_sort_left span a ,.product_sort_right span a 
+{
+    margin:0 5px;
+}
+
+.product_list 
+{
+    margin-top:20px;
+    float:left;
+    width:100%;
+}
+.product_list ul 
+{
+    width:100%;
+}
+.product_list ul li 
+{
+    list-style:none;
+    display:block;
+    float:left;
+    margin-bottom:10px;
+}
+.product_items 
+{
+    float:left;
+    width:100%;
+    height:auto;
+}
+
+.product_bar 
+{
+    float:left;
+    padding: 0 2%;
+    width: 96%;
+    min-height:30px;
+    background:#c1c1c1;
+    margin-bottom: 5px;
+    height:auto;
+}
+
+.product_bar span 
+{
+    margin:0 8px;
+    line-height:30px;
+    font-weight:bold;
+   
+}
+.product_bar span a
+{
+    text-decoration:underline;
+}
+
+.price 
+{
+    color:#cc0000;
+    margin:0 10px;
+}
+
+.product_img
+{
+    float:left;
+    padding: 0 4px;
+    width: 125px;
+    height:auto;
+}
+
+.descrip 
+{
+    float:left;
+    width:70%;
+    min-height:115px;
+    position:relative;
+  
+}
+.descrip p a 
+{
+    font-weight:normal;
+}
+
+.reference 
+{
+    position:absolute;
+    bottom:0;
+}
+.order_btn 
+{
+    float:right;
+    width:auto;
+    height:35px;
+}
+
+.Inquire 
+{
+    padding:5px;
+    position:relative;
+    top:10px;
+    border-radius:5px;
+}
+.Inquire:link, .Inquire:visited {
+    background-color: #990000;
+    border-color: #999999 #EEEEEE #EEEEEE #999999;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFFFFF;
+    font-size: 100%;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+ .Inquire:hover 
+ {
+     background-color: #000099;
+ }
+
+ /*=======About us page=======*/
+
+.about_txt 
+{
+    width:96%;
+    padding:0 2%;
+}
+
+.about_txt p 
+{
+    margin-bottom:10px;
+    line-height:20px;
+    font-size:14px;
+}
+
+
+/*======Contact Us Page=======*/
+
+
+#contact-form
+{
+    display: inline;
+    float: left;
+    margin: 10px 0;
+    padding: 0;
+    width: 100%;
+    color: #000099;
+}
+
+#inquireForm {
+    background-color: #E8EEF4;
+    border: 1px solid #2B4560;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: small;
+    padding: 10px;
+}
+
+#inquireForm legend {
+    color: #000099;
+    font-size: 120%;
+    font-weight: bold;
+    padding-left: 3px;
+    padding-right: 3px;
+    top: -8px;
+}
+
+.form_info
+{
+    width:50%;
+    float:left;
+}
+
+
+.form_info label {
+   float: left;
+    font-weight: bold;
+    margin: 3px 0;
+    padding-top: 3px;
+    text-align: left;
+    width: 22%;
+  }
+.form_info input {
+    font-weight: bold;
+    margin: 2px 0;
+    text-align: left;
+    width: 50%;
+  }
+.form_info select {
+    margin: 2px 0;
+    text-align: left;
+    width: 50%;
+  }
+.message {
+    margin: 10px 0;
+    text-align: left;
+    width: 100% !important;
+  }
+
+.message label{
+    width: 10% !important;
+  }
+.message textarea{
+    font-weight: bold;
+    margin: 2px 0;
+    text-align: left;
+    width: 75%;
+    height: 190px;
+  }
+.select_option strong{
+      float: left;
+      margin: 0 10px 0 0;
+  }
+.select_option input{
+    float: left;
+    margin-right: 40px;
+    width: 3%;
+  }
+
+.select_option, .submit_option
+{
+    float: left;
+    font-weight: normal;
+    padding: 10px 80px;
+    line-height:16px;
+    text-align: left;
+    width: 80%;
+}
+.select_option span
+{
+    float: left !important;
+    padding:0 !important;
+}
+.select_option span input
+{
+    margin-right: 10px;
+}
+#contact-form span{
+    float: left;
+    font-weight: normal;
+    padding: 25px 100px 0 80px;
+    line-height:16px;
+    text-align: left;
+  }
+
+#contact-form p{
+    float: left;
+    font-weight: normal;
+    line-height:16px;
+    text-align: left;
+  }
+
+/*=======Inventory List Page========*/
+
+.product_catagory 
+{
+    float:left;
+    width:100%;
+    height:auto;
+}
+
+.product_column 
+{
+    float:left;
+    width:23.33%;
+    height:auto;
+}
+.featured_items 
+{
+    float:right;
+    width:30%;
+    height:auto;
+   
+}
+
+.CategoryTitle {
+    background-color: #FFFFFF;
+    color: #CC0000;
+    font-size: 100%;
+    font-weight: bold;
+    margin: 1px 60px;
+    padding: 0;
+    text-align: center;
+}
+
+.product_column .list a 
+{
+    color:#cc0000;
+}
+.product_column .list span 
+{
+    float:left;
+    width:100%;
+    display:block;
+}
+.product_column a:hover 
+{
+    color:#0000CC;
+}
+
+.list 
+{
+    float:left;
+    width:100%;
+    height:auto;
+    margin:10px 0;
+}
+
+.list ul 
+{
+    padding:0;
+    margin-left:7px;
+    float:left;
+}
+
+.list ul li 
+{
+    list-style:none;
+}
+
+.list ul li a 
+{
+    font-weight:normal;
+    font-size:14px;
+    color:#0000CC !important;
+    line-height:22px;
+}
+
+.list ul li a:hover 
+{
+    color:#CC0000 !important;
+}
+
+.featured_items_list 
+{
+    width:100%;
+    float:left;
+    height:auto;
+}
+
+.featured_items_list span 
+{
+    color:#cc0000;
+    width:100%;
+    display:block;
+}
+
+ .featured_items_list a
+{
+    display:block;
+    font-size: 90%;
+    padding: 5px 0;
+    line-height:18px;
+
+}
+
+ /*=======on consignment Page========*/
+ span.ListingListPrice {
+    color: #CC0000;
+    display: inline;
+    font-weight: bold;
+}
+ span.ListingPODPrice {
+    color: #0000CC;
+    display: inline;
+    font-weight: normal;
+}
+.see_video
+{
+    float: right;
+    height: 35px;
+    width: auto;
+    margin: 0 12px;
+}
+
+/*  style for responsive*/
+
+/* ipad portrait */
+@media only screen and ( min-width: 768px) and ( max-width: 981px ) {
+
+.wrapper {
+    padding: 0 5%;
+    width: 90%;
+}
+.menu {
+    display: none;
+}
+.main {
+    width: 100%;
+}
+.header {
+    width: 98%;
+}
+
+.nav {
+ position: relative;
+ z-index: 100;
+ display: block;
+
+}
+.nav ul {
+    display:none;
+}
+.nav ul li{
+ list-style:none;
+ width:100%;
+ padding:0;
+ background:#C3DDEB;
+ border-top:1px solid #858585;
+}
+.nav ul li a{
+ padding:0 5%;
+}
+.nav .active {
+    padding-left:5%;
+}
+#pull
+{
+ display:block;
+ position:relative;
+}
+.searchfield 
+{
+    width:60%;
+}
+.content {
+    width: 98%;
+}
+
+/*new arrives page*/
+.product_sort_left{
+    width: 45%;
+}
+.product_sort_right {
+    width: 54%;
+}
+/*on consignment  page*/
+.descrip {
+    width: 62%;
+}
+/*****  Admin Site Am*********/
+.main_Admin {
+    background-color: #ffffff;
+    color: #000000;
+    float: left;
+    font-size: 90%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/****** Admin site Am ********************/
+.logo img {
+    height: 29px;
+    margin: 0 auto;
+    width: 90%;
+}
+.main_Admin {
+    height: auto !important;
+}
+.HeaderLeft 
+{
+    display:none;
+}
+
+.HeaderRight {
+    float: left !important;
+    margin: 0.5em 0 !important;
+    padding: 0.5em 0 !important;
+    width: 100% !important;
+}
+
+.logo_Admin 
+{
+    width: 50% !important;
+    margin:0 auto !important;
+    float:none !important;
+    margin-top:1% !important;
+}
+
+.nav {
+    display: none;
+}
+.SearchBox 
+{
+    font-size: 100% !important;
+    float:none !important;
+    width: 50% !important;
+    margin: 0 auto !important;
+}
+.SearchButton 
+{
+	float:none !important;
+}
+
+.AdminHome {  
+    width:25% !important;
+    min-width:25% !important;
+}
+
+.logout {
+    margin-right: 20px !important;
+}
+
+.menu_Admin {
+    width: 20% !important;
+    margin-bottom:10px !important;
+}
+
+.content_Admin {
+    width: 98% !important;
+}
+.content_Admin_inner
+{
+	float: left;
+    padding: 3%;
+    width: 94%;
+	
+}
+
+.GlobalOutline {
+    width: 100% !important;
+}
+
+
+element.style {
+    border-top: 1px solid #c7defc;
+    float: right !important;
+    width: 814px;
+}
+/*.footer {
+    width: 78% !important;
+}*/
+
+.AdminHome {  
+    width:25% !important;
+    min-width:25% !important;
+}
+}
+
+/* mobile*/
+@media only screen and (min-width : 640px) 
+and (max-width : 767px) {
+
+.wrapper {
+    padding: 0 5%;
+    width: 90%;
+}
+.menu {
+    display: none;
+}
+.nav {
+ position: relative;
+ z-index: 100;
+ display: block;
+
+}
+.nav ul {
+    display:none;
+}
+.nav ul li{
+ list-style:none;
+ width:100%;
+ padding:0;
+ background:#C3DDEB;
+ border-top:1px solid #858585;
+}
+.nav ul li a{
+ padding:0 5%;
+}
+.nav .active {
+    padding-left:5%;
+}
+.nav ul li a:hover, .nav li.active a
+{
+    width:90%;   
+}
+#pull
+{
+ display:block;
+ position:relative;
+}
+
+
+.container {
+    width: 100%;
+}
+.main {
+    width: 100%;
+}
+.header {
+    width: 98%;
+}
+.service_img {
+    display:none;
+}
+.searchfield 
+{
+    width:60%;
+}
+.content {
+    width: 98%;
+}
+
+.FooterMenu ul {
+    white-space: normal;
+}
+
+/*contact page*/
+
+    .form_info label {
+    margin: 4px 0;
+    padding-top: 0px;
+    width: 30%;
+}
+.message label {
+    width: 15% !important;
+}
+
+
+/*Inventory_list page*/
+.product_column {
+    width: 33%;
+}
+.featured_items {
+    float: left;
+    width: 100%;
+}
+
+.featured_items_list li {
+    float: left;
+    margin: 5px;
+    width: 31%;
+}
+.CategoryTitle {
+    margin: 1px 200px;
+}
+/*new arrives page*/
+.product_sort_left{
+    width: 38%;
+}
+.product_sort_right {
+    width: 62%;
+}
+.product_bar span {
+    margin: 0 10px;
+}
+.descrip {
+    width: 55%;
+}
+.reference {
+    position: relative;
+}
+.price {
+    margin: 0;
+}
+.product_bar span {
+    margin: 0 15px;
+}
+/******* Admin Site *************/
+.main_Admin {
+    background-color: #ffffff;
+    color: #000000;
+    float: left;
+    font-size: 90%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.HeaderLeft {
+    display: none;
+}
+
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-width : 320px) 
+and (max-width : 639px) {
+
+.wrapper 
+{
+    padding: 0 5%;
+    width: 90%;
+}
+.menu 
+{
+    display: none;
+}
+.container 
+{
+    width: 100%;
+    margin:10px 0;
+}
+.main 
+{
+    width: 100%;
+}
+.header 
+{
+    width: 98%;
+}
+
+.searchfield
+ {
+    width: 35%;
+}
+.search strong
+{
+	color: #000000;
+    font-size: 80%;
+    font-weight: bold;
+    text-align: left;
+}
+.nav 
+{
+ position: relative;
+ z-index: 100;
+ display: block;
+
+}
+.nav ul 
+{
+    display:none;
+}
+.nav ul li
+{
+ list-style:none;
+ width:100%;
+ padding:0;
+ background:#C3DDEB;
+ border-top:1px solid #858585;
+}
+.nav ul li a
+{
+ padding:0 5%;
+}
+.nav .active
+ {
+    padding-left:5%;
+}
+.nav ul li a:hover, .nav li.active a
+{
+    width:90%; 
+}
+#pull
+{
+ display:block;
+ position:relative;
+}
+
+.address 
+{
+    width: 97%;
+}
+.service_img 
+{
+    display:none;
+}
+.content 
+{
+    width: 98%;
+}
+.FooterMenu li
+ {
+    display: block;
+}
+.footerImage
+ {
+        margin: 30px 0 0 42px;
+}
+.address 
+{
+   float:left;
+}
+
+/*home page*/
+.productcont ul li 
+{
+    width: 100%;
+}
+
+/*contact page*/
+/********** Amin ***********/
+.wrapper 
+{
+    /*width: 290px !important;*/
+}
+.form_info 
+{
+float: left;
+width: 100%;
+}
+.form_info label
+
+ {
+    width: 40%;
+}
+.message label 
+{
+    width: 22% !important;
+}
+
+#contact-form span {
+    padding: 10px 10px 10px 55px;
+}
+
+.select_option, .submit_option 
+{
+    padding: 10px 55px;
+}
+
+/*Inventory_list page*/
+
+.product_column 
+{
+    width: 100%;
+}
+.featured_items 
+{
+    float: left;
+    width: 100%;
+}
+.CategoryTitleHome
+ {
+    margin: 3px;
+}
+
+
+/*new arrives page*/
+
+.product_sort_left, .product_sort_right
+ {
+    width: 100%;
+}
+
+.product_sort_right span 
+{
+    text-align: left;
+}
+.product_bar span 
+{
+    float: left;
+    width: 78%;
+}
+.order_btn 
+{
+    float: left;
+    margin: 14px;
+    width: 95%;
+}
+
+.descrip 
+{
+    width: 53%;
+}
+.price 
+{
+    margin: 0;
+}
+
+/*on consignment  page*/
+.reference {
+    position: relative;
+    margin: 10px 0;
+}
+.see_video 
+{
+    float: left;
+}
+/****** Admin site Am ********************/
+
+
+.main_Admin {
+    height: auto !important;
+}
+.HeaderLeft 
+{
+    display:none;
+}
+
+.HeaderRight {
+    float: left !important;
+    margin: 0.5em 0 !important;
+    padding: 0.5em 0 !important;
+    width: 100% !important;
+}
+
+.logo_Admin 
+{
+    width: 90% !important;
+    margin:0 auto !important;
+    float:none !important;
+}
+
+.nav {
+    display: none;
+}
+.SearchBox 
+{
+    font-size: 100% !important;
+    float:none !important;
+    width: 90% !important;
+    margin: 0 auto !important;
+}
+.SearchButton 
+{
+	float:none !important;
+}
+
+/*.AdminHome {  
+    width:25% !important;
+    min-width:25% !important;
+}*/
+.AdminHome {
+    min-width: 31% !important;
+    width: 31% !important;
+}
+.websitead {
+    margin-left: 11px !important;
+}
+.logout {
+    margin-right: 20px !important;
+}
+
+.menu_Admin {
+    width: 12% !important;
+    margin-bottom:10px !important;
+}
+
+.content_Admin {
+    width: 96% !important;
+}
+.content_Admin_inner
+{
+	float: left;
+    padding: 3%;
+    width: 95%;
+	
+}
+
+.GlobalOutline {
+    width: 100% !important;
+}
+.MobileText
+{
+	color: #990000;
+    font-size: 20px;
+    margin-left: 29%;
+    text-align: center;
+    width: 100%;
+}
+}
+
+
+
+/******** Test ************/
+.MobileText
+{
+	color: #990000;
+    font-size: 20px;
+    margin-left: 29%;
+    text-align: center;
+    width: 100%;	
+}
+#NavMenu a:link, #NavMenu a:visited, #NavMenu a:hover, #NavMenu a:active {
+    font-weight: bold;
+}
+#NavMenu a:link, #NavMenu a:visited, .MenuItems a:link, .MenuItems a:visited {
+    color: #0000cc;
+    font-size: 100%;
+    text-decoration: none;
+}
+#NavMenu ul li a {
+    display: block;
+    font-weight: bold;
+    margin: 0 0 0 0.5em;
+    padding: 0.2em 0;
+    width: 100%;
+}
+
+
+.search_form_Admin
+{
+    float:right;
+    width:300px;
+    margin:20px 0;
+    text-align:left;
+}
+.searchfield_Admin
+{
+    width:100%;
+      text-align:left;
+}
+.main_Admin
+{
+    /*width:100%;
+    height:auto;
+    float:left;
+    background:#fff;*/
+    
+     background-color: #ffffff;
+    color: #000000;
+    float: left;
+    font-size: 90%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    width:100%;
+    margin-bottom:10px;
+}
+
+.HeaderLeft 
+{
+    float: left;
+    height: inherit;
+    margin: 0;
+    padding: 0.4em;
+    vertical-align: middle;
+    width: 148px;
+}
+
+.logo_Admin
+{
+    float: left;
+    font-size: 75%;
+    height: inherit;
+    margin: 0;
+    padding: 0.4em;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.HeaderRight
+ {
+    float: right;
+    height: inherit;
+    margin: 0.5em 0.5em 0 0;
+    padding: 0.2em;
+    text-align: right;
+    vertical-align: middle;
+    width: 350px;
+}
+
+.SearchBox 
+{
+    color: #cc0000;
+    float: left;
+    font-size: 90%;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.1em;
+    text-align: left;
+    vertical-align: middle;
+}
+
+form 
+{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+.SearchBox input.submit 
+{
+    background-color: #cccccc;
+    color: #000066;
+    font-weight: bold;
+    margin: 0.1em;
+}
+.Header_NavBar
+{
+	
+	 background:url("images/rowBackground.gif") #c7defc repeat-x;
+    border-bottom: 1px solid #a9bde0;
+    border-top: 1px solid #a9bde0;
+    clear: both;
+    color: #000099;
+    float: left;
+    margin: 0;
+    min-height: 30px;
+    padding: 0;
+    width:100%;
+    line-height:25px;
+		
+}
+.AdminHome
+{
+	float: left;
+    line-height: 24px;
+    margin: 2px 5px;
+    min-width: 148px;	
+}
+.websitead
+{
+	float:left;
+	margin-left:20px;	
+}
+.logout
+{
+	float:right;
+	margin-right:10px;	
+}
+.content_Admin
+{
+    color: #000000;
+    float: right;
+    margin: 0;   
+    text-align: left;
+    /*width: 836px;*/
+    width:84%;
+    background:#fff;
+    margin: 5px 0 10px;
+}
+
+.menu_Admin
+{
+    float:left;
+    width:16%;
+    height:100%;
+    background:#eeeeee;
+    min-height:400px;
+    margin-bottom:10px;
+
+}
+.footerCopy
+{
+	float: left;
+	margin-top: 10px;
+	text-align: left;
+	width: 100%;
+	font-size:11px;	
+}
+
+
+.GlobalOutline {
+    border: 1px solid #a9bde0;
+    margin-top: 10px;   
+    width:720px;
+    float:left;
+}
+.FormTable {
+    background-color: #ffffff;
+    border: 0 none;
+    color: #000000;
+    font-size: 90%;   
+}
+.FormTable tr.TableHeaderFooter 
+{  
+    background:url("images/rowBackground.gif") #c7defc repeat-x;
+    border-top: 1px solid #a9bde0;
+    color: #cc0000;
+    height:30px;
+    line-height:30px;
+    
+}
+.AddUserButton
+{
+	 background: none repeat scroll 0 0 #c73b26;
+    border: 0 none;
+    border-radius: 3px;
+    color: #fff;
+    float: right;
+    font-family: arial,helvetica,sans serif;
+    font-size: 14px;
+    font-weight: 700;
+    height: 24px;   
+    line-height: 8px;
+    margin: 3px 10px 0 0;
+    padding: 3px;
+    position: relative;
+    text-transform: uppercase;
+    cursor:pointer;
+}
+h1.pagetitle 
+{
+    color: #000099;
+    display: inline;
+    font-size: 16px;
+    font-weight: bold;
+    margin:10px 0;
+    width:100%;
+    float:left;
+}
+.SearchButton {
+    background: none repeat scroll 0 0 #c73b26;
+    border: 0 none;
+    border-radius: 3px;
+    color: #fff;
+    float: right;
+    font-family: arial,helvetica,sans serif;
+    font-size: 14px;
+    font-weight: 700;
+    height: 23px;
+    line-height: 8px;
+    margin: 0 0 0 10px;
+    padding: 3px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+
+.GlobalOutlineProduct 
+{
+    border: 1px solid #a9bde0;
+    float: left;
+    margin-top: 10px;
+    width: 808px;
+}
+.chkItem input[type="checkbox"] 
+{
+	float:left;
+	width:20px !important;	
+	margin:0px !important;
+	
+}
+.chkItem label
+{
+	display:inline;
+	margin-bottom:0px !important;
+	margin-left:3px;
+}
+.chkItem td
+{
+	 margin-right:5px;
+	 float:left; 
+	 width:150px; 
+	 margin-bottom:10px;
+}
+.delete_img
+{
+	float:left;
+	width:100%;
+	text-align:center;	
+}
+.mceEditor
+{
+	float:left;
+	min-height:225px !important;	
+}
+
+.featured_main_container
+{
+	float: left;
+    max-height: 600px;
+    overflow-y: hidden;
+    overflow-x:hidden;
+    padding: 15px 0 0;
+    width: 100%;
+}
+
+.FeaturedTable
+ {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.FeaturedTable td 
+{
+    font-size: 90%;
+    padding: 0.1em;
+    vertical-align: top;
+    width: 24%;
+}
+
+
+.FeaturedTable td a:hover
+{
+    background:#eeeeee;
+    color:#cc0000;
+    font-size:90%;
+    font-weight:bold;
+    text-decoration:underline;
+}
+.BasicParagraph {
+    display: inline;
+    font-size: 90%;
+}
+productcont_sort
+{
+	float:left;
+	width:60%;
+	margin-left:100px;
+}
+
+.Inquire_btn
+	{
+		background-color: #990000;
+		border-color: #999 #eee #eee #999;
+		border-style: solid;
+		border-width: 1px;
+		color: #ffffff;
+		font-size: 100%;
+		font-weight: bold;
+		text-decoration: none;
+	}
+	
+	.ListingTable {
+		background-color: #ffffff;
+		border: 0 none;
+		color: #000099;
+		font-size: 14px;
+		margin-bottom:10px;
+		width: 100%;
+	}
+	
+	.ListingTable .ListingTableNumber, .ListingTable .ListingTableManualNumber {
+		color: #000000;
+		font-weight: bold;
+		margin: 0;
+		padding: 0.2em;
+		text-align: center;
+		vertical-align: top;
+		white-space: nowrap;
+		width: 95px;
+	}
+	
+	.ListingTable .ListingTableNumber, .ListingTable .ListingTableTitle, .ListingTable .ListingTablePrice, .ListingTable .ListingTableManualNumber {
+		background-color: #dddddd;		
+	}
+	.ListingTable td {
+		color: #000000;
+		margin: 0;
+		vertical-align: top;
+	}	
+	
+	.ListingTable .ListingTableTitle {
+		font-weight: bold;
+		vertical-align: middle;
+		white-space: normal;
+	}
+	.ListingTable .ListingTablePic {
+		margin: 0;
+		padding: 0.2em;
+		vertical-align: middle;
+		width: 105px;
+	}
+	.ListingTable .ListingTableDesc {
+		color: #000000;
+		height:auto;
+		padding:5px;
+		white-space: normal;
+	}
+	.ListingTable .ListingTablePrice, .ListingTable .ListingTableInquire {
+		font-size: 90%;
+		margin: 0;
+		padding: 0.2em;
+		text-align: left;
+		white-space: nowrap;
+	}
+	.ListingTable .ListingTableInquire {
+		vertical-align: top;
+		text-align:center;
+	}
+	.ListingTable .ListingTableCategory {
+		background-color: #ffffff;
+		color: #cc0000;
+		font-size: 90%;
+		margin: 0;
+		padding: 0.2em;
+		vertical-align: middle;
+		white-space: normal;
+	}
+	
+	/*** new ****/
+		.tinyEditor
+		{
+			float:left;
+			width:591px !important;	
+		}
+		.tb1 tr td
+		{
+			float:left !important;	
+		}
+		.prolistUL li
+		{
+				list-style:none;
+		}
+
+		.ListCategory td
+		{
+			font-size: 90%;
+			padding: 0.2em;
+			width: 200px;
+		}
+		.ListCategory td.ListCategoryColumn 
+		{
+			font-size: 90%;
+			padding: 0.2em;
+			width: 200px;
+		}
+		.ListCategory .ListCategoryColumn
+		 {
+			vertical-align: top;
+		}
+		h3.MainCategory {
+			color: #cc0000;
+			display: inline;
+			font-weight: bold;
+		}
+		h3.MainCategory a:link, h3.MainCategory a:visited
+		 {
+			color: #cc0000;
+			font-weight: bold;
+			text-decoration: underline;
+			font-size: 14px;
+		}
+		.h3a:hover
+		{
+			text-decoration:none;
+			color:#0000cc !important;
+			background: #eeeeee;
+			font-weight:bold;	
+		}
+		.ListCategory 
+		{
+			border: 0 none;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			list-style:none !important;
+		}
+		.ListCategory li 
+		{
+			list-style: none outside none;
+			margin: 0 0 0 1em;
+		}
+
+		.FeaturedHeading_UI   
+		{
+			 background-image: url("images/FeaturedLines.gif"); 
+			color: #CC0000;
+			font-size: 100%;
+			font-weight: bold;
+			margin: 0 0 2px;
+			padding: 1%;
+			text-align: center;
+			width: 98%;
+		}
+		.bgimg
+		{
+			float:left;
+			background-image: url("images/FeaturedLines.gif");
+			color: #CC0000;
+			font-size: 100%;
+			font-weight: bold;
+			margin: 0 0 2px;
+			padding: 1%;
+			text-align: center;
+			width: 98%;
+		}
+
+		.Inquire {
+		    background: none repeat scroll 0 0 #990000;
+			border-color: #ccc #666 #666 #ccc;
+			border-radius: 4px;
+			border-style: solid;
+			border-width: 1px;
+			color: #fff;
+			display: block;
+			font-size: 17px;
+			outline: medium none;
+			text-align: center;
+			padding:8px 10px;
+			font-weight:bold;
+			cursor:pointer;
+		}
+		
+		.Inquire:link, .Inquire:visited {
+			background-color: #990000;
+			border-color: #999 #eee #eee #999;
+			border-style: solid;
+			border-width: 1px;
+			color: #ffffff;
+			font-size: 13px;
+			font-weight: bold;
+			text-decoration: none;
+		}
+		#DetailBox .ItemNumber {
+			float: right;
+			font-weight: bold;
+			height: inherit;
+			margin: 0;
+			text-align: right;
+			width: 150px;
+		}
+
+		#DetailBox .ItemNumber strong.ItemNumberTitle {
+			color: #cc0000;
+		}
+		#DetailBox .ProductTitle {
+			color: #cc0000;
+			display: inline;
+			font-size: 110%;
+			font-weight: bold;
+		}
+		#DetailTable {
+			background-color: #ffffff;
+			border: 0 none;
+			color: #000000;
+			font-size: 90%;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+		}
+		#DetailTable tr.DetailSubHeader {
+			background-color: #eeeeee;
+		}
+		#DetailTable tr {
+			background-color: #ffffff;
+			margin: 0;
+			padding: 0;
+		}
+		#DetailTable td.saleBanner {
+			background-color: #fff;
+			padding: 0;
+			width: 240px;
+		}
+		#DetailTable td {
+			font-size: 100%;
+			margin: 0;
+			padding: 0.5em;
+			vertical-align: top;
+		}
+		#DetailTable strong.CurrentPrice {
+			color: #000099;
+			font-weight: bold;
+		}
+		#DetailTable strong {
+			color: #000099;
+			font-weight: bold;
+		}
+		#DetailTable span.CurrentPrice {
+			color: #000000;
+		}
+		.Gallery {
+    border: 1px solid #006daa;
+    margin: 0 0 0 0.2em;
+    padding: 0;
+    width: 740px;
+}
+.GalleryImage
+{
+	height: auto;
+    margin: 10px;
+    vertical-align: middle;
+    width: 740px;	
+}
+.GalleryThumbnailDiv
+{
+   height: auto;
+    vertical-align: middle;
+    width: 100%;
+}
+.GalleryThumbnail 
+{
+   height: 130px;
+    margin: 10px;
+    vertical-align: middle;
+    width: 130px;
+}
+.thumbnailImage {
+    height: 115px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    width: 130px;
+}
+#DetailBox .ProductCategory {
+    display: inline;
+}
+h3.ProductHilite {
+    color: #cc0000;
+    display: inline;
+    font-size: 100%;
+    font-weight: bold;
+}
+/** Edit **/
+.Tittle
+{
+	color: #cc0000;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 500px;	
+}
+.ItemNumb
+{
+	float: right;
+    padding-right: 10px;
+    text-align: right;
+    color: #cc0000;
+    font-weight:bold;
+}
+.ItemnoDb
+{
+	color: #000;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.Desc
+{
+	float: left;
+    font-size: 13px;
+    line-height: 17px;
+    position: relative;
+    width: 700px;
+}
+.ImgL
+{
+	float: left;
+    position: relative;
+    width: 130px;	
+}
+.thumbnailGalleryFirstC3 {
+  background-repeat: no-repeat;
+    border: 1px solid #000;
+    float: left;
+    height: 138px;
+    margin: 0 20px 10px 98px;
+    width: 153px;
+}
+.thumbnailGallery {
+  background-repeat: no-repeat;
+    border: 1px solid #000;
+    float: left;
+    height: 138px;
+    width: 153px;
+}
+/************ Inquiry *********************/
+.inquireForm {
+    background-color: #E8EEF4;
+    border: 1px solid #2B4560;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: small;
+    padding: 10px;
+}
+legend {
+    color: #000099;
+    font-size: 120%;
+    font-weight: bold;
+    padding-left: 3px;
+    padding-right: 3px;
+    top: -8px;
+}
+.rdoorder
+{
+	display:inline;	
+	color:#000;
+	font-weight:normal;
+	font-size:12px;
+}
+.SelectPricing
+{
+	color: #cc0000; 
+	float: left;
+	font-size: 15px;
+	font-weight: bold;
+	height: 30px;
+	width: 100%;
+	line-height:5px;
+		
+}
+.SelectInquiry
+{
+	color: #cc0000; 
+	float: left;
+	font-size: 15px;
+	font-weight: bold;
+	width: 100%;
+	line-height:5px;
+	height:40px;
+}
+.Priceclass
+{
+	float:left;
+	color:#cc0000; 
+	 font-size: 19px;
+    font-weight: bold;
+}
+.Warentyclass
+{
+	float:left;
+	margin-left:24px;	
+	margin-top:7px;
+}
+.rdooption
+{
+	font-weight:bold;
+}
+.ProductIn h1
+{
+	color: #000099;
+    display: inline;
+    font-size: 15px;
+    font-weight: bold;	
+}
+.mass
+{
+	font-weight: bold;
+    height: 190px;
+    margin: 2px 0;
+    text-align: left;
+    width: 75%;	
+}
+
+
+.EquipmentListRdo input[type="radio"] 
+{
+	float:left;
+	width:20px !important;	
+	margin:0px !important;
+	
+}
+.EquipmentListRdo label
+{
+	display:inline;
+	margin-bottom:0px !important;
+}
+.EquipmentListRdo td
+{
+	 float: left;
+    margin-right: 0;
+    padding-right: 2px;
+    width: 271px;
+		
+}
+
+
+.EquipmentListRdo_Admin input[type="radio"] 
+{
+	float:left;
+	width:20px !important;	
+	margin:0px !important;
+	
+}
+.EquipmentListRdo_Admin label
+{
+	display:inline;
+	margin-bottom:0px !important;
+}
+.EquipmentListRdo_Admin td
+{
+	float: left;
+    font-size: 11px;
+    margin-bottom: 4px;
+    padding: 2px;
+		
+}
+h3.SectionSearch {
+    color: #cc0000;
+    display: inline;
+    float: left;
+    font-size: 100%;
+    font-weight: bold;
+    margin: 2px;
+}
+.txtEquipSearch
+{
+	float: left;
+    margin-left: 5px;
+    width: 232px;	
+}
+
+/********* Newsletter ****************/
+
+.NewsMainDiv
+{
+	float: left;
+	margin-top: 20px;
+	padding: 5px;
+	width: 798px;	
+}
+.NewsInnerdiv1
+{
+	width: 100%; 
+	margin-bottom:20px; 
+	float: left;	
+}
+.NewsImageCondition
+{
+	float: left;
+	width: 100%;
+	margin: 5px 0 9px 83px;	
+}
+.NewsButionDiv
+{
+	float: left;
+	width: 100%; 
+	margin-left: 83px;	
+}
+.NewsListing
+{
+	float:left;
+	margin-top:20px;
+	width:100%;
+	margin-bottom:5px;	
+}
+.NewsButtion
+{
+	 background: none repeat scroll 0 0 #c73b26;
+    border: 0 none;
+    border-radius: 3px;
+    color: #fff;    
+    font-family: arial,helvetica,sans serif;
+    font-size: 14px;
+    font-weight: 700;
+    height: 24px;   
+    line-height: 8px;
+    margin: 3px 10px 0 0;
+    padding: 3px;
+    position: relative;
+    text-transform: uppercase;
+    cursor:pointer;
+}
+
+
+/****************  Mobile Admmin *******************/
+.mobileadminhome
+{	
+    padding: 1%;
+    width: 98%;
+}
+.content_Admin {  
+    float: left !important;
+   
+}
+.mobileadminhome li
+{
+	margin-bottom:5px;	
+}
+.txtwidth
+{
+	float: left;
+    margin-bottom: 10px;
+    margin-top: 4px;
+    width: 75%;
+}
+.ItemRowName
+{
+	font-weight:bold;
+	font-size:15px;	
+}
+.container_MobileSearch
+{
+	border:1px solid #000;
+	margin-bottom:13px;	
+	float:left;	
+}
+.SectionHeading 
+{
+    color: #cc0000;
+    display: inline;
+    font-size: 15px;
+    font-weight: bold;
+    margin:20px 0;
+    float:left;
+    width:100%;
+}
+.SectionTable {
+    color: #000000;
+    width: 80%;
+    margin-left:40px;
+}
+.SectionTable A:link {
+    font-weight: normal;
+}
+.ListingTableInquire span {
+    color: #009900;
+    display: inline;
+    font-weight: bold;
+    text-align: left;
+    font-size:12px;
+    
+}
+.addItemDiv
+{
+	float:left;
+	width:155px;
+}
+.addItemText
+{
+	float:left;
+    width: 100px;
+}
+.addItemInner
+{
+	float: left; 
+	margin-top: 5px;
+}
+
+h2.subtitle {
+    color: #cc0000;
+    display: inline;
+    font-size: 95%;
+    font-weight: bold;
+}
+
+/******** video Link ******************/
+h3.ProductHilite {
+    color: #cc0000;
+    display: inline;
+    font-size: 100%;
+    font-weight: bold;
+}
+.DownloadText
+{
+	float: left;
+	 margin-left: 128px;
+	  padding-top: 11px;	
+}
+.ExcellLinkCss
+{
+	float: left;
+	margin-left: 20px;	
+}
+.pdflinkcss
+{
+	float: right; 
+	margin-bottom: 10px; 
+	margin-right: 20px;	
+}
+.VideoLinkcss
+{
+	float: left;
+	padding-top: 12px; 
+	width: 48%;	
+}
+.excellvideoMaindiv
+{
+	float: left;
+	margin-bottom: 10px;
+	width: 99%;	
+}
+.excellvideoMaindiv_right_inner
+{
+	float:right;
+	width:50%;	
+}
+
+.Left_Menu_bot
+{
+	float: left;
+    margin: 15px 0;
+    width: 90%;
+}
+.Left_Menu_Last
+{
+	float:left; 
+	margin-left:22px; 
+	width:90%; 
+	margin-bottom:20px;
+}
+.Left_Menu_bot ul {
+	list-style: none; 
+	margin-left:22px;
+	width:105px;
+	float:left;
+	}
+	
+	
+.inquirieslv
+{
+	background: url("images/rowBackground.gif") repeat-x scroll 0 0 #c7defc;
+    border-top: 1px solid #a9bde0;
+    color: #cc0000;
+    height: 36px;
+    line-height: 30px;	
+}
+.AddUserButton_Inquirey
+{
+	 background: none repeat scroll 0 0 #c73b26;
+    border: 0 none;
+    border-radius: 3px;
+    color: #fff !important;
+    float: right;
+    font-family: arial,helvetica,sans serif;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    height: 24px;   
+    line-height: 24px !important;
+    margin: 4px 0px 0 0;
+    padding: 3px 5px !important;;
+    position: relative;
+    text-transform: uppercase;
+    cursor:pointer;
+    text-decoration: none !important;
+}
+.datapagerdiv_left
+{
+	float:left;
+	width:50%;	
+}
+.datapagerdiv_right
+{
+	float: right;
+    padding-top: 10px;
+    width: 50%;
+}
+.lnkdays
+{
+	font-weight:bold !important;
+	text-decoration:none !important;
+	color:#000 !important;
+}
+.lvtd
+{
+	width:15%;	
+}
+.lvsortingDiv{
+	background: url("images/rowBackground.gif") repeat-x scroll 0 0 #c7defc;
+    border-left: 1px solid #a9bde0;
+    border-right: 1px solid #a9bde0;
+    border-top: 1px solid #a9bde0;
+    color: #cc0000;
+    height: 30px;
+    line-height: 30px;
+}
+.lvtrcolor_Order
+{
+	background:#fbf4ee;
+}
+.lvtrcolor_Contract
+{
+	background:#eef4fb;
+}
+.InqDetailstr
+{
+	background:#eeeeee;	
+}

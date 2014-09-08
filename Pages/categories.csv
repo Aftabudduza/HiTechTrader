@@ -1,0 +1,242 @@
+categoryName,ParentCategoryName,catlevel,noItems
+Air Table,,1,1
+Isolation,Air Table,2,6
+Analyzers/Meters,,1,12
+Air Particles,Analyzers/Meters,2,9
+Conductance,Analyzers/Meters,2,4
+Conductivity,Analyzers/Meters,2,8
+DS,Analyzers/Meters,2,2
+Fluoride,Analyzers/Meters,2,1
+Gases,Analyzers/Meters,2,9
+Ion,Analyzers/Meters,2,1
+IR,Analyzers/Meters,2,0
+Leak Detector,Analyzers/Meters,2,4
+Moisture,Analyzers/Meters,2,5
+Oil,Analyzers/Meters,2,2
+Oxygen,Analyzers/Meters,2,8
+Ozone,Analyzers/Meters,2,2
+Particle,Analyzers/Meters,2,7
+pH,Analyzers/Meters,2,29
+pH Electrodes,Analyzers/Meters,2,10
+Photoionization,Analyzers/Meters,2,1
+Sample Feeder,Analyzers/Meters,2,0
+TOC,Analyzers/Meters,2,0
+Water Analysis,Analyzers/Meters,2,0
+Dew Point,Analyzers/Meters,2,2
+Misc,Analyzers/Meters,2,1
+Animal,,1,0
+Anesthesia,Animal,2,3
+Cages,Animal,2,0
+Grip Strength ,Animal,2,0
+Other,Animal,2,4
+Plethysmometer,Animal,2,0
+Pulse Generator,Animal,2,0
+Autoclave,,1,0
+Balances,,1,6
+Accessories,Balances,2,10
+Analytical,Balances,2,19
+Microbalances,Balances,2,4
+Moisture,Balances,2,3
+Other,Balances,2,3
+Platform,Balances,2,5
+Printers,Balances,2,5
+Safety Hoods,Balances,2,0
+Table,Balances,2,7
+Top Loading,Balances,2,33
+Weight Checker,Balances,2,0
+0.0004 4 place Decimal,Balances,2,4
+0.003 3 place Decimal,Balances,2,2
+0.01 2 place Decimal,Balances,2,9
+0.1 1 place Decimal,Balances,2,14
+1.0 Decimal place,Balances,2,1
+Beam / Mechanical,Balances,2,5
+Weights,Balances,2,3
+Readouts,Balances,2,4
+Baths-Circulators,,1,7
+Accessories,Baths-Circulators,2,10
+Heated Baths,Baths-Circulators,2,58
+Fluidized,Baths-Circulators,2,1
+High Temp,Baths-Circulators,2,5
+Immersion,Baths-Circulators,2,8
+Liquid / Liquid,Baths-Circulators,2,4
+Oil Baths,Baths-Circulators,2,0
+Refrigerated,Baths-Circulators,2,61
+Shaking,Baths-Circulators,2,21
+Sterilizer,Baths-Circulators,2,0
+Viscosity,Baths-Circulators,2,1
+Heated Circulator Baths,Baths-Circulators,2,23
+Open Baths,Baths-Circulators,2,6
+Biotechnology,,1,18
+Air Sampling,Biotechnology,2,1
+Analyzer,Biotechnology,2,6
+Arrayer,Biotechnology,2,6
+Autosamplers,Biotechnology,2,3
+Bioreactor,Biotechnology,2,0
+Blotting,Biotechnology,2,2
+BOD,Biotechnology,2,1
+Bottle Roller,Biotechnology,2,0
+Calibrator,Biotechnology,2,1
+Capillary Phoresis,Biotechnology,2,4
+Cell Counter,Biotechnology,2,1
+Cell Culture,Biotechnology,2,0
+Cell Disrupter,Biotechnology,2,10
+Cell Factory,Biotechnology,2,0
+Cell Preparation,Biotechnology,2,4
+Cell Roller,Biotechnology,2,0
+Cell Stirring,Biotechnology,2,4
+CHEF,Biotechnology,2,0
+Colony Counter,Biotechnology,2,1
+Crimper,Biotechnology,2,8
+Culture Tubes,Biotechnology,2,10
+Densitometer,Biotechnology,2,1
+Dispenser,Biotechnology,2,4
+Dissolution,Biotechnology,2,2
+Dry Block Heaters,Biotechnology,2,29
+Electrophoresis/PS,Biotechnology,2,50
+Filtration,Biotechnology,2,3
+Gel Dryer,Biotechnology,2,12
+Gene Pulser,Biotechnology,2,6
+General,Biotechnology,2,1
+Homogenizers,Biotechnology,2,23
+Hybridization,Biotechnology,2,5
+Light Box,Biotechnology,2,1
+Media Bottles,Biotechnology,2,0
+Microassay,Biotechnology,2,2
+Microfluidizer,Biotechnology,2,0
+Microplate,Biotechnology,2,26
+Microtome,Biotechnology,2,8
+Mixer,Biotechnology,2,13
+Mixing,Biotechnology,2,1
+Osmometer,Biotechnology,2,1
+Other,Biotechnology,2,15
+PCR,Biotechnology,2,20
+Perfusion Chromatograph,Biotechnology,2,1
+petri rack,Biotechnology,2,0
+Phosphor Screen,Biotechnology,2,0
+Pipette,Biotechnology,2,6
+Power Supply,Biotechnology,2,4
+Robotic Automation,Biotechnology,2,1
+Rollers,Biotechnology,2,1
+Rotator,Biotechnology,2,11
+Sequencers,Biotechnology,2,0
+Shakers,Biotechnology,2,23
+Slide Stainer,Biotechnology,2,3
+Slide Warmer,Biotechnology,2,0
+Sterilizer,Biotechnology,2,2
+Sterilizers,Biotechnology,2,0
+Stirrers,Biotechnology,2,3
+Stomacher,Biotechnology,2,0
+Synthesizer,Biotechnology,2,2
+Temp - Cyclers,Biotechnology,2,0
+Thermal Cyclers,Biotechnology,2,15
+Tissue Bath,Biotechnology,2,5
+Tissue Chopper,Biotechnology,2,0
+Tissue Processor,Biotechnology,2,1
+Transilluminators,Biotechnology,2,10
+Ultrasonic Cleaner,Biotechnology,2,2
+UV Crosslinker,Biotechnology,2,9
+Vacuum Blotter,Biotechnology,2,1
+Vibrator,Biotechnology,2,0
+DNA,Biotechnology,2,5
+Electroporator,Biotechnology,2,1
+Porator,Biotechnology,2,1
+Spiral Platen,Biotechnology,2,0
+Gel Imaging,Biotechnology,2,3
+SPE,Biotechnology,2,1
+Cell Washer,Biotechnology,2,1
+Centrifuges,,1,3
+Basket,Centrifuges,2,3
+Bowl,Centrifuges,2,0
+Micro,Centrifuges,2,22
+Other,Centrifuges,2,24
+Refrigerated,Centrifuges,2,18
+Rotors,Centrifuges,2,93
+Chart Paper,,1,0
+Integrators,Chart Paper,2,0
+Chemicals,,1,1
+Sodium Bicarbonate,Chemicals,2,0
+Chromatograph-Gas,,1,7
+a/d Converter,Chromatograph-Gas,2,5
+Accessories,Chromatograph-Gas,2,25
+Atomic Emission Detector,Chromatograph-Gas,2,0
+Autosamplers,Chromatograph-Gas,2,8
+Columns,Chromatograph-Gas,2,5
+Concentrator,Chromatograph-Gas,2,3
+Feed Purification ,Chromatograph-Gas,2,3
+FID,Chromatograph-Gas,2,5
+Flow Calibrator,Chromatograph-Gas,2,0
+Gas Chromatographs,Chromatograph-Gas,2,8
+Head Space,Chromatograph-Gas,2,2
+Photoionization,Chromatograph-Gas,2,1
+Supplies,Chromatograph-Gas,2,0
+Sample Concentrator,Chromatograph-Gas,2,2
+Chromatograph-Liquid,,1,16
+Accessories,Chromatograph-Liquid,2,71
+Autosamplers,Chromatograph-Liquid,2,34
+Column Heater/Chiller,Chromatograph-Liquid,2,35
+Column Selector,Chromatograph-Liquid,2,0
+Columns,Chromatograph-Liquid,2,71
+Controllers,Chromatograph-Liquid,2,28
+Data Server,Chromatograph-Liquid,2,7
+Degasser,Chromatograph-Liquid,2,6
+Detectors,Chromatograph-Liquid,2,125
+FPLC,Chromatograph-Liquid,2,1
+Fraction Collector,Chromatograph-Liquid,2,7
+Ion,Chromatograph-Liquid,2,2
+Low Pressure LC,Chromatograph-Liquid,2,3
+Other,Chromatograph-Liquid,2,6
+Prep,Chromatograph-Liquid,2,1
+Prep-Systems,Chromatograph-Liquid,2,1
+Pumps,Chromatograph-Liquid,2,72
+Scintillation,Chromatograph-Liquid,2,1
+Solvent Recyler,Chromatograph-Liquid,2,4
+System,Chromatograph-Liquid,2,16
+Valves,Chromatograph-Liquid,2,27
+Controllers,,1,10
+Graphic Terminal,Controllers,2,5
+Heating Mantle,Controllers,2,4
+Indexers,Controllers,2,1
+Liquid Level,Controllers,2,4
+Mass Flow,Controllers,2,10
+Powerstats,Controllers,2,29
+Pressure,Controllers,2,6
+Temperature,Controllers,2,44
+Vacuum,Controllers,2,0
+Cooling Units,,1,4
+Dryers,,1,1
+Fluid Bed,Dryers,2,0
+Electrochemical Reactor,,1,2
+Enviromental Chambers,,1,2
+Evaporators,,1,6
+Accessories,Evaporators,2,6
+Aspirator,Evaporators,2,1
+Centrifugal,Evaporators,2,12
+Centrifuge,Evaporators,2,3
+Kugelrohr,Evaporators,2,1
+Misc,Evaporators,2,1
+Other Types,Evaporators,2,7
+Pumps,Evaporators,2,0
+Rotoevaporator,Evaporators,2,12
+Rototherm,Evaporators,2,0
+Thin film,Evaporators,2,1
+Vac Pump/Controller,Evaporators,2,1
+Vacuum,Evaporators,2,2
+Vapor Traps,Evaporators,2,11
+Wipe Film,Evaporators,2,0
+Vapor Ducts,Evaporators,2,2
+Exposure Systems,,1,0
+Ultraviolet,Exposure Systems,2,1
+Fermentation,,1,0
+Accessories,Fermentation,2,2
+Bio Reactor,Fermentation,2,2
+Fermenters,Fermentation,2,1
+Probes,Fermentation,2,1
+Filtration,,1,3
+Filters,Filtration,2,15
+Manifolds,Filtration,2,0
+Pharmaceutical,Filtration,2,2
+Plate,Filtration,2,3
+Porcelain,Filtration,2,7
+Pressure,Filtration,2,1
+Supplies,Filtration,2,2
+System,Filtration,2,3

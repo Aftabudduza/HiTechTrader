@@ -1,0 +1,127 @@
+﻿<%@ Master Language="VB" CodeFile="MobileAdmin.master.vb" Inherits="Master_Pages_MobileAdmin" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Mobile Admin</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div id="page">
+            <!-- start page -->
+            <div class="wrapper">
+                <!-- start wrapper -->
+                <div class="container" style="background: none !important;">
+                    <!-- start container -->
+                    <div class="main_Admin">
+                        <!-- start main -->
+                        <div class="HeaderLeft">
+                            <br />
+                        </div>
+                        <div class="logo_Admin">
+                            <a href="#" class="logo">
+                                <img src="../App_Themes/Hitech/images/logo.gif" alt="HiTechTrader.com Logo" width="395"
+                                    height="29" border="0" vspace="5" /></a><br />
+                            <span class="MobileText">Admin Home</span>
+                        </div>
+                        <%--<div class="HeaderRight">
+                            <div class="SearchBox">
+                                <form action="" method="post">
+                                <strong>Quick Search: </strong>
+                                <input type="text" name="searchword" size="20" maxlength="100" />
+                                <input class="SearchButton" type="submit" value="Search" /><br />
+                                </form>
+                            </div>
+                        </div>--%>
+                        <%--<div class="nav">
+                            <a href="#" id="pull">Menu</a>
+                            <ul>
+                                <li><a href="../Admin/ProductListing.aspx?sc_state=1&sc_page=0&sc_cat=0">New Arrivals</a></li>
+                                <li><a href="../Admin/InventoryList.aspx">Inventory List</a></li>
+                                <li><a href="../Admin/ProductListing.aspx?sc_state=2&sc_page=0&sc_cat=0">On Consignment</a></li>
+                                <li><a href="../Admin/ProductListing.aspx?sc_state=3&sc_page=0&sc_cat=0">Just Off the
+                                    Truck</a></li>
+                                <li><a href="../Admin/ProductListing.aspx?sc_state=4&sc_page=0&sc_cat=0">Not On Web</a></li>
+                                <li><a href="~/Default.aspx">Live Site</a></li>
+                                <li style="margin-top: 20px;"><a href="../Admin/AddNewItem.aspx">Add New Item</a></li>
+                                <li><a href="#">Full Inventory List</a></li>
+                                <li><a href="../Admin/EquipmentList.aspx">Equipment List</a></li>
+                            </ul>
+                        </div>--%>
+                    </div>
+                    <div class="Header_NavBar">
+                        <div class="AdminHome">
+                            <% If Not Session("ID") Is Nothing Then%>
+                            <span><a href="../Admin/AdminHome.aspx">Admin Home</a></span>
+                            <%  End If
+                            %>
+                        </div>
+                        <span class="websitead"><a href="../Admin/MobileHome.aspx">Mobile Admin</a></span>
+                        <span class="logout" id="logout" runat="server">log out</span>
+                    </div>
+                    <%--<div class="menu_Admin">
+                        <!-- start menu -->
+                          <%  If Not Session("Id") Is Nothing Then%>
+                        <div class="navigation" style="background: #eee !important">
+                          
+                            <ul>
+                                <li><a href="../Admin/ProductListing.aspx?sc_state=1&sc_page=0&sc_cat=0">New Arrivals</a></li>
+                                <li><a href="../Admin/InventoryList.aspx">Inventory List</a></li>
+                                <li><a href="../Admin/ProductListing.aspx?sc_state=2&sc_page=0&sc_cat=0">On Consignment</a></li>
+                                <li><a href="../Admin/ProductListing.aspx?sc_state=3&sc_page=0&sc_cat=0">Just Off the
+                                    Truck</a></li>
+                                <li><a href="../Admin/ProductListing.aspx?sc_state=4&sc_page=0&sc_cat=0">Not On Web</a></li>
+                                <li><a href="~/Default.aspx">Live Site</a></li>
+                                <li style="margin-top: 20px;"><a href="../Admin/AddNewItem.aspx">Add New Item</a></li>
+                                <li><a href="#">Full Inventory List</a></li>
+                                <li><a href="../Admin/EquipmentList.aspx">Equipment List</a></li>
+                                <li><a href="../CMS/MaintainCMS.aspx">Maintain CMS</a></li>
+                            </ul>
+                          
+                            <div id='cssmenu'>
+                                <ul runat="server" id="leftmenu">
+                                </ul>
+                            </div>
+                        </div>
+                          <% End If%>
+                    </div>--%>
+                    <!-- End menu-->
+                    <!-- End main -->
+                    <div class="content_Admin">
+                        <div class="content_Admin_inner">
+                            <div class="mobileadminhome">
+                                <asp:ContentPlaceHolder ID="body" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+                        <!-- start content -->
+                    </div>
+                    <!-- end content -->
+                    <div class="footer" style="width: 96%; border-top: 1px solid #c7defc; float: right !important;">
+                        <!-- start footer -->
+                        <p style="float: left; font-weight: bold;">
+                            <%  If Not Session("Id") Is Nothing Then%>
+                            Logged In : <span id="UserName" runat="server" style="color: Red;"></span>
+                            <%End If%>
+                        </p>
+                        <p style="float: right; font-size: 11px;" id="currentdatetime" runat="server">
+                        </p>
+                        <p class="footerCopy">
+                            &copy; 1997 - <span id="curentyear" runat="server"></span> HiTechTrader.com. All
+                            rights reserved.
+                        </p>
+                    </div>
+                    <!-- End footer -->
+                </div>
+            </div>
+            <!-- End Container-->
+        </div>
+        <!-- End Wrapper-->
+    </div>
+    <!-- End page-->
+    </form>
+</body>
+</html>
