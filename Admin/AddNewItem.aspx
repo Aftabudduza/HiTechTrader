@@ -6,23 +6,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
     <script src="../Scripts/tinymce/tinymce.min.js" type="text/javascript"></script>
+ <script type="text/javascript">
 
-    <script type="text/javascript">            
-        tinymce.init({
-            mode: "textareas",
-            editor_selector: "mceEditor",
-            theme: "advanced",
-            external_plugins: { "nanospell": "/HitechTrader/Scripts/tinymce/nanospell/plugin.js" },
-            nanospell_server: "asp.net",
-            plugins: [
-        "advlist autolink lists link image charmap print preview anchor style layer",
+     tinymce.init({
+         mode: "textareas",
+         editor_selector: "mceEditor",
+         external_plugins: { "nanospell": "/Scripts/tinymce/nanospell/plugin.js" },
+         nanospell_server: "asp.net",
+         plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
         "insertdatetime media table contextmenu paste"
     ],
-            toolbar: "insertlayer,moveforward,movebackward,absolute,insertfile,insertimage,fontselect,forecolor,backcolor,fontsizeselect,insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+         toolbar: "insertlayer,moveforward,movebackward,absolute,insertimage,fontselect,forecolor,backcolor,fontsizeselect,insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 
-        });
+     });
     </script>
+    
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
