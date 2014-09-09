@@ -15,34 +15,34 @@
             <h3 class="SectionHeading">
                 Add Management</h3>
             <ul class="SectionTable">
-                <li><a href="../Admin/AddNewItem.aspx">Add New Item</a></li>
-                <li><a href="../Admin/InventoryList.aspx">Inventory List</a><asp:Label runat="server"
+                <li><a class="AdminHomeLinkspacing" href="../Admin/AddNewItem.aspx">Add New Item</a></li>
+                <li><a class="AdminHomeLinkspacing" href="../Admin/InventoryList.aspx">Inventory List</a><asp:Label runat="server"
                     ID="lblTotal" Text="" /></li>
-                <li><a href="../Admin/ProductListing.aspx?sc_state=1&sc_page=0&sc_cat=0">New Arrivals</a><asp:Label
+                <li><a class="AdminHomeLinkspacing" href="../Admin/ProductListing.aspx?sc_state=1&sc_page=0&sc_cat=0">New Arrivals</a><asp:Label
                     runat="server" ID="lblNew" Text="" /></li>
-                <li><a href="../Admin/ProductListing.aspx?sc_state=4&sc_page=0&sc_cat=0">Third Party Website</a><asp:Label
+                <li><a class="AdminHomeLinkspacing" href="../Admin/ProductListing.aspx?sc_state=4&sc_page=0&sc_cat=0">Third Party Website</a><asp:Label
                     runat="server" ID="lblThirdParty" Text="" /></li>
-                <li><a href="../Admin/ProductListing.aspx?sc_state=5&sc_page=0&sc_cat=0">Mike SR Stuff</a>
+                <li><a class="AdminHomeLinkspacing" href="../Admin/ProductListing.aspx?sc_state=5&sc_page=0&sc_cat=0">Mike SR Stuff</a>
                 <asp:Label runat="server" ID="lblDoNotRelease" Text="" /></li>
-                <li><a href="../Admin/ProductListing.aspx?sc_state=6&sc_page=0&sc_cat=0">Marked Featured
+                <li><a class="AdminHomeLinkspacing" href="../Admin/ProductListing.aspx?sc_state=6&sc_page=0&sc_cat=0">Marked Featured
                     Items</a><asp:Label runat="server" ID="lblFeatured" Text="" /></li>
-                <li><a href="../Admin/ProductListing.aspx?sc_state=2&sc_page=0&sc_cat=0">Consignment</a><asp:Label
+                <li><a class="AdminHomeLinkspacing" href="../Admin/ProductListing.aspx?sc_state=2&sc_page=0&sc_cat=0">Consignment</a><asp:Label
                     runat="server" ID="lblConsignment" Text="" /></li>
-                <li><a href="../Admin/ProductListing.aspx?sc_state=3&sc_page=0&sc_cat=0">Just Off the
+                <li><a class="AdminHomeLinkspacing" href="../Admin/ProductListing.aspx?sc_state=3&sc_page=0&sc_cat=0">Just Off the
                     Truck</a><asp:Label runat="server" ID="lblOffTheTrack" Text="" /></li>
-                <li><a href="../Admin/ProductListing.aspx?sc_state=7&sc_page=0&sc_cat=0">Recently Sold</a><asp:Label
+                <li><a class="AdminHomeLinkspacing" href="../Admin/ProductListing.aspx?sc_state=7&sc_page=0&sc_cat=0">Recently Sold</a><asp:Label
                     runat="server" ID="lblSold" Text="" /></li>
-                <li><a href="../Admin/ProductListing.aspx?sc_state=8&sc_page=0&sc_cat=0">Deleted Items</a><asp:Label
+                <li><a class="AdminHomeLinkspacing" href="../Admin/ProductListing.aspx?sc_state=8&sc_page=0&sc_cat=0">Deleted Items</a><asp:Label
                     runat="server" ID="lblDelete" Text="" /></li>
             </ul>
             <h3 class="SectionHeading">
                 Ad/Site Data</h3>
             <ul class="SectionTable">
-                <li><a href="../Admin/ProductListing.aspx?sc_state=9&sc_page=0&sc_cat=0">Archived Sold</a><asp:Label
+                <li><a class="AdminHomeLinkspacing" href="../Admin/ProductListing.aspx?sc_state=9&sc_page=0&sc_cat=0">Archived Sold</a><asp:Label
                     runat="server" ID="lblArchiveSold" Text="" /></li>
-                <li><a href="../Admin/ProductListing.aspx?sc_state=10&sc_page=0&sc_cat=0">Archived Deleted</a><asp:Label
+                <li><a class="AdminHomeLinkspacing" href="../Admin/ProductListing.aspx?sc_state=10&sc_page=0&sc_cat=0">Archived Deleted</a><asp:Label
                     runat="server" ID="lblArchiveDelete" Text="" /></li>
-                <li><a href="../Admin/SearchWords.aspx">Search Words</a></li>
+                <li><a class="AdminHomeLinkspacing" href="../Admin/SearchWords.aspx">Search Words</a></li>
                 <li><a href="../Admin/HotItems.aspx">HOT Items!</a></li>
                 <li><a href="../Admin/InquiryEmail.aspx">Inquiry Emails</a></li>
                 <li><a href="../Admin/Accounting.aspx">Accounting</a></li>
