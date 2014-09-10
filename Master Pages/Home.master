@@ -67,7 +67,6 @@
                     <!-- start container -->
                     <div class="menu">
                         <!-- start menu -->
-                        <%-- <Hitech:LeftSideBar runat="server" ID="LeftSideBar" />  --%>
                         <div class="MenuBanners">
                             <span runat="server" id="spanLeftTopLogo" style="float: left; margin-bottom: 3px;">
                             </span><span runat="server" id="spanLeftInnerLogo" style="float: left; margin-bottom: 5px;">
