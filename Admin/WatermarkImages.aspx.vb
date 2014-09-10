@@ -50,14 +50,18 @@ Partial Class Admin_WatermarkImages
             Dim str As String = ""
             Dim ds As DataSet = Nothing
             Dim html As String = ""
-            str = "SELECT p.Watermarkimg FROM Product p WHERE p.Id =" & CInt(Itemno.ToString())
+            str = "SELECT p.ImageFileName FROM Product p WHERE p.Id =" & CInt(Itemno.ToString())
             If str.Length > 0 Then
                 ds = BRIClassLibrary.SQLData.generic_select(str, appGlobal.CONNECTIONSTRING)
                 If Not ds Is Nothing Then
                     If ds.Tables(0).Rows.Count > 0 Then
-                        html &= "<img src='../ProductImages/Large/NoWaterMarkImage/" & ds.Tables(0).Rows(0)("Watermarkimg").ToString() & "' alt='" & ds.Tables(0).Rows(0)("Watermarkimg").ToString() & "' >"
+                        If Not ds.Tables(0).Rows(0)("ImageFileName") Is Nothing And ds.Tables(0).Rows(0)("ImageFileName").ToString() <> String.Empty Then
+                            html &= "<img src='../ProductImages/Large/" & ds.Tables(0).Rows(0)("ImageFileName").ToString() & "' alt='" & ds.Tables(0).Rows(0)("ImageFileName").ToString() & "' >"
+                            imgdiv.InnerHtml = html
+                        End If
+                    Else
+                        DisplayAlert("You Haven't Upload Any Water Mark Image yet!!!!!")
                     End If
-                    imgdiv.InnerHtml = html
                 Else
                     DisplayAlert("You Haven't Upload Any Water Mark Image yet!!!!!")
                 End If

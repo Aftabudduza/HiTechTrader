@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
 <div style="float:left;width:100%;"><h1 class="pagetitle">
-        No Water Mark Images  </h1></div>
+        Water Mark Images  </h1></div>
 <div style="float:left;width:100%;margin-top:20px;" id="imgdiv" runat="server">
 
 </div>
