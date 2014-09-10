@@ -294,6 +294,9 @@
                 <td colspan="6">
                     Image Location
                     <asp:FileUpload ID="flName" runat="server" />
+                     <span>
+                        <asp:LinkButton ID="lnkWatermarkImage" runat="server">See Water Mark Image</asp:LinkButton></span>
+                        <br />
                     <span style="color: Red;">Tip: Only baseline jpg or non-animated gif files under 1 mb.</span>
                 </td>
             </tr>
@@ -302,7 +305,7 @@
                     Upload No Watermark Image :
                     <asp:FileUpload ID="flWatermarkimg" runat="server" />
                     <span>
-                        <asp:LinkButton ID="lnkWatermarkImage" runat="server">See The Water Mark Image</asp:LinkButton></span>
+                        <asp:LinkButton ID="lnkNoWatermarkImage" runat="server">See Without Water Mark Image</asp:LinkButton></span>
                 </td>
             </tr>
             <tr style="background: #eeeeee;">

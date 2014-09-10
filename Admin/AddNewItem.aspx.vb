@@ -1020,6 +1020,15 @@ Partial Class Admin_AddNewItem
         End Try
     End Sub
 
+    Protected Sub lnkNoWatermarkImage_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lnkNoWatermarkImage.Click
+        Try
+            If Not String.IsNullOrEmpty(txtItemNo.Text.ToString()) AndAlso Not txtItemNo.Text.ToString() Is Nothing Then
+                Response.Redirect("NoWatermarkImages.aspx?Itemno=" & CInt(Session("ProductId").ToString()))
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Protected Sub lnkWatermarkImage_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lnkWatermarkImage.Click
         Try
             If Not String.IsNullOrEmpty(txtItemNo.Text.ToString()) AndAlso Not txtItemNo.Text.ToString() Is Nothing Then
@@ -1029,6 +1038,7 @@ Partial Class Admin_AddNewItem
 
         End Try
     End Sub
+
 
     Public Function ShowCategoryName(ByVal Id As Integer) As String
         Dim str As String = String.Empty
