@@ -59,6 +59,11 @@
 {
   color: #cc0000;
 }
+
+#cssmenu > ul > li.has-sub.active > a span 
+{
+	color: #cc0000;
+}
 /*
 #cssmenu > ul > li.has-sub > a span {
   background: url(images/icon_plus.png) 98% center no-repeat;
@@ -97,8 +102,21 @@
 #cssmenu > ul > ul > li > a:hover {
   text-decoration: none;
   color:#cc0000;
+  display:block;
 }
 #cssmenu > ul > ul > ul > li > a:hover {
   text-decoration: none;
   color:#cc0000;
+  display:block;
+}
+
+#cssmenu > ul > ul > li.has-sub.active > a span 
+{
+	color: #cc0000;
+	display:block;
+}
+#cssmenu > ul > ul > ul > li.has-sub.active > a span 
+{
+	color: #cc0000;
+	display:block;
 }
