@@ -2,28 +2,80 @@
     AutoEventWireup="false" CodeFile="AddNewItem.aspx.vb" Inherits="Admin_AddNewItem"
     Title="Hitech Trader::Add New Item" %>
 
+<%@ Register TagPrefix="tinymce" Namespace="Moxiecode.TinyMCE.Web" Assembly="Moxiecode.TinyMCE" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
     <script src="../Scripts/tinymce/tinymce.min.js" type="text/javascript"></script>
- <script type="text/javascript">
+     <script type="text/javascript">
 
-     tinymce.init({
-         mode: "textareas",
-         editor_selector: "mceEditor",
-         external_plugins: { "nanospell": "/Scripts/tinymce/nanospell/plugin.js" },
-         nanospell_server: "asp.net",
-         plugins: [
+        tinymce.init({
+            mode: "textareas",
+            editor_selector: "mceEditor",
+            browser_spellcheck: true,
+            external_plugins: { "nanospell": "/Scripts/tinymce/nanospell/plugin.js" },
+            nanospell_server: "asp.net",
+            plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
         "insertdatetime media table contextmenu paste"
     ],
-         toolbar: "insertlayer,moveforward,movebackward,absolute,insertimage,fontselect,forecolor,backcolor,fontsizeselect,insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+            toolbar: "insertlayer,moveforward,movebackward,absolute,insertimage,fontselect,styleselect,forecolor,backcolor,fontsizeselect,insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 
-     });
+        });
     </script>
-    
+    <%--<script type="text/javascript" src="../tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 
+<script type="text/javascript">
+
+    tinyMCE.init({
+
+        mode: "textareas",
+
+        theme: "advanced",
+
+        editor_selector: "mceEditor",
+       
+        
+        
+      
+        plugins: "safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,imagemanager,filemanager",
+
+        theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+
+        theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+
+        theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+
+        theme_advanced_buttons4: "spellchecker, insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
+
+        theme_advanced_toolbar_location: "top",
+
+        theme_advanced_toolbar_align: "left",
+
+        theme_advanced_statusbar_location: "bottom",
+
+        theme_advanced_resizing: false,
+
+        theme_advanced_buttons4 : "spellchecker",
+        theme_advanced_toolbar_location : "top",
+        theme_advanced_toolbar_align : "left",
+        theme_advanced_statusbar_location : "bottom",
+        theme_advanced_resizing : false,
+        spellchecker_languages: "English=en",
+        spellchecker_rpc_url: '<%=ResolveUrl("~/TinyMCE.ashx?module=SpellChecker") %>',
+        template_external_list_url: "js/template_list.js",
+
+        external_link_list_url: "js/link_list.js",
+
+        external_image_list_url: "js/image_list.js",
+
+        media_external_list_url: "js/media_list.js"
+
+    });
+
+</script>
+--%>
+   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -171,24 +223,24 @@
                             <table>
                                 <tr>
                                     <td class="addItemDiv">
-                                        <span class="addItemText">Price</span> <span class="addItemInner">
-                                            $<asp:TextBox ID="txtPrice" Width="90" runat="server"></asp:TextBox></span>
+                                        <span class="addItemText">Price</span> <span class="addItemInner">$<asp:TextBox ID="txtPrice"
+                                            Width="90" runat="server"></asp:TextBox></span>
                                     </td>
                                     <td class="addItemDiv">
-                                        <span class="addItemText">POD Price</span> 
-                                        <span class="addItemInner">$<asp:TextBox ID="txtLowestPrice" Width="90" runat="server"></asp:TextBox></span>
+                                        <span class="addItemText">POD Price</span> <span class="addItemInner">$<asp:TextBox
+                                            ID="txtLowestPrice" Width="90" runat="server"></asp:TextBox></span>
                                     </td>
                                     <td class="addItemDiv">
-                                        <span class="addItemText">Auction Start</span> 
-                                        <span class="addItemInner">$<asp:TextBox ID="txtAuctionStart" Width="90" runat="server"></asp:TextBox></span>
+                                        <span class="addItemText">Auction Start</span> <span class="addItemInner">$<asp:TextBox
+                                            ID="txtAuctionStart" Width="90" runat="server"></asp:TextBox></span>
                                     </td>
                                     <td class="addItemDiv">
-                                        <span class="addItemText">Cost of Goods</span> 
-                                        <span class="addItemInner">$<asp:TextBox ID="txtCostofGoods" Width="90" runat="server"></asp:TextBox></span>
+                                        <span class="addItemText">Cost of Goods</span> <span class="addItemInner">$<asp:TextBox
+                                            ID="txtCostofGoods" Width="90" runat="server"></asp:TextBox></span>
                                     </td>
                                     <td class="addItemDiv">
-                                        <span class="addItemText">Manual Item No</span> 
-                                        <span class="addItemInner"><asp:TextBox ID="txtManualItemNo" Width="90" runat="server"></asp:TextBox></span>
+                                        <span class="addItemText">Manual Item No</span> <span class="addItemInner">
+                                            <asp:TextBox ID="txtManualItemNo" Width="90" runat="server"></asp:TextBox></span>
                                     </td>
                                 </tr>
                             </table>
@@ -206,29 +258,24 @@
                                     </td>
                                     <% End If%>--%>
                                     <td>
-                                        
                                         <span class="addItemText">Quantity</span>
                                         <asp:TextBox ID="txtQuantity" Width="90" runat="server"></asp:TextBox>
                                     </td>
                                     <td>
-                                        
                                         <span class="addItemText">Total Pieces</span>
                                         <asp:TextBox ID="txtTotalPieces" Width="90" runat="server"></asp:TextBox>
                                     </td>
                                     <td>
-                                        
                                         <span class="addItemText">Condition</span>
                                         <asp:DropDownList ID="ddlCondition" Width="90" runat="server">
                                         </asp:DropDownList>
                                     </td>
                                     <td>
-                                        
                                         <span class="addItemText">Age</span>
                                         <asp:DropDownList ID="ddlAge" Width="90" runat="server">
                                         </asp:DropDownList>
                                     </td>
                                     <td>
-                                        
                                         <span class="addItemText">Weight</span>
                                         <asp:TextBox ID="txtWeight" Width="85" runat="server"></asp:TextBox>
                                         lbs
@@ -249,7 +296,7 @@
                     <% End If%>
                     <tr style="background: #fff;">
                         <td colspan="3">
-                            Category: 
+                            Category:
                             <asp:DropDownList ID="ddlCategory" runat="server">
                             </asp:DropDownList>
                         </td>
@@ -294,9 +341,9 @@
                 <td colspan="6">
                     Image Location
                     <asp:FileUpload ID="flName" runat="server" />
-                     <span>
+                    <span>
                         <asp:LinkButton ID="lnkWatermarkImage" runat="server">See Water Mark Image</asp:LinkButton></span>
-                        <br />
+                    <br />
                     <span style="color: Red;">Tip: Only baseline jpg or non-animated gif files under 1 mb.</span>
                 </td>
             </tr>
