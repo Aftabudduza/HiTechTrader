@@ -204,6 +204,165 @@ Partial Class Master_Pages_SysadminHome
 
         Return str
     End Function
+
+    'Public Sub FillLeftMenuAdmin()
+    '    Dim strSQL As String = ""
+    '    Dim strChildSQL As String = ""
+    '    Dim strChild2SQL As String = ""
+    '    Dim objDS As DataSet = Nothing
+    '    Dim objDS2 As DataSet = Nothing
+    '    Dim pcIDs As String = ""
+    '    Dim ds As DataSet = Nothing
+    '    Dim dsChild As DataSet = Nothing
+    '    Dim dsChild2 As DataSet = Nothing
+    '    Dim strTemp As String = ""
+    '    Dim html As String = ""
+
+    '    Try
+    '        strSQL = " SELECT  c.*  FROM   Category c WHERE c.CategoryParentId = 0   ORDER BY c.CategoryName ASC  "
+    '        ds = BRIClassLibrary.SQLData.generic_select(strSQL, strConnection)
+    '        If Not ds Is Nothing And ds.Tables(0).Rows.Count > 0 Then
+    '            If ProductCategoryId > 0 Then
+    '                html += "<li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=0' title='Inventory List: All Categories'><span>Categories</span></a></li>"
+    '                For Each dr As DataRow In ds.Tables(0).Rows
+    '                    If Not dr("Id") Is Nothing And CInt(dr("Id").ToString()) > 0 Then
+    '                        If CInt(dr("Id").ToString()) = ProductCategoryId Then
+    '                            html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr("Id").ToString()) & "'><span>" & dr("CategoryName") & "</span></a>"
+    '                            If CInt(dr("Id").ToString()) > 0 Then
+    '                                strChildSQL = "SELECT * FROM Category c WHERE c.CategoryParentId =" & CInt(dr("Id").ToString())
+    '                                dsChild = BRIClassLibrary.SQLData.generic_select(strChildSQL, strConnection)
+    '                                If Not dsChild Is Nothing And dsChild.Tables(0).Rows.Count > 0 Then
+    '                                    html += "<ul style='display:block;'>"
+    '                                    For Each dr2 As DataRow In dsChild.Tables(0).Rows
+    '                                        If Not dr2("Id") Is Nothing And CInt(dr2("Id").ToString()) > 0 Then
+    '                                            strChild2SQL = "SELECT * FROM Category c WHERE c.CategoryParentId =" & CInt(dr2("Id").ToString())
+    '                                            dsChild2 = BRIClassLibrary.SQLData.generic_select(strChild2SQL, strConnection)
+    '                                            If Not dsChild2 Is Nothing And dsChild2.Tables(0).Rows.Count > 0 Then
+    '                                                If CInt(dr2("Id").ToString()) = ProductCategoryId Then
+    '                                                    html += "<li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a><ul style='display:block;'>"
+    '                                                    For Each dr3 As DataRow In dsChild2.Tables(0).Rows
+    '                                                        If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
+    '                                                            If CInt(dr("Id").ToString()) = ProductCategoryId Or CInt(dr2("Id").ToString()) = ProductCategoryId Or CInt(dr3("Id").ToString()) = ProductCategoryId Then
+    '                                                                html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+    '                                                            Else
+    '                                                                html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+    '                                                            End If
+    '                                                        End If
+    '                                                    Next
+    '                                                Else
+    '                                                    html += "<li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a><ul style='display:block;'>"
+    '                                                    For Each dr3 As DataRow In dsChild2.Tables(0).Rows
+    '                                                        If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
+    '                                                            If CInt(dr("Id").ToString()) = ProductCategoryId Or CInt(dr2("Id").ToString()) = ProductCategoryId Or CInt(dr3("Id").ToString()) = ProductCategoryId Then
+    '                                                                html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+    '                                                            Else
+    '                                                                html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+    '                                                            End If
+    '                                                        End If
+    '                                                    Next
+    '                                                End If
+
+
+    '                                                html += "</ul></li>"
+    '                                            Else
+    '                                                html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a></li>"
+    '                                            End If
+    '                                        End If
+    '                                    Next
+    '                                    html += "</ul>"
+    '                                End If
+    '                            End If
+    '                        Else
+    '                            html += " <li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr("Id").ToString()) & "'><span>" & dr("CategoryName") & "</span></a>"
+    '                            If CInt(dr("Id").ToString()) > 0 Then
+    '                                strChildSQL = "SELECT * FROM Category c WHERE c.CategoryParentId =" & CInt(dr("Id").ToString())
+    '                                dsChild = BRIClassLibrary.SQLData.generic_select(strChildSQL, strConnection)
+    '                                If Not dsChild Is Nothing And dsChild.Tables(0).Rows.Count > 0 Then
+    '                                    html += "<ul style='display:block;'>"
+    '                                    For Each dr2 As DataRow In dsChild.Tables(0).Rows
+    '                                        If Not dr2("Id") Is Nothing And CInt(dr2("Id").ToString()) > 0 Then
+    '                                            strChild2SQL = "SELECT * FROM Category c WHERE c.CategoryParentId =" & CInt(dr2("Id").ToString())
+    '                                            dsChild2 = BRIClassLibrary.SQLData.generic_select(strChild2SQL, strConnection)
+    '                                            If Not dsChild2 Is Nothing And dsChild2.Tables(0).Rows.Count > 0 Then
+    '                                                If CInt(dr2("Id").ToString()) = ProductCategoryId Then
+    '                                                    html += "<li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a><ul style='display:block;'>"
+    '                                                    For Each dr3 As DataRow In dsChild2.Tables(0).Rows
+    '                                                        If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
+    '                                                            If CInt(dr3("Id").ToString()) = ProductCategoryId Then
+    '                                                                html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+    '                                                            Else
+    '                                                                html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+    '                                                            End If
+    '                                                        End If
+    '                                                    Next
+    '                                                Else
+    '                                                    html += "<li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a><ul style='display:none;'>"
+    '                                                    For Each dr3 As DataRow In dsChild2.Tables(0).Rows
+    '                                                        If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
+    '                                                            If CInt(dr3("Id").ToString()) = ProductCategoryId Then
+    '                                                                html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+    '                                                            Else
+    '                                                                html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+    '                                                            End If
+    '                                                        End If
+    '                                                    Next
+    '                                                End If
+
+
+    '                                                html += "</ul></li>"
+    '                                            Else
+    '                                                html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a></li>"
+    '                                            End If
+    '                                        End If
+    '                                    Next
+    '                                    html += "</ul>"
+    '                                End If
+    '                            End If
+    '                        End If
+
+    '                    End If
+    '                Next
+    '                html += "</li>"
+    '            Else
+    '                html += "<li class='active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=0' title='Inventory List: All Categories'><span>Categories</span></a></li>"
+    '                For Each dr As DataRow In ds.Tables(0).Rows
+    '                    html += " <li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr("Id").ToString()) & "'><span>" & dr("CategoryName") & "</span></a>"
+    '                    If CInt(dr("Id").ToString()) > 0 Then
+    '                        strChildSQL = "SELECT * FROM Category c WHERE c.CategoryParentId =" & CInt(dr("Id").ToString())
+    '                        dsChild = BRIClassLibrary.SQLData.generic_select(strChildSQL, strConnection)
+    '                        If Not dsChild Is Nothing And dsChild.Tables(0).Rows.Count > 0 Then
+    '                            html += "<ul style='display:none;'>"
+    '                            For Each dr2 As DataRow In dsChild.Tables(0).Rows
+    '                                If CInt(dr2("Id").ToString()) > 0 Then
+    '                                    strChild2SQL = "SELECT * FROM Category c WHERE c.CategoryParentId =" & CInt(dr2("Id").ToString())
+    '                                    dsChild2 = BRIClassLibrary.SQLData.generic_select(strChild2SQL, strConnection)
+    '                                    If Not dsChild2 Is Nothing And dsChild2.Tables(0).Rows.Count > 0 Then
+    '                                        html += "<li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a><ul>"
+    '                                        For Each dr3 As DataRow In dsChild2.Tables(0).Rows
+    '                                            If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
+    '                                                html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+    '                                            End If
+    '                                        Next
+    '                                        html += "</ul></li>"
+    '                                    Else
+    '                                        html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a></li>"
+    '                                    End If
+    '                                End If
+    '                            Next
+    '                            html += "</ul>"
+    '                        End If
+    '                    End If
+    '                Next
+    '                html += "</li>"
+    '            End If
+    '        End If
+    '        leftmenu.InnerHtml = html
+
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Sub
+
     Public Sub FillLeftMenuAdmin()
         Dim strSQL As String = ""
         Dim strChildSQL As String = ""
@@ -217,6 +376,33 @@ Partial Class Master_Pages_SysadminHome
         Dim strTemp As String = ""
         Dim html As String = ""
 
+        Dim UserDS As New DataSet
+        Dim sStrNew As String = ""
+        Dim nGPId As Integer = 0
+        Dim nPId As Integer = 0
+        Dim nId As Integer = 0
+
+        Try
+            sStrNew = "SELECT c.Id, c.CategoryName, ParentId= isnull((SELECT Id FROM Category c2 WHERE c2.Id= c.CategoryParentId),0), Parent= (SELECT CategoryName FROM Category c2 WHERE c2.Id= c.CategoryParentId), GrandParent= (SELECT  CategoryName FROM Category c3 WHERE c3.Id = (SELECT CategoryParentId FROM Category c2 WHERE c2.Id= c.CategoryParentId)), GrandParentId= isnull((SELECT  Id FROM Category c3 WHERE c3.Id = (SELECT CategoryParentId FROM Category c2 WHERE c2.Id= c.CategoryParentId)),0) fROM Category c WHERE c.Id = " & ProductCategoryId
+            UserDS = SQLData.generic_select(sStrNew, strConnection)
+
+            If Not UserDS Is Nothing Then
+                If UserDS.Tables(0).Rows.Count > 0 Then
+                    If Not UserDS.Tables(0).Rows(0)("GrandParentId").ToString() Is Nothing AndAlso UserDS.Tables(0).Rows(0)("GrandParentId").ToString() <> String.Empty Then
+                        nGPId = CInt(UserDS.Tables(0).Rows(0)("GrandParentId").ToString().Trim)
+                    End If
+                    If Not UserDS.Tables(0).Rows(0)("ParentId").ToString() Is Nothing AndAlso UserDS.Tables(0).Rows(0)("ParentId").ToString() <> String.Empty Then
+                        nPId = CInt(UserDS.Tables(0).Rows(0)("ParentId").ToString().Trim)
+                    End If
+                    If Not UserDS.Tables(0).Rows(0)("Id").ToString() Is Nothing AndAlso UserDS.Tables(0).Rows(0)("Id").ToString() <> String.Empty Then
+                        nId = CInt(UserDS.Tables(0).Rows(0)("Id").ToString().Trim)
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+
         Try
             strSQL = " SELECT  c.*  FROM   Category c WHERE c.CategoryParentId = 0   ORDER BY c.CategoryName ASC  "
             ds = BRIClassLibrary.SQLData.generic_select(strSQL, strConnection)
@@ -224,7 +410,7 @@ Partial Class Master_Pages_SysadminHome
                 If ProductCategoryId > 0 Then
                     html += "<li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=0' title='Inventory List: All Categories'><span>Categories</span></a></li>"
                     For Each dr As DataRow In ds.Tables(0).Rows
-                        If Not dr("Id") Is Nothing And CInt(dr("Id").ToString()) > 0 Then
+                        If Not dr("Id") Is Nothing And dr("Id").ToString() <> String.Empty Then
                             If CInt(dr("Id").ToString()) = ProductCategoryId Then
                                 html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr("Id").ToString()) & "'><span>" & dr("CategoryName") & "</span></a>"
                                 If CInt(dr("Id").ToString()) > 0 Then
@@ -239,32 +425,25 @@ Partial Class Master_Pages_SysadminHome
                                                 If Not dsChild2 Is Nothing And dsChild2.Tables(0).Rows.Count > 0 Then
                                                     If CInt(dr2("Id").ToString()) = ProductCategoryId Then
                                                         html += "<li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a><ul style='display:block;'>"
-                                                        For Each dr3 As DataRow In dsChild2.Tables(0).Rows
-                                                            If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
-                                                                If CInt(dr("Id").ToString()) = ProductCategoryId Or CInt(dr2("Id").ToString()) = ProductCategoryId Or CInt(dr3("Id").ToString()) = ProductCategoryId Then
-                                                                    html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
-                                                                Else
-                                                                    html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
-                                                                End If
-                                                            End If
-                                                        Next
                                                     Else
                                                         html += "<li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a><ul style='display:block;'>"
-                                                        For Each dr3 As DataRow In dsChild2.Tables(0).Rows
-                                                            If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
-                                                                If CInt(dr("Id").ToString()) = ProductCategoryId Or CInt(dr2("Id").ToString()) = ProductCategoryId Or CInt(dr3("Id").ToString()) = ProductCategoryId Then
-                                                                    html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
-                                                                Else
-                                                                    html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
-                                                                End If
-                                                            End If
-                                                        Next
                                                     End If
-
-
+                                                    For Each dr3 As DataRow In dsChild2.Tables(0).Rows
+                                                        If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
+                                                            If CInt(dr3("Id").ToString()) = ProductCategoryId Then
+                                                                html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+                                                            Else
+                                                                html += " <li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+                                                            End If
+                                                        End If
+                                                    Next
                                                     html += "</ul></li>"
                                                 Else
-                                                    html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a></li>"
+                                                    If CInt(dr2("Id").ToString()) = ProductCategoryId Then
+                                                        html += " <li class='active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a></li>"
+                                                    Else
+                                                        html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a></li>"
+                                                    End If
                                                 End If
                                             End If
                                         Next
@@ -272,53 +451,54 @@ Partial Class Master_Pages_SysadminHome
                                     End If
                                 End If
                             Else
-                                html += " <li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr("Id").ToString()) & "'><span>" & dr("CategoryName") & "</span></a>"
                                 If CInt(dr("Id").ToString()) > 0 Then
                                     strChildSQL = "SELECT * FROM Category c WHERE c.CategoryParentId =" & CInt(dr("Id").ToString())
                                     dsChild = BRIClassLibrary.SQLData.generic_select(strChildSQL, strConnection)
                                     If Not dsChild Is Nothing And dsChild.Tables(0).Rows.Count > 0 Then
-                                        html += "<ul style='display:block;'>"
+                                        If CInt(dr("Id").ToString()) = ProductCategoryId Or CInt(dr("Id").ToString()) = nGPId Or CInt(dr("Id").ToString()) = nPId Or CInt(dr("Id").ToString()) = nId Then
+                                            html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr("Id").ToString()) & "'><span>" & dr("CategoryName") & "</span></a><ul style='display:block;'>"
+                                        Else
+                                            html += " <li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr("Id").ToString()) & "'><span>" & dr("CategoryName") & "</span></a><ul style='display:none;'>"
+                                        End If
                                         For Each dr2 As DataRow In dsChild.Tables(0).Rows
                                             If Not dr2("Id") Is Nothing And CInt(dr2("Id").ToString()) > 0 Then
                                                 strChild2SQL = "SELECT * FROM Category c WHERE c.CategoryParentId =" & CInt(dr2("Id").ToString())
                                                 dsChild2 = BRIClassLibrary.SQLData.generic_select(strChild2SQL, strConnection)
                                                 If Not dsChild2 Is Nothing And dsChild2.Tables(0).Rows.Count > 0 Then
-                                                    If CInt(dr2("Id").ToString()) = ProductCategoryId Then
+                                                    If CInt(dr2("Id").ToString()) = ProductCategoryId Or CInt(dr2("Id").ToString()) = nGPId Or CInt(dr2("Id").ToString()) = nPId Or CInt(dr2("Id").ToString()) = nId Then
                                                         html += "<li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a><ul style='display:block;'>"
-                                                        For Each dr3 As DataRow In dsChild2.Tables(0).Rows
-                                                            If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
-                                                                If CInt(dr3("Id").ToString()) = ProductCategoryId Then
-                                                                    html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
-                                                                Else
-                                                                    html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
-                                                                End If
-                                                            End If
-                                                        Next
                                                     Else
                                                         html += "<li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a><ul style='display:none;'>"
-                                                        For Each dr3 As DataRow In dsChild2.Tables(0).Rows
-                                                            If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
-                                                                If CInt(dr3("Id").ToString()) = ProductCategoryId Then
-                                                                    html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
-                                                                Else
-                                                                    html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
-                                                                End If
-                                                            End If
-                                                        Next
                                                     End If
-
-
+                                                    For Each dr3 As DataRow In dsChild2.Tables(0).Rows
+                                                        If Not dr3("Id") Is Nothing And CInt(dr3("Id").ToString()) > 0 Then
+                                                            If CInt(dr3("Id").ToString()) = ProductCategoryId Then
+                                                                html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+                                                            Else
+                                                                html += " <li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr3("Id").ToString()) & "'><span>" & dr3("CategoryName") & "</span></a></li>"
+                                                            End If
+                                                        End If
+                                                    Next
                                                     html += "</ul></li>"
                                                 Else
-                                                    html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a></li>"
+                                                    If CInt(dr2("Id").ToString()) = ProductCategoryId Or CInt(dr2("Id").ToString()) = nGPId Or CInt(dr2("Id").ToString()) = nPId Or CInt(dr2("Id").ToString()) = nId Then
+                                                        html += " <li class='active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a></li>"
+                                                    Else
+                                                        html += " <li><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr2("Id").ToString()) & "'><span>" & dr2("CategoryName") & "</span></a></li>"
+                                                    End If
                                                 End If
                                             End If
                                         Next
                                         html += "</ul>"
+                                    Else
+                                        If CInt(dr("Id").ToString()) = ProductCategoryId Or CInt(dr("Id").ToString()) = nGPId Or CInt(dr("Id").ToString()) = nPId Or CInt(dr("Id").ToString()) = nId Then
+                                            html += " <li class='has-sub active'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr("Id").ToString()) & "'><span>" & dr("CategoryName") & "</span></a>"
+                                        Else
+                                            html += " <li class='has-sub'><a href='../Admin/ProductListing.aspx?sc_state=0&sc_page=0&sc_cat=" & CInt(dr("Id").ToString()) & "'><span>" & dr("CategoryName") & "</span></a>"
+                                        End If
                                     End If
                                 End If
                             End If
-
                         End If
                     Next
                     html += "</li>"
@@ -361,5 +541,6 @@ Partial Class Master_Pages_SysadminHome
 
         End Try
     End Sub
+
 End Class
 
