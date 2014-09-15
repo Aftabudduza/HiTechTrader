@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 Imports System.Data
-Partial Class Admin_UploadProduct
+Partial Class Admin_UploadManualProduct
     Inherits System.Web.UI.Page
     Public ds As DataSet = New DataSet()
     Dim dt As New DataTable
@@ -11,13 +11,13 @@ Partial Class Admin_UploadProduct
         Try
             If Me.uplProduct.FileName <> "" Then
                 'read the file in
-                Dim filePath As String = Path.Combine(Request.PhysicalApplicationPath, "Files\Product\")
+                Dim filePath As String = Path.Combine(Request.PhysicalApplicationPath, "Files\Product\Manual\")
 
                 If Not Directory.Exists(filePath) Then
                     Directory.CreateDirectory(filePath)
                 End If
 
-                Dim nFile As String = Path.Combine(filePath, "INLOAD_Product_" & DateTime.Now.ToString("yyyyMMddhhmmss") & ".txt")
+                Dim nFile As String = Path.Combine(filePath, "INLOAD_ManualProduct_" & DateTime.Now.ToString("yyyyMMddhhmmss") & ".txt")
 
                 Try
                     If System.IO.File.Exists(nFile) Then
@@ -58,7 +58,7 @@ Partial Class Admin_UploadProduct
                 Finally
                     'sr.Close()
                 End Try
-                Dim sMessage As String = icnt & " Product(s) Processed Out Of " & itotcnt & " With " & ierr & " Error(s)"
+                Dim sMessage As String = icnt & " Manual Product(s) Processed Out Of " & itotcnt & " With " & ierr & " Error(s)"
                 lblMsg.Text = sMessage
 
             Else
@@ -155,7 +155,7 @@ Partial Class Admin_UploadProduct
             Dim sSQLTest As String = ""
             'test if in system
 
-            sSQLTest = "SELECT Id FROM Product WHERE ItemNumber='" & sItemNumber.Trim & "'"
+            sSQLTest = "SELECT Id FROM ManualProduct WHERE ItemNumber='" & sItemNumber.Trim & "'"
 
             Dim sProdId As String = ""
             Try
@@ -194,7 +194,7 @@ Partial Class Admin_UploadProduct
                 Dim sAddTable As String = ""
 
                 With sb
-                    .Append("INSERT INTO Product (")
+                    .Append("INSERT INTO ManualProduct (")
                     For x As Integer = 0 To aHeader.Count - 1
                         If aHeader(x).Trim.ToString.Trim <> "" Then
                             If Not Actions.inArray(aSkips, CStr(aHeader(x).Trim).ToUpper) Then
@@ -227,118 +227,7 @@ Partial Class Admin_UploadProduct
                                     sbFields.Append("[Description]")
                                     sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
-                                If CStr(aHeader(x).Trim).ToUpper = "CONDITION" Then
-                                    sbFields.Append("[Condition]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "AGE" Then
-                                    sbFields.Append("[Age]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "WEIGHT" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[Weight]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "PRICE" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[Price]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "QTY" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[Qty],[TotalPieces]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "','" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "QTYSOLD" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[QuantitySold]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "LOWESTPRICE" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[LowestPrice]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "COSTOFGOODS" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[CostofGoods]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "AUCTIONSTART" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[AuctionStart]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "SELLINGPRICE" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[SellingPrice]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
+                               
                                 If CStr(aHeader(x).Trim).ToUpper = "CATEGORYNAME" Then
                                     sbFields.Append("[Category]")
                                     sbValues.Append("'" & nCategoryID & "'")
@@ -351,14 +240,7 @@ Partial Class Admin_UploadProduct
                                     sbFields.Append("[Location]")
                                     sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
-                                If CStr(aHeader(x).Trim).ToUpper = "BARCODE" Then
-                                    sbFields.Append("[Barcode]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "BARCODEPARENT" Then
-                                    sbFields.Append("[BarcodeParent]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
+                               
                                 If CStr(aHeader(x).Trim).ToUpper = "HOLD" Then
                                     If aLine(x) <> "" Then
                                         If CDbl(aLine(x)) > 0 Then
@@ -373,84 +255,8 @@ Partial Class Admin_UploadProduct
                                     sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
 
-                                If CStr(aHeader(x).Trim).ToUpper = "SOLD" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[IsSold]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "SPECIALS" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[IsSpecial]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "NEW" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[IsNewArrivalsPage]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "FEATURED" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[IsFeaturedItem]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "OFFTRUCK" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[IsJustOfftheTruck]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "CONSIGNMENT" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[IsConsignmentItem]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
+                              
+                              
                                 If CStr(aHeader(x).Trim).ToUpper = "DELETED" Then
                                     If aLine(x) <> "" Then
                                         If CDbl(aLine(x)) > 0 Then
@@ -464,29 +270,17 @@ Partial Class Admin_UploadProduct
                                     sbFields.Append("[IsDeleteItem]")
                                     sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
-                                If CStr(aHeader(x).Trim).ToUpper = "LABXAD" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    sbFields.Append("[IsLabX]")
+                               
+                                If CStr(aHeader(x).Trim).ToUpper = "WSMWHEREMANUALCAMEFROMID" Then
+                                    sbFields.Append("[History]")
                                     sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
-                                If CStr(aHeader(x).Trim).ToUpper = "MAINPIC" Then
-                                    sbFields.Append("[ImageFileName]")
+                                If CStr(aHeader(x).Trim).ToUpper = "WHEREMANUALCAMEFROMLINK" Then
+                                    sbFields.Append("[Link]")
                                     sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
-                                If CStr(aHeader(x).Trim).ToUpper = "PRODUCTIMAGE" Then
-                                    sbFields.Append("[ThumbFileName]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "NOWATERMARKIMAGE" Then
-                                    sbFields.Append("[Watermarkimg]")
+                                If CStr(aHeader(x).Trim).ToUpper = "ASSOCIATEDITEMNO" Then
+                                    sbFields.Append("[ManualItemNo]")
                                     sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
 
@@ -501,7 +295,7 @@ Partial Class Admin_UploadProduct
                         sbFields.Append(",[DateCreated]")
                         sbValues.Append(",'" & CDate(DateTime.UtcNow.ToString()) & "'")
                     End If
-                    
+
 
                     sb.Append(sbFields.ToString & ") VALUES (" & sbValues.ToString & ");")
 
@@ -529,7 +323,7 @@ Partial Class Admin_UploadProduct
                 '****************************************
 
                 With sb
-                    .Append("UPDATE Product SET ")
+                    .Append("UPDATE ManualProduct SET ")
                     Dim bFirst As Boolean = True
                     Dim bFirstAdd As Boolean = True
                     Dim bHitPriceBreak As Boolean = False
@@ -564,108 +358,7 @@ Partial Class Admin_UploadProduct
                                 If CStr(aHeader(x).Trim).ToUpper = "DESCRIPTION" Then
                                     .Append("[Description]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
-                                If CStr(aHeader(x).Trim).ToUpper = "CONDITION" Then
-                                    .Append("[Condition]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "AGE" Then
-                                    .Append("[Age]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "WEIGHT" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[Weight]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "PRICE" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[Price]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "QTY" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[Qty]=" & "'" & CStr(aLine(x)).Trim & "', [TotalPieces]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "QTYSOLD" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[QuantitySold]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "LOWESTPRICE" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[LowestPrice]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "COSTOFGOODS" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[CostofGoods]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "AUCTIONSTART" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[AuctionStart]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "SELLINGPRICE" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[SellingPrice]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
+                              
                                 If CStr(aHeader(x).Trim).ToUpper = "CATEGORYNAME" Then
                                     .Append("[Category]=" & "'" & nCategoryID & "'")
                                 End If
@@ -675,12 +368,7 @@ Partial Class Admin_UploadProduct
                                 If CStr(aHeader(x).Trim).ToUpper = "LOCATION" Then
                                     .Append("[Location]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
-                                If CStr(aHeader(x).Trim).ToUpper = "BARCODE" Then
-                                    .Append("[Barcode]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "BARCODEPARENT" Then
-                                    .Append("[BarcodeParent]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
+                               
                                 If CStr(aHeader(x).Trim).ToUpper = "HOLD" Then
                                     If aLine(x) <> "" Then
                                         If CDbl(aLine(x)) > 0 Then
@@ -694,78 +382,7 @@ Partial Class Admin_UploadProduct
                                     .Append("[IsHold]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
 
-                                If CStr(aHeader(x).Trim).ToUpper = "SOLD" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[IsSold]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "SPECIALS" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[IsSpecial]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "NEW" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[IsNewArrivalsPage]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "FEATURED" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[IsFeaturedItem]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "OFFTRUCK" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[IsJustOfftheTruck]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "CONSIGNMENT" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[IsConsignmentItem]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
+                            
                                 If CStr(aHeader(x).Trim).ToUpper = "DELETED" Then
                                     If aLine(x) <> "" Then
                                         If CDbl(aLine(x)) > 0 Then
@@ -778,26 +395,15 @@ Partial Class Admin_UploadProduct
                                     End If
                                     .Append("[IsDeleteItem]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
-                                If CStr(aHeader(x).Trim).ToUpper = "LABXAD" Then
-                                    If aLine(x) <> "" Then
-                                        If CDbl(aLine(x)) > 0 Then
-                                            aLine(x) = CDbl(aLine(x))
-                                        Else
-                                            aLine(x) = 0
-                                        End If
-                                    Else
-                                        aLine(x) = 0
-                                    End If
-                                    .Append("[IsLabX]=" & "'" & CStr(aLine(x)).Trim & "'")
+                               
+                                If CStr(aHeader(x).Trim).ToUpper = "WSMWHEREMANUALCAMEFROMID" Then
+                                    .Append("[History]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
-                                If CStr(aHeader(x).Trim).ToUpper = "MAINPIC" Then
-                                    .Append("[ImageFileName]=" & "'" & CStr(aLine(x)).Trim & "'")
+                                If CStr(aHeader(x).Trim).ToUpper = "WHEREMANUALCAMEFROMLINK" Then
+                                    .Append("[Link]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
-                                If CStr(aHeader(x).Trim).ToUpper = "PRODUCTIMAGE" Then
-                                    .Append("[ThumbFileName]=" & "'" & CStr(aLine(x)).Trim & "'")
-                                End If
-                                If CStr(aHeader(x).Trim).ToUpper = "NOWATERMARKIMAGE" Then
-                                    .Append("[Watermarkimg]=" & "'" & CStr(aLine(x)).Trim & "'")
+                                If CStr(aHeader(x).Trim).ToUpper = "ASSOCIATEDITEMNO" Then
+                                    .Append("[ManualItemNo]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
                             End If
 
@@ -818,12 +424,7 @@ Partial Class Admin_UploadProduct
                     Return False
                 End If
             End If
-          
-
-            'PRODUCT Category CROSS REFERENCE
-            If Not GetProductCategoryCrossRef(sCategoryName, nParentCategoryID, sProdId) Then
-                Throw New Exception("Error generating Category Cross Ref")
-            End If
+           
 
             'PRODUCT Image CROSS REFERENCE
             If Not GetProductImageCrossRef(sProductImage, sProdId) Then
@@ -904,7 +505,7 @@ Partial Class Admin_UploadProduct
             'clear old Category
             'add ALL new
             Try
-                Dim sDel As String = "DELETE FROM ProductImageCrossRef WHERE ProductId=" & nProductId
+                Dim sDel As String = "DELETE FROM ManualProductImageCrossRef WHERE ProductId=" & nProductId
                 SQLData.generic_command(sDel, SQLData.ConnectionString)
             Catch ex As Exception
 
@@ -923,11 +524,11 @@ Partial Class Admin_UploadProduct
                 For Each sProdImg As String In aImages
                     sProdImg = sProdImg.Trim
                     If Not String.IsNullOrEmpty(sProdImg) Then
-                        Dim sSQL As String = "select id from ProductImageCrossRef where [ImageUrl]='" & sProdImg.Trim.Trim & "' and ProductId=" & nProductId
+                        Dim sSQL As String = "select id from ManualProductImageCrossRef where [ImageUrl]='" & sProdImg.Trim.Trim & "' and ProductId=" & nProductId
                         sId = SQLData.generic_scalar(sSQL, SQLData.ConnectionString)
                         If sId = "" Then
                             'add it
-                            Dim sIns As String = "INSERT INTO ProductImageCrossRef ([ProductId], ImageUrl) VALUES('" & nProductId & "','" & sProdImg.Trim & "')"
+                            Dim sIns As String = "INSERT INTO ManualProductImageCrossRef ([ProductId], ImageUrl) VALUES('" & nProductId & "','" & sProdImg.Trim & "')"
                             SQLData.generic_command(sIns, SQLData.ConnectionString)
                             sId = SQLData.generic_scalar(sSQL, SQLData.ConnectionString)
                         End If
@@ -981,7 +582,7 @@ Partial Class Admin_UploadProduct
                                 sId = SQLData.generic_scalar(sSQL, SQLData.ConnectionString)
                             End If
                         End If
-                       
+
                     End If
                 Next
             End If
@@ -1014,7 +615,7 @@ Partial Class Admin_UploadProduct
         Try
 
             Dim fileName As String = String.Empty
-            Dim str As String = "SELECT p.*, c.CategoryName ParentCategoryName   FROM Product p, Category c WHERE p.ParentCategory = c.Id ORDER BY p.ItemNumber asc "
+            Dim str As String = "SELECT p.*, c.CategoryName ParentCategoryName   FROM ManualProduct p, Category c WHERE p.ParentCategory = c.Id ORDER BY p.ItemNumber asc "
 
 
             If str.Length > 0 Then
@@ -1022,12 +623,12 @@ Partial Class Admin_UploadProduct
             End If
 
             If Not dt Is Nothing AndAlso dt.Rows.Count > 0 Then
-                Dim filePath = Path.Combine(Request.PhysicalApplicationPath, "Files\Product\")
+                Dim filePath = Path.Combine(Request.PhysicalApplicationPath, "Files\Product\Manual\")
                 If Not Directory.Exists(filePath) Then
                     Directory.CreateDirectory(filePath)
                 End If
 
-                fileName = "Product_Export_" & DateTime.Now.ToString("yyyyMMddhhmmss") & ".csv"
+                fileName = "ManualProduct_Export_" & DateTime.Now.ToString("yyyyMMddhhmmss") & ".csv"
                 filePath = Path.Combine(filePath, fileName)
                 Try
                     If System.IO.File.Exists(filePath) Then
@@ -1048,59 +649,23 @@ Partial Class Admin_UploadProduct
                 wr.Write(",")
                 wr.Write("Description")
                 wr.Write(",")
-                wr.Write("Condition")
-                wr.Write(",")
-                wr.Write("Age")
-                wr.Write(",")
-                wr.Write("Weight")
-                wr.Write(",")
-                wr.Write("Price")
-                wr.Write(",")
-                wr.Write("Qty")
-                wr.Write(",")
-                wr.Write("Qty Sold")
-                wr.Write(",")
-                wr.Write("Lowest Price")
-                wr.Write(",")
-                wr.Write("Cost of Goods")
-                wr.Write(",")
-                wr.Write("Auction Start")
-                wr.Write(",")
-                wr.Write("Selling Price")
-                wr.Write(",")
                 wr.Write("Category Name")
                 wr.Write(",")
                 wr.Write("Parent Category")
                 wr.Write(",")
                 wr.Write("Location")
                 wr.Write(",")
-                wr.Write("Barcode")
-                wr.Write(",")
-                wr.Write("Barcode Parent")
-                wr.Write(",")
                 wr.Write("Hold")
-                wr.Write(",")
-                wr.Write("Sold")
-                wr.Write(",")
-                wr.Write("Specials")
-                wr.Write(",")
-                wr.Write("New")
-                wr.Write(",")
-                wr.Write("Featured")
-                wr.Write(",")
-                wr.Write("Offtruck")
-                wr.Write(",")
-                wr.Write("Consignment")
                 wr.Write(",")
                 wr.Write("Deleted")
                 wr.Write(",")
-                wr.Write("LabX Ad")
+                wr.Write("Date Created")
                 wr.Write(",")
-                wr.Write("Main Pic")
+                wr.Write("WSMWhereManualCameFromID")
                 wr.Write(",")
-                wr.Write("product_image")
+                wr.Write("Where Manual Came From Link")
                 wr.Write(",")
-                wr.Write("No Watermark Image")
+                wr.Write("Associated Item No")
                 wr.Write(wr.NewLine)
                 For Each dr As DataRow In dt.Rows
                     wr.Write(dr("ItemNumber").ToString())
@@ -1117,64 +682,28 @@ Partial Class Admin_UploadProduct
                     End If
                     wr.Write(sDesc.Trim)
                     wr.Write(",")
-                    wr.Write(dr("Condition").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("Age").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("Weight").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("Price").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("Qty").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("QuantitySold").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("LowestPrice").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("CostofGoods").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("AuctionStart").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("SellingPrice").ToString())
-                    wr.Write(",")
                     wr.Write(Create_Category(CInt(dr("Id").ToString())))
                     wr.Write(",")
                     wr.Write(dr("ParentCategoryName").ToString())
                     wr.Write(",")
                     wr.Write(dr("Location").ToString())
                     wr.Write(",")
-                    wr.Write(dr("Barcode").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("BarcodeParent").ToString())
-                    wr.Write(",")
                     wr.Write(dr("IsHold").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("IsSold").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("IsSpecial").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("IsNewArrivalsPage").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("IsFeaturedItem").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("IsJustOfftheTruck").ToString())
-                    wr.Write(",")
-                    wr.Write(dr("IsConsignmentItem").ToString())
                     wr.Write(",")
                     wr.Write(dr("IsDeleteItem").ToString())
                     wr.Write(",")
-                    wr.Write(dr("IsLabX").ToString())
+                    wr.Write(dr("DateCreated").ToString())
                     wr.Write(",")
-                    wr.Write(dr("ImageFileName").ToString())
+                    wr.Write(dr("History").ToString())
                     wr.Write(",")
-                    wr.Write(Create_Images(CInt(dr("Id").ToString())))
+                    wr.Write(dr("Link").ToString())
                     wr.Write(",")
-                    wr.Write(dr("Watermarkimg").ToString())
+                    wr.Write(dr("ManualItemNo").ToString())
                     wr.Write(wr.NewLine)
                 Next
                 wr.Close()
                 Session("ApplicationFile") = filePath
-                Response.Redirect("../Files/Product/" & fileName)
+                Response.Redirect("../Files/Product/Manual/" & fileName)
             Else
                 DisplayAlert("You Have Nothing to Export")
             End If

@@ -13,4 +13,7 @@
     <ul style="float: left; margin-top: 20px; width: 100%;">
         <li><a href="UploadProduct.aspx">Import/Export Product</a></li>
     </ul>
+    <ul style="float: left; margin-top: 20px; width: 100%;">
+        <li><a href="UploadManualProduct.aspx">Import/Export Manual Product</a></li>
+    </ul>
 </asp:Content>
