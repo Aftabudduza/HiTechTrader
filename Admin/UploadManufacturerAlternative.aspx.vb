@@ -78,7 +78,7 @@ Partial Class Admin_UploadManufacturerAlternative
             Dim sManufacturerAlternativeName As String = ""
             For i As Integer = 0 To aHeader.Count - 1
                 If CStr(aHeader(i)).ToUpper = "MANUFACTURER" Then
-                    sManufacturerName = aLine(i)
+                    sManufacturerName = aLine(i).ToString().Trim
                 End If
             Next
             If sManufacturerName.Length > 0 Then
@@ -86,7 +86,7 @@ Partial Class Admin_UploadManufacturerAlternative
             End If
             For i As Integer = 0 To aHeader.Count - 1
                 If CStr(aHeader(i)).ToUpper = "ALTERNATIVE" Then
-                    sManufacturerAlternativeName = aLine(i)
+                    sManufacturerAlternativeName = aLine(i).ToString().Trim
                 End If
             Next
             If sManufacturerAlternativeName = "" Then
@@ -97,9 +97,9 @@ Partial Class Admin_UploadManufacturerAlternative
             ds = Nothing
             'test if in system
             If nManufacturerId > 0 Then
-                sSQLTest = "SELECT Id FROM ManufacturerAlternative WHERE Alternative='" & sManufacturerAlternativeName.Replace("'", "''") & "' and ManufacturerId = " & nManufacturerId
+                sSQLTest = "SELECT Id FROM ManufacturerAlternative WHERE Alternative='" & sManufacturerAlternativeName.Trim & "' and ManufacturerId = " & nManufacturerId
             Else
-                sSQLTest = "SELECT Id FROM ManufacturerAlternative WHERE Alternative='" & sManufacturerAlternativeName.Replace("'", "''") & "'"
+                sSQLTest = "SELECT Id FROM ManufacturerAlternative WHERE Alternative='" & sManufacturerAlternativeName.Trim & "'"
             End If
 
             Dim sProdId As String = ""
@@ -160,7 +160,7 @@ Partial Class Admin_UploadManufacturerAlternative
 
                                 If CStr(aHeader(x).Trim).ToUpper = "ALTERNATIVE" Then
                                     sbFields.Append("[Alternative]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Replace("'", "''") & "'")
+                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
 
                             End If
@@ -218,7 +218,7 @@ Partial Class Admin_UploadManufacturerAlternative
                                     .Append("[ManufacturerId]=" & nManufacturerId)
                                 End If
                                 If CStr(aHeader(x).Trim).ToUpper = "ALTERNATIVE" Then
-                                    .Append("[Alternative]=" & "'" & CStr(aLine(x)).Replace("'", "''") & "'")
+                                    .Append("[Alternative]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
 
 
@@ -248,11 +248,11 @@ Partial Class Admin_UploadManufacturerAlternative
     End Function
     Private Function GetManufacturer(ByVal sManName As String) As Integer
         'test for the ManuFacturer name
-        Dim sSQL As String = "select id from manufacturer where name='" & sManName.Replace("'", "''") & "'"
+        Dim sSQL As String = "select id from manufacturer where name='" & sManName.Trim & "'"
         Dim sManId As String = SQLData.generic_scalar(sSQL, SQLData.ConnectionString)
         If sManId = "" Then
             'add it
-            Dim sIns As String = "INSERT INTO MANUFACTURER ([NAME]) VALUES('" & sManName.Replace("'", "''") & "')"
+            Dim sIns As String = "INSERT INTO MANUFACTURER ([NAME]) VALUES('" & sManName.Trim & "')"
             SQLData.generic_command(sIns, SQLData.ConnectionString)
             sManId = SQLData.generic_scalar(sSQL, SQLData.ConnectionString)
         End If

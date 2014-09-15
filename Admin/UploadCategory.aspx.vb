@@ -100,7 +100,7 @@ Partial Class Admin_UploadCategory
             Dim sSQLTest As String = ""
             'test if in system
 
-            sSQLTest = "SELECT Id FROM Category WHERE CategoryName='" & sName.Replace("'", "''") & "' and CategoryParentId = " & nParent
+            sSQLTest = "SELECT Id FROM Category WHERE CategoryName='" & sName.Trim & "' and CategoryParentId = " & nParent
 
             Dim sProdId As String = ""
             Try
@@ -156,7 +156,7 @@ Partial Class Admin_UploadCategory
 
                                 If CStr(aHeader(x).Trim).ToUpper = "CATEGORYNAME" Then
                                     sbFields.Append("[CategoryName]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Replace("'", "''") & "'")
+                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
                                 If CStr(aHeader(x).Trim).ToUpper = "PARENTCATEGORYNAME" Then
                                     sbFields.Append("[CategoryParentId]")
@@ -172,7 +172,7 @@ Partial Class Admin_UploadCategory
                                     End If
                                     'fill in the data
                                     sbFields.Append("[Catlevel]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Replace("'", "''") & "'")
+                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
                                 If CStr(aHeader(x).Trim).ToUpper = "NOITEMS" Then
                                     If aLine(x) <> "" And CDbl(aLine(x)) > 0 Then
@@ -182,7 +182,7 @@ Partial Class Admin_UploadCategory
                                     End If
                                     'fill in the data
                                     sbFields.Append("[NoItems]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Replace("'", "''") & "'")
+                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
 
                             End If
@@ -238,7 +238,7 @@ Partial Class Admin_UploadCategory
                                 End If
 
                                 If CStr(aHeader(x).Trim).ToUpper = "CATEGORYNAME" Then
-                                    .Append("[CategoryName]=" & "'" & CStr(aLine(x)).Replace("'", "''") & "'")
+                                    .Append("[CategoryName]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
                                 If CStr(aHeader(x).Trim).ToUpper = "PARENTCATEGORYNAME" Then
                                     .Append("[CategoryParentId]=" & "'" & nParent & "'")
@@ -252,7 +252,7 @@ Partial Class Admin_UploadCategory
                                         aLine(x) = 0
                                     End If
                                     'fill in the data
-                                    .Append("[Catlevel]=" & "'" & CStr(aLine(x)).Replace("'", "''") & "'")
+                                    .Append("[Catlevel]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
 
                                 If CStr(aHeader(x).Trim).ToUpper = "NOITEMS" Then
@@ -262,7 +262,7 @@ Partial Class Admin_UploadCategory
                                         aLine(x) = 0
                                     End If
                                     'fill in the data
-                                    .Append("[NoItems]=" & "'" & CStr(aLine(x)).Replace("'", "''") & "'")
+                                    .Append("[NoItems]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
 
                             End If
@@ -295,11 +295,11 @@ Partial Class Admin_UploadCategory
     End Function
     Private Function GetParent(ByVal sName As String) As Integer
         'test for the ManuFacturer name
-        Dim sSQL As String = "select id from Category where CategoryName='" & sName.Replace("'", "''") & "'"
+        Dim sSQL As String = "select id from Category where CategoryName='" & sName.Trim & "'"
         Dim sId As String = SQLData.generic_scalar(sSQL, SQLData.ConnectionString)
         If sId = "" Then
             'add it
-            Dim sIns As String = "INSERT INTO Category ([CategoryName]) VALUES('" & sName.Replace("'", "''") & "')"
+            Dim sIns As String = "INSERT INTO Category ([CategoryName]) VALUES('" & sName.Trim & "')"
             SQLData.generic_command(sIns, SQLData.ConnectionString)
             sId = SQLData.generic_scalar(sSQL, SQLData.ConnectionString)
         End If

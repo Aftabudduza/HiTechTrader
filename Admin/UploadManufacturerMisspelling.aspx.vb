@@ -86,7 +86,7 @@ Partial Class Admin_UploadManufacturerMisspelling
             End If
             For i As Integer = 0 To aHeader.Count - 1
                 If CStr(aHeader(i)).ToUpper = "MISSPELLING" Then
-                    sManufacturerMisspelling = aLine(i)
+                    sManufacturerMisspelling = aLine(i).ToString().Trim
                 End If
             Next
             If sManufacturerMisspelling = "" Then
@@ -97,9 +97,9 @@ Partial Class Admin_UploadManufacturerMisspelling
             ds = Nothing
             'test if in system
             If nManufacturerId > 0 Then
-                sSQLTest = "SELECT Id FROM ManufacturerMisspelling WHERE Misspelling='" & sManufacturerMisspelling.Replace("'", "''") & "' and ManufacturerId = " & nManufacturerId
+                sSQLTest = "SELECT Id FROM ManufacturerMisspelling WHERE Misspelling='" & sManufacturerMisspelling.Trim & "' and ManufacturerId = " & nManufacturerId
             Else
-                sSQLTest = "SELECT Id FROM ManufacturerMisspelling WHERE Misspelling='" & sManufacturerMisspelling.Replace("'", "''") & "'"
+                sSQLTest = "SELECT Id FROM ManufacturerMisspelling WHERE Misspelling='" & sManufacturerMisspelling.Trim & "'"
             End If
 
             Dim sProdId As String = ""
@@ -160,7 +160,7 @@ Partial Class Admin_UploadManufacturerMisspelling
 
                                 If CStr(aHeader(x).Trim).ToUpper = "MISSPELLING" Then
                                     sbFields.Append("[Misspelling]")
-                                    sbValues.Append("'" & CStr(aLine(x)).Replace("'", "''") & "'")
+                                    sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
 
                             End If
@@ -218,7 +218,7 @@ Partial Class Admin_UploadManufacturerMisspelling
                                     .Append("[ManufacturerId]=" & nManufacturerId)
                                 End If
                                 If CStr(aHeader(x).Trim).ToUpper = "MISSPELLING" Then
-                                    .Append("[Misspelling]=" & "'" & CStr(aLine(x)).Replace("'", "''") & "'")
+                                    .Append("[Misspelling]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
 
 
@@ -248,11 +248,11 @@ Partial Class Admin_UploadManufacturerMisspelling
     End Function
     Private Function GetManufacturer(ByVal sManName As String) As Integer
         'test for the ManuFacturer name
-        Dim sSQL As String = "select id from manufacturer where name='" & sManName.Replace("'", "''") & "'"
+        Dim sSQL As String = "select id from manufacturer where name='" & sManName.Trim & "'"
         Dim sManId As String = SQLData.generic_scalar(sSQL, SQLData.ConnectionString)
         If sManId = "" Then
             'add it
-            Dim sIns As String = "INSERT INTO MANUFACTURER ([NAME]) VALUES('" & sManName.Replace("'", "''") & "')"
+            Dim sIns As String = "INSERT INTO MANUFACTURER ([NAME]) VALUES('" & sManName.Trim & "')"
             SQLData.generic_command(sIns, SQLData.ConnectionString)
             sManId = SQLData.generic_scalar(sSQL, SQLData.ConnectionString)
         End If
