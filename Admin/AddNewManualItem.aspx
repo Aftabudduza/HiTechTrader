@@ -37,7 +37,7 @@
                     <span id="headeritemright" style="float: right;" runat="server"></span>
                 </td>
             </tr>
-           <%-- <% If Not Session("ProductId") Is Nothing Then%>
+            <%-- <% If Not Session("ProductId") Is Nothing Then%>
             <tr style="background: #000099; color: #fff;">
                 <td colspan="3">
                     <span id="LastEdit" style="float: left;" runat="server"></span>
@@ -125,18 +125,19 @@
                     <asp:DropDownList ID="ddlCategory" runat="server">
                     </asp:DropDownList>
                 </td>
-                <td colspan="4">                    
-                    <asp:CheckBox runat="server"  ID="chkHold" Text="On Hold" />
+                <td colspan="4">
+                    <asp:CheckBox runat="server" ID="chkHold" Text="On Hold" />
                     <% If Not Session("ProductId") Is Nothing Then%>
-                     <asp:CheckBox runat="server"   ID="chkDelete" Text="Delete" />
-                      <%End If%>
+                    <asp:CheckBox runat="server" ID="chkDelete" Text="Delete" />
+                    <%End If%>
                 </td>
             </tr>
             <% If Not Session("ProductId") Is Nothing Then%>
             <tr style="background: #eee;">
                 <td colspan="6">
-                    <span id="spanUploadedFile" style="float: left; width:100%;" runat="server"></span>
-                    <br /> <br />
+                    <span id="spanUploadedFile" style="float: left; width: 100%;" runat="server"></span>
+                    <br />
+                    <br />
                     <span id="spanAddFile" runat="server"></span>
                 </td>
             </tr>
