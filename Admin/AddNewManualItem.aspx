@@ -12,7 +12,7 @@
         tinymce.init({
             mode: "textareas",
             editor_selector: "mceEditor",
-            external_plugins: { "nanospell": "/HitechTrader/Scripts/tinymce/nanospell/plugin.js" },
+            external_plugins: { "nanospell": "/Scripts/tinymce/nanospell/plugin.js" },
             nanospell_server: "asp.net",
             plugins: [
         "advlist autolink lists link image charmap print preview anchor",
