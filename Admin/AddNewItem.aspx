@@ -11,7 +11,6 @@
         tinymce.init({
             mode: "textareas",
             editor_selector: "mceEditor",
-            browser_spellcheck: true,
             external_plugins: { "nanospell": "/Scripts/tinymce/nanospell/plugin.js" },
             nanospell_server: "asp.net",
             plugins: [
@@ -19,63 +18,62 @@
         "searchreplace visualblocks code fullscreen",
         "insertdatetime media table contextmenu paste"
     ],
-            toolbar: "insertlayer,moveforward,movebackward,absolute,insertimage,fontselect,styleselect,forecolor,backcolor,fontsizeselect,insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-
+            toolbar: "insertlayer,moveforward,movebackward,absolute,insertimage,fontselect,styleselect,forecolor,backcolor,fontsizeselect,insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image undo redo pastetext"
+           
         });
     </script>
-    <%--<script type="text/javascript" src="../tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 
-<script type="text/javascript">
+   <%-- <script type="text/javascript" src="../tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 
-    tinyMCE.init({
+    <script type="text/javascript">
 
-        mode: "textareas",
+        tinyMCE.init({
 
-        theme: "advanced",
+            mode: "textareas",
 
-        editor_selector: "mceEditor",
-       
-        
-        
-      
-        plugins: "safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,imagemanager,filemanager",
+            theme: "advanced",
 
-        theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+            editor_selector: "mceEditor",
 
-        theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+          
+            plugins: "safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,imagemanager,filemanager",
 
-        theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+            theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
 
-        theme_advanced_buttons4: "spellchecker, insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
+            theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
 
-        theme_advanced_toolbar_location: "top",
+            theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
 
-        theme_advanced_toolbar_align: "left",
+            theme_advanced_buttons4: "spellchecker, insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
 
-        theme_advanced_statusbar_location: "bottom",
+            theme_advanced_toolbar_location: "top",
 
-        theme_advanced_resizing: false,
+            theme_advanced_toolbar_align: "left",
 
-        theme_advanced_buttons4 : "spellchecker",
-        theme_advanced_toolbar_location : "top",
-        theme_advanced_toolbar_align : "left",
-        theme_advanced_statusbar_location : "bottom",
-        theme_advanced_resizing : false,
-        spellchecker_languages: "English=en",
-        spellchecker_rpc_url: '<%=ResolveUrl("~/TinyMCE.ashx?module=SpellChecker") %>',
-        template_external_list_url: "js/template_list.js",
+            theme_advanced_statusbar_location: "bottom",
 
-        external_link_list_url: "js/link_list.js",
+            theme_advanced_resizing: false,
 
-        external_image_list_url: "js/image_list.js",
+            theme_advanced_buttons4: "spellchecker",
+            theme_advanced_toolbar_location: "top",
+            theme_advanced_toolbar_align: "left",
+            theme_advanced_statusbar_location: "bottom",
+            theme_advanced_resizing: false,
+            spellchecker_languages : "English=en,+Swedish=sv",
+             spellchecker_rpc_url: "/TinyMCEHandler.aspx?module=SpellChecker",
 
-        media_external_list_url: "js/media_list.js"
+            template_external_list_url: "js/template_list.js",
 
-    });
+            external_link_list_url: "js/link_list.js",
 
-</script>
---%>
-   
+            external_image_list_url: "js/image_list.js",
+
+            media_external_list_url: "js/media_list.js"
+
+        });
+
+    </script>--%>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
