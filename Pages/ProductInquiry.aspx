@@ -44,11 +44,11 @@
                             <td>
                                 <asp:RadioButton ID="rdoPrice" Text="Option A: List Price" GroupName="rdo"  CssClass="rdooption" runat="server" /><br />
                                <span class="Warentyclass"><a href="Warranty.aspx"> 30 Day Warranty</a></span> </td>
-                            <td><span id="OptionAPrice" class="Priceclass" runat="server">&800</span></td>
+                            <td><span id="OptionAPrice" class="Priceclass" runat="server"></span></td>
                            <td>
                                 <asp:RadioButton ID="rdoPod" Text="Option B: POD <sup>TM</sup> Price" CssClass="rdooption" GroupName="rdo" runat="server" /><br />
                                <span class="Warentyclass"><a href="PODPrice.aspx"> POD <sup>TM</sup> Pricing and Conditions</a></span> </td>
-                            <td><span id="PODPrice" class="Priceclass" runat="server">&800</span></td>
+                            <td><span id="PODPrice" class="Priceclass" runat="server"></span></td>
                         </tr>
                     </table>
                 </div>                   

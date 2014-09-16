@@ -139,7 +139,7 @@
                                 <asp:HiddenField runat="server" ID="hdID" Value='<%#Eval("Id")%>' />
                             </td>
                             <td class="lvtd">                        
-                             <asp:HyperLink ID="hlkTopic" runat="server" NavigateUrl='<%# "AddNewItem.aspx?PID=" & GetProductId(Eval("PONumber")) %>'><%#Eval("PONumber")%></asp:HyperLink>
+                             <asp:HyperLink ID="hlkTopic" runat="server" NavigateUrl='<%# "AddNewItem.aspx?PID=" & Eval("ProductId") %>'><%#Eval("ItemNumber")%></asp:HyperLink>
                                
                             </td>
                             <td class="lvtd">

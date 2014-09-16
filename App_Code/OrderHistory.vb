@@ -56,6 +56,8 @@ Public Class OrderHistory
     Public IsCheck As Short
     Public IsOther As Short
     Public OrderDate As DateTime
+    Public ProductId As Integer
+    Public ItemNumber As String
 
 
 #Region " User Variables "
@@ -125,6 +127,8 @@ Public Class OrderHistory
         ColInfo.Add(New ColumnInfo("IsCheck", "Short", 6, True, True))
         ColInfo.Add(New ColumnInfo("IsOther", "Short", 6, True, True))
         ColInfo.Add(New ColumnInfo("OrderDate", "Datetime", 19, True, True))
+        ColInfo.Add(New ColumnInfo("ProductId", "Integer", 11, False, False))
+        ColInfo.Add(New ColumnInfo("ItemNumber", "String", 50, True, True))
         ColInfo.Sort()
     End Sub
 
@@ -174,6 +178,8 @@ Public Class OrderHistory
         IsCheck = 0
         IsOther = 0
         OrderDate = Nothing
+        ProductId = 0
+        ItemNumber = ""
         Valid = False
     End Sub
 
@@ -405,7 +411,7 @@ Public Class OrderHistory
         Dim checkInsert As Integer = 0
         Try
             Connect()
-            cmd = New SqlCommand("INSERT INTO ""OrderHistory"" (Name, Company, Email, Address, Address1, City, State, Zip, Country, Phone, Fax, Message, ItemToPurchase, ItemsToSale, IsNeedASAP, IsNeedFuture, IsAdd, IsContact, Type, OptionPrice, Price, CardType, PONumber, IsCheck, IsOther, OrderDate) VALUES (@Name, @Company, @Email, @Address, @Address1, @City, @State, @Zip, @Country, @Phone, @Fax, @Message, @ItemToPurchase, @ItemsToSale, @IsNeedASAP, @IsNeedFuture, @IsAdd, @IsContact, @Type, @OptionPrice, @Price, @CardType, @PONumber, @IsCheck, @IsOther, @OrderDate)", Conn)
+            cmd = New SqlCommand("INSERT INTO ""OrderHistory"" (Name, Company, Email, Address, Address1, City, State, Zip, Country, Phone, Fax, Message, ItemToPurchase, ItemsToSale, IsNeedASAP, IsNeedFuture, IsAdd, IsContact, Type, OptionPrice, Price, CardType, PONumber, IsCheck, IsOther, OrderDate, ProductId, ItemNumber) VALUES (@Name, @Company, @Email, @Address, @Address1, @City, @State, @Zip, @Country, @Phone, @Fax, @Message, @ItemToPurchase, @ItemsToSale, @IsNeedASAP, @IsNeedFuture, @IsAdd, @IsContact, @Type, @OptionPrice, @Price, @CardType, @PONumber, @IsCheck, @IsOther, @OrderDate, @ProductId, @ItemNumber)", Conn)
             cmd.Parameters.AddWithValue("@Name", Name)
             cmd.Parameters.AddWithValue("@Company", Company)
             cmd.Parameters.AddWithValue("@Email", Email)
@@ -432,6 +438,8 @@ Public Class OrderHistory
             cmd.Parameters.AddWithValue("@IsCheck", IsCheck)
             cmd.Parameters.AddWithValue("@IsOther", IsOther)
             cmd.Parameters.AddWithValue("@OrderDate", OrderDate)
+            cmd.Parameters.AddWithValue("@ProductId", ProductId)
+            cmd.Parameters.AddWithValue("@ItemNumber", ItemNumber)
             cmd.ExecuteNonQuery()
             cmd.Parameters.Clear()
             cmd.CommandText = "Select @@Identity"
@@ -587,7 +595,9 @@ Public Class OrderHistory
         p &= PONumber & ", "
         p &= Cstr(IsCheck) & ", "
         p &= CStr(IsOther) & ", "
-        p &= CStr(OrderDate)
+        p &= CStr(IsOther) & ", "
+        p &= CStr(ProductId) & ", "
+        p &= ItemNumber
         Return p
     End Function
 

@@ -325,6 +325,8 @@ Partial Class Pages_ContactUs
             Obj.OptionPrice = ""
             Obj.Price = 0
             Obj.OrderDate = CDate(DateTime.UtcNow.ToString())
+            Obj.ProductId = 0
+            Obj.ItemNumber = ""
         Catch ex As Exception
 
         End Try

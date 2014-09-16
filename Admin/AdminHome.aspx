@@ -61,6 +61,7 @@
                 <li><a href="../Admin/ManufacturerAlternative.aspx">Manufacturer's Alternative Names</a></li>
                 <li><a href="../Admin/SystemData.aspx">Add System Data</a></li>
                 <li><a href="../Admin/ReportManagement.aspx">Excel Reports</a></li>
+                <li><a href="../Admin/UploadInquiry.aspx">Upload Inquiry</a></li>
             </ul>
              <ul class="SectionTable" style="margin-top:20px;">
                 <li><a href="../Admin/MobileHome.aspx">Mobile Admin</a></li>

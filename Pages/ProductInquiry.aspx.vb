@@ -101,9 +101,9 @@ Partial Class Pages_ProductInquiry
                         spanTitle.InnerHtml = ds.Tables(0).Rows(0)("ProductName").ToString()
                         Session("ProductName") = ds.Tables(0).Rows(0)("ProductName").ToString()
                     End If
-                    If Not ds.Tables(0).Rows(0)("ItemNumber") Is Nothing AndAlso CInt(ds.Tables(0).Rows(0)("ItemNumber").ToString()) > 0 Then
-                        ItemNumb.InnerHtml = CInt(ds.Tables(0).Rows(0)("ItemNumber").ToString())
-                        Session("Item") = CInt(ds.Tables(0).Rows(0)("ItemNumber").ToString())
+                    If Not ds.Tables(0).Rows(0)("ItemNumber") Is Nothing AndAlso ds.Tables(0).Rows(0)("ItemNumber").ToString() <> "" Then
+                        ItemNumb.InnerHtml = ds.Tables(0).Rows(0)("ItemNumber").ToString()
+                        Session("Item") = ds.Tables(0).Rows(0)("ItemNumber").ToString()
                     End If
                     If Not ds.Tables(0).Rows(0)("ImageFileName") Is Nothing AndAlso ds.Tables(0).Rows(0)("ImageFileName").ToString() <> "" Then
                         Dim sb As String = ""
@@ -113,17 +113,26 @@ Partial Class Pages_ProductInquiry
                     End If
                     ReturnProduct.Attributes.Add("href", "ProductDetails.aspx?Id=" & CInt(Session("ProductId").ToString()) & "")
                     prodetails.Attributes.Add("href", "ProductDetails.aspx?Id=" & CInt(Session("ProductId").ToString()) & "")
-                    If Not CDbl(ds.Tables(0).Rows(0)("Price").ToString()).ToString("0.00") > 0 Then
-                        OptionAPrice.InnerHtml = "$" & CDbl(ds.Tables(0).Rows(0)("Price").ToString()).ToString("0.00")
-                        Session("Price") = ("$" & CDbl(ds.Tables(0).Rows(0)("Price").ToString()).ToString("0.00")).ToString()
-                        pleasecall.InnerHtml = "$" & CDbl(ds.Tables(0).Rows(0)("Price").ToString()).ToString("0.00")
+                    If Not ds.Tables(0).Rows(0)("Price") Is Nothing AndAlso ds.Tables(0).Rows(0)("Price").ToString() <> "" Then
+                        If CDbl(ds.Tables(0).Rows(0)("Price").ToString()).ToString("0.00") > 0 Then
+                            OptionAPrice.InnerHtml = "$" & CDbl(ds.Tables(0).Rows(0)("Price").ToString()).ToString("0.00")
+                            Session("Price") = ("$" & CDbl(ds.Tables(0).Rows(0)("Price").ToString()).ToString("0.00")).ToString()
+                            pleasecall.InnerHtml = "$" & CDbl(ds.Tables(0).Rows(0)("Price").ToString()).ToString("0.00")
+                        Else
+                            OptionAPrice.InnerHtml = "Please Call"
+                            pleasecall.InnerHtml = "Please Call"
+                        End If
                     Else
                         OptionAPrice.InnerHtml = "Please Call"
                         pleasecall.InnerHtml = "Please Call"
                     End If
-                    If Not CDbl(ds.Tables(0).Rows(0)("LowestPrice").ToString()).ToString("0.00") > 0 Then
-                        PODPrice.InnerHtml = "$" & CDbl(ds.Tables(0).Rows(0)("LowestPrice").ToString()).ToString("0.00")
-                        Session("PODPrice") = ("$" & CDbl(ds.Tables(0).Rows(0)("LowestPrice").ToString()).ToString("0.00")).ToString()
+                    If Not ds.Tables(0).Rows(0)("LowestPrice") Is Nothing AndAlso ds.Tables(0).Rows(0)("LowestPrice").ToString() <> "" Then
+                        If Not CDbl(ds.Tables(0).Rows(0)("LowestPrice").ToString()).ToString("0.00") > 0 Then
+                            PODPrice.InnerHtml = "$" & CDbl(ds.Tables(0).Rows(0)("LowestPrice").ToString()).ToString("0.00")
+                            Session("PODPrice") = ("$" & CDbl(ds.Tables(0).Rows(0)("LowestPrice").ToString()).ToString("0.00")).ToString()
+                        Else
+                            PODPrice.InnerHtml = "$0.00"
+                        End If
                     Else
                         PODPrice.InnerHtml = "$0.00"
                     End If
@@ -204,7 +213,7 @@ Partial Class Pages_ProductInquiry
             objMailMessage.Body = Me.EmailHtml.ToString
             objSmtpClient.Send(objMailMessage)
             DisplayAlert("Thank you for your Inquiry. A sales representative will contact with you shortly.")
-
+            ClearControls()
         Catch
             DisplayAlert("Sorry for the inconvenience. We can not process your request at this time.")
         Finally
@@ -356,7 +365,7 @@ Partial Class Pages_ProductInquiry
 
                 End If
                 SendEmail()
-                ClearControls()
+                ' ClearControls()
             Catch ex As Exception
                 DisplayAlert(errStr)
             End Try
@@ -475,6 +484,16 @@ Partial Class Pages_ProductInquiry
                 End If
             End If
             Obj.OrderDate = CDate(DateTime.UtcNow.ToString())
+            If Not Session("ProductId") Is Nothing Then
+                Obj.ProductId = CInt(Session("ProductId").ToString())
+            Else
+                Obj.ProductId = 0
+            End If
+            If Not Session("Item") Is Nothing Then
+                Obj.ItemNumber = Session("Item").ToString()
+            Else
+                Obj.ItemNumber = 0
+            End If
         Catch ex As Exception
 
         End Try
@@ -490,6 +509,7 @@ Partial Class Pages_ProductInquiry
         txtAdd2.Text = ""
         txtAddress1.Text = ""
         txtFax.Text = ""
+        txtDetails.Text = ""
         ddlState.SelectedValue = "-1"
         ddlcountry.SelectedValue = "-1"
         ddlcard.SelectedValue = "1"
