@@ -18,7 +18,7 @@
                     File Format is .csv. MUST match format from example.
                 </td>
                 <td>
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Pages/ManufacturerAlternative.csv"
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/ProductImages/Large/SampleFiles/ManufacturerAlternative.csv"
                         Target="_blank">Click for a Manufacturer Alternative example inload format</asp:HyperLink>
                 </td>
             </tr>

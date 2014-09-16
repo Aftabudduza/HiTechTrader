@@ -20,7 +20,7 @@
                     File Format is .csv. MUST match format from example.
                 </td>
                 <td>
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Pages/categories.csv"
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/ProductImages/Large/SampleFiles/categories.csv"
                         Target="_blank">Click for a Category example inload format</asp:HyperLink>
                 </td>
             </tr>
