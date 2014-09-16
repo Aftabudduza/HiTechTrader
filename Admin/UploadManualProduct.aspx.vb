@@ -403,10 +403,10 @@ Partial Class Admin_UploadManualProduct
             End If
            
 
-            ''PRODUCT Image CROSS REFERENCE
-            'If Not GetProductImageCrossRef(sProductImage, sProdId) Then
-            '    Throw New Exception("Error generating Images")
-            'End If
+            'PRODUCT Image CROSS REFERENCE
+            If Not GetProductImageCrossRef(sProductImage, sProdId) Then
+                Throw New Exception("Error generating Images")
+            End If
 
         Catch ex As Exception
             Return False
