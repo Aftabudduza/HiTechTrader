@@ -24,7 +24,7 @@
                 </td>
                 <td>
                     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Pages/Manuals.csv"
-                        Target="_blank">Click for a Product example inload format</asp:HyperLink>
+                        Target="_blank">Click for a Manual Product example inload format</asp:HyperLink>
                 </td>
             </tr>
             <tr>

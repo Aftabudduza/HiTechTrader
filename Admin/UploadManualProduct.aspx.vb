@@ -86,7 +86,7 @@ Partial Class Admin_UploadManualProduct
             Dim sCondition As String = ""
 
             For i As Integer = 0 To aHeader.Count - 1
-                If CStr(aHeader(i)).ToUpper = "ITEMNUMBER" Then
+                If CStr(aHeader(i)).ToUpper = "ITEMNO" Then
                     sItemNumber = aLine(i)
                 End If
             Next
@@ -106,31 +106,6 @@ Partial Class Admin_UploadManualProduct
                 End If
             Next
 
-            For i As Integer = 0 To aHeader.Count - 1
-                If CStr(aHeader(i)).ToUpper = "PRODUCTIMAGE" Then
-                    sProductImage = aLine(i)
-                End If
-            Next
-
-            For i As Integer = 0 To aHeader.Count - 1
-                If CStr(aHeader(i)).ToUpper = "AGE" Then
-                    sAge = aLine(i)
-                End If
-            Next
-
-            For i As Integer = 0 To aHeader.Count - 1
-                If CStr(aHeader(i)).ToUpper = "CONDITION" Then
-                    sCondition = aLine(i)
-                End If
-            Next
-
-            If sAge.Length > 0 Then
-                Dim nAge As Integer = GetAgeCondition(sAge, 3)
-            End If
-
-            If sCondition.Length > 0 Then
-                Dim nCondition As Integer = GetAgeCondition(sCondition, 3)
-            End If
 
             If sItemNumber = "" Then
                 lblMsg.Text = "No Product in Inload File"
@@ -205,7 +180,7 @@ Partial Class Admin_UploadManualProduct
                                     bFirst = False
                                 End If
 
-                                If CStr(aHeader(x).Trim).ToUpper = "ITEMNUMBER" Then
+                                If CStr(aHeader(x).Trim).ToUpper = "ITEMNO" Then
                                     sbFields.Append("[ItemNumber]")
                                     sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
@@ -283,7 +258,10 @@ Partial Class Admin_UploadManualProduct
                                     sbFields.Append("[ManualItemNo]")
                                     sbValues.Append("'" & CStr(aLine(x)).Trim & "'")
                                 End If
-
+                                If CStr(aHeader(x).Trim).ToUpper = "DATECREATED" Then
+                                    sbFields.Append("[DateCreated]")
+                                    sbValues.Append("'" & CDate(aLine(x).ToString().Trim) & "'")
+                                End If
                             End If
 
                         End If
@@ -296,9 +274,7 @@ Partial Class Admin_UploadManualProduct
                         sbValues.Append(",'" & CDate(DateTime.UtcNow.ToString()) & "'")
                     End If
 
-
                     sb.Append(sbFields.ToString & ") VALUES (" & sbValues.ToString & ");")
-
 
                 End With
                 System.Diagnostics.Debug.WriteLine(sb.ToString)
@@ -307,8 +283,6 @@ Partial Class Admin_UploadManualProduct
                     Return False
                 End If
                 sProdId = SQLData.generic_scalar(sSQLTest, SQLData.ConnectionString)
-
-
 
             Else
                 '*******************************************
@@ -343,7 +317,7 @@ Partial Class Admin_UploadManualProduct
                                     bFirst = False
                                 End If
 
-                                If CStr(aHeader(x).Trim).ToUpper = "ITEMNUMBER" Then
+                                If CStr(aHeader(x).Trim).ToUpper = "ITEMNO" Then
                                     .Append("[ItemNumber]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
                                 If CStr(aHeader(x).Trim).ToUpper = "TITLE" Then
@@ -405,6 +379,9 @@ Partial Class Admin_UploadManualProduct
                                 If CStr(aHeader(x).Trim).ToUpper = "ASSOCIATEDITEMNO" Then
                                     .Append("[ManualItemNo]=" & "'" & CStr(aLine(x)).Trim & "'")
                                 End If
+                                If CStr(aHeader(x).Trim).ToUpper = "DATECREATED" Then
+                                    .Append("[DateCreated]=" & "'" & CDate(aLine(x).ToString().Trim) & "'")
+                                End If
                             End If
 
                         End If 'test for no value
@@ -426,10 +403,10 @@ Partial Class Admin_UploadManualProduct
             End If
            
 
-            'PRODUCT Image CROSS REFERENCE
-            If Not GetProductImageCrossRef(sProductImage, sProdId) Then
-                Throw New Exception("Error generating Images")
-            End If
+            ''PRODUCT Image CROSS REFERENCE
+            'If Not GetProductImageCrossRef(sProductImage, sProdId) Then
+            '    Throw New Exception("Error generating Images")
+            'End If
 
         Catch ex As Exception
             Return False
