@@ -3,6 +3,8 @@ Imports System.Data
 Imports BRIClassLibrary
 Imports System.IO
 Imports System.Globalization
+Imports System.Drawing
+
 Partial Class Admin_ProductImage
     Inherits System.Web.UI.Page
     Public errStr As String = String.Empty
@@ -40,7 +42,7 @@ Partial Class Admin_ProductImage
                     Try
                         Dim str As String = "SELECT ItemNumber, ProductName FROM Product p where  p.Id =  " & nProductId
                         Dim ds As DataSet = Nothing
-                       
+
                         If str.Length > 0 Then
                             ds = SQLData.generic_select(str, appGlobal.CONNECTIONSTRING)
                             If Not ds Is Nothing Then
@@ -64,7 +66,53 @@ Partial Class Admin_ProductImage
             Response.Redirect("Login.aspx")
         End If
     End Sub
+    Public Shared Function create_thumbPath(ByVal sOrigFilePath As String, ByVal sThumbPath As String, Optional ByVal iWidth As Integer = 124, Optional ByVal iHeight As Integer = 93) As Boolean
 
+        Dim FilePath As String = sOrigFilePath '[Global].CURRENTPATH & [Global].PRODIMGPATH & "\" & sCompany & "\" & sItem & HCActions.get_image_ext(sItem, sCompany) & ".jpg"
+        '// We've selected 120 pixels as the arbitrary height 
+        '// for the thumbnails. The code preserves the size ratio, 
+        '// given this height. If you want larger thumbnails, 
+        '// you can modify this value.
+        Dim THUMBNAIL_WIDTH As Integer = iWidth
+        'Dim THUMBNAIL_HEIGHT As Integer = iHeight 'default to 50
+        Dim bmp As Bitmap = Nothing
+        Try
+            'load bitmap from original file
+            bmp = New Bitmap(sThumbPath)
+            Dim intHeight As Integer = iHeight
+            'clear old Thumbnail
+            'Dim fThumb As New FileInfo(sThumbPath)
+            'If fThumb.Exists Then
+            '    fThumb.Delete()
+            'End If
+            'fThumb = Nothing
+            'generate the thumbnail
+            Dim myCallBack As New System.Drawing.Image.GetThumbnailImageAbort(AddressOf ThumbnailCallback)
+            Dim img As System.Drawing.Image = bmp.GetThumbnailImage(THUMBNAIL_WIDTH, intHeight, myCallBack, IntPtr.Zero)
+
+            'save to thumbnail path (should be SERVER PATH)
+            Dim thumb As Bitmap = CType(img, Bitmap)
+            If Not IsNothing(thumb) Then
+                'Dim ImgFormat As Drawing.Imaging.ImageFormat = GetImageFormat(FilePath)
+                thumb.Save(FilePath, System.Drawing.Imaging.ImageFormat.Jpeg)
+            End If
+
+            Return True
+            'Return CType(img, Bitmap)
+        Catch ex As ArgumentException
+            System.Diagnostics.Debug.WriteLine(ex.Message)
+            Return False
+        Finally
+            If Not IsNothing(bmp) Then
+                bmp.Dispose()
+            End If
+        End Try
+        Return False
+    End Function
+    Private Shared Function ThumbnailCallback() As Boolean
+        'necessary for thumbnail creation!
+        Return False
+    End Function
     Protected Sub btUpload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btUpload.Click
         Try
             Dim iUploadedCnt As Integer = 0
@@ -81,11 +129,13 @@ Partial Class Admin_ProductImage
                     filelength = filelength / (1024 * 1024)
                     If filelength <= 1 Then
                         Dim filePath As String = ""
-                        filePath = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/")
+                        Dim thumbPath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Thumb/")
+                        filePath = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/Images/")
                         If Not Directory.Exists(filePath) Then
                             Directory.CreateDirectory(filePath)
                         End If
                         Dim File As String = Path.Combine(filePath, hpf.FileName)
+                        Dim ThubmFile As String = Path.Combine(filePath, hpf.FileName)
                         Dim fileExt As String = Path.GetExtension(hpf.FileName).ToLower()
                         If fileExt = ".jpg" Or fileExt = ".jpeg" Or fileExt = ".gif" Or fileExt = ".png" Or fileExt = ".bmp" Or fileExt = ".xlsx" Or fileExt = ".xls" Or fileExt = ".doc" Or fileExt = ".docx" Or fileExt = ".pdf" Then
                             Try
@@ -94,7 +144,27 @@ Partial Class Admin_ProductImage
                                 End If
                             Catch ex As Exception
                             End Try
+                            Try
+                                If System.IO.File.Exists(ThubmFile) Then
+                                    System.IO.File.Delete(ThubmFile)
+                                End If
+                            Catch ex As Exception
+                            End Try
+
                             hpf.SaveAs(File)
+                            If fileExt = ".jpg" Or fileExt = ".jpeg" Or fileExt = ".gif" Or fileExt = ".png" Or fileExt = ".bmp" Then
+                                Dim img As System.Drawing.Image
+                                Try
+                                    img = System.Drawing.Image.FromFile(File)
+                                    If img.Height <> 115 Or img.Width <> 130 Then
+                                        create_thumbPath(filePath & hpf.FileName, thumbPath & hpf.FileName & "t", 130, 115)
+                                    End If
+                                Catch ex As Exception
+                                    System.Diagnostics.Debug.WriteLine(ex.Message)
+                                End Try
+                            End If
+                           
+
                             Try
                                 obj.ProductId = CInt(Session("ProductId").ToString())
                                 obj.ImageUrl = hpf.FileName
@@ -173,7 +243,7 @@ Partial Class Admin_ProductImage
     Function getString(ByVal ImageName As String) As String
         Dim imgurl As String = ""
         If Not String.IsNullOrEmpty(ImageName) Then
-            imgurl = "http://192.82.249.221/ProductImages/Large/<a target='_blank' href='http://192.82.249.221/ProductImages/Large/" & ImageName & "'>" & ImageName & "</a>"
+            imgurl = "http://192.82.249.221/ProductImages/Large/Images/<a target='_blank' href='http://192.82.249.221/ProductImages/Large/Images/" & ImageName & "'>" & ImageName & "</a>"
         End If
         Return (imgurl.ToString())
     End Function
@@ -186,7 +256,8 @@ Partial Class Admin_ProductImage
             deletedimage = labelText.ToString()
             Dim obj As ProductImageCrossRef = New ProductImageCrossRef(appGlobal.CONNECTIONSTRING)
             If (hdId.Value > 0) Then
-                Dim filePath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/")
+                Dim thumbPath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Thumb/")
+                Dim filePath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/Images/")
                 Dim File As String = ""
                 File = filePath & deletedimage.ToString()
                 Try
@@ -195,6 +266,19 @@ Partial Class Admin_ProductImage
                     End If
                 Catch ex As Exception
                 End Try
+
+                Dim thumbFile As String = thumbPath & deletedimage.ToString() & "t"
+                Try
+                    Try
+                        If System.IO.File.Exists(thumbFile) Then
+                            System.IO.File.Delete(thumbFile)
+                        End If
+                    Catch ex As Exception
+                    End Try
+                Catch ex As Exception
+
+                End Try
+
                 If (obj.Delete(hdId.Value)) Then
                     fillGridView()
                     DisplayAlert("Image successfully Deleted !")

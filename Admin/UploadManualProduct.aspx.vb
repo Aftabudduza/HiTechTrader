@@ -106,6 +106,11 @@ Partial Class Admin_UploadManualProduct
                 End If
             Next
 
+            For i As Integer = 0 To aHeader.Count - 1
+                If CStr(aHeader(i)).ToUpper = "MANUALFILE" Then
+                    sProductImage = aLine(i)
+                End If
+            Next
 
             If sItemNumber = "" Then
                 lblMsg.Text = "No Product in Inload File"
@@ -643,6 +648,8 @@ Partial Class Admin_UploadManualProduct
                 wr.Write("Where Manual Came From Link")
                 wr.Write(",")
                 wr.Write("Associated Item No")
+                wr.Write(",")
+                wr.Write("Manual Files")
                 wr.Write(wr.NewLine)
                 For Each dr As DataRow In dt.Rows
                     wr.Write(dr("ItemNumber").ToString())
@@ -676,6 +683,8 @@ Partial Class Admin_UploadManualProduct
                     wr.Write(dr("Link").ToString())
                     wr.Write(",")
                     wr.Write(dr("ManualItemNo").ToString())
+                    wr.Write(",")
+                    wr.Write(Create_Images(CInt(dr("Id").ToString())))
                     wr.Write(wr.NewLine)
                 Next
                 wr.Close()
@@ -732,7 +741,7 @@ Partial Class Admin_UploadManualProduct
     Private Function Create_Images(ByVal nProductId As Integer) As String
         Try
             'create the Models
-            Dim sSQL As String = " SELECT picr.ImageUrl FROM ProductImageCrossRef picr  WHERE picr.ProductId  =  " & nProductId
+            Dim sSQL As String = " SELECT picr.ImageUrl FROM ManualProductImageCrossRef picr  WHERE picr.ProductId  =  " & nProductId
             Dim ds As DataSet = SQLData.generic_select(sSQL, SQLData.ConnectionString)
             If Not ds Is Nothing Then
                 If ds.Tables(0).Rows.Count > 0 Then

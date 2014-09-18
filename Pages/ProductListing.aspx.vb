@@ -192,7 +192,6 @@ Partial Class Pages_ProductListing
     Private Sub DisplayAlert(ByVal msg As String)
         Page.ClientScript.RegisterStartupScript(Me.GetType(), Guid.NewGuid().ToString(), String.Format("alert('{0}');", msg.Replace("'", "\'").Replace(vbCrLf, "\n")), True)
     End Sub
-
     Public Function ImageName(ByVal nId As Integer) As String
         Dim sImageName As String = ""
         Try
@@ -209,12 +208,12 @@ Partial Class Pages_ProductListing
                     Dim sStrFile As String = ""
                     If strImg.Length > 0 Then
                         If Not String.IsNullOrEmpty(strImageFilePath) Then
-                            sStrFile = strImageFilePath & "\" & strImg
+                            sStrFile = strImageFilePath & "\Images\" & strImg
                         Else
-                            sStrFile = "C:\inetpub\wwwroot\sysadmin\products\Images\" & strImg
+                            sStrFile = "C:\inetpub\wwwroot\ProductImages\Large\Images\" & strImg
                         End If
                         If Not String.IsNullOrEmpty(strImageURL) Then
-                            sStr = strImageURL & "/" & strImg
+                            sStr = strImageURL & "/Images/" & strImg
                         Else
                             sStr = strImageURL & "/not_found_image.jpg"
                         End If
@@ -236,6 +235,7 @@ Partial Class Pages_ProductListing
         End Try
         Return sImageName
     End Function
+    
     Protected Sub btnBarcode_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnBarcode.Click
         sOrderBy = String.Empty
         sSQl = String.Empty
@@ -468,37 +468,6 @@ Partial Class Pages_ProductListing
 
         Return str
     End Function
-
-    'Public Function ShowCategoryById(ByVal Id As Integer) As String
-    '    Dim UserDS As New DataSet
-    '    Dim sStrNew As String = ""
-    '    Dim sTitle As String = String.Empty
-
-    '    Try
-    '        sStrNew = "select * from Category where Id = " & Id
-    '        UserDS = SQLData.generic_select(sStrNew, strConnection)
-
-    '        If Not UserDS Is Nothing Then
-    '            If UserDS.Tables(0).Rows.Count > 0 Then
-    '                If Not UserDS.Tables(0).Rows(0)("CategoryName").ToString() Is Nothing AndAlso UserDS.Tables(0).Rows(0)("CategoryName").ToString() <> String.Empty Then
-    '                    sTitle = " <h1 class='pagetitle'><a href='../Pages/InventoryList.aspx'>Inventory List</a> >> " & UserDS.Tables(0).Rows(0)("CategoryName").ToString() & "</h1>"
-    '                Else
-    '                    sTitle = ""
-    '                End If
-    '            Else
-    '                sTitle = ""
-    '            End If
-    '        Else
-    '            sTitle = ""
-    '        End If
-    '    Catch ex As Exception
-    '        sTitle = ""
-    '    End Try
-
-
-    '    Return sTitle
-    'End Function
-
     Public Function ShowCategoryById(ByVal Id As Integer) As String
         Dim UserDS As New DataSet
         Dim sStrNew As String = ""

@@ -322,9 +322,7 @@ Partial Class Admin_AddNewItem
                 Obj.CreatorID = CInt(Session("Id").ToString())
                 Obj.DateCreated = DateTime.UtcNow
             End If
-            If chkDelete.Checked = True Then
-
-            End If
+           
 
             If Not Session("ProductId") Is Nothing Then
                 Try
@@ -392,7 +390,7 @@ Partial Class Admin_AddNewItem
                     filelength = filelength / (1024 * 1024)
                 End If
                 If filelength <= 1 Then
-                    Dim filePath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/")
+                    Dim filePath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/Images/")
                     If Not Directory.Exists(filePath) Then
                         Directory.CreateDirectory(filePath)
                     End If
@@ -427,7 +425,7 @@ Partial Class Admin_AddNewItem
                 End If
                 If filelength <= 1 Then
                     Dim filePath As String = ""
-                    filePath = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/NoWaterMarkImage")
+                    filePath = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/NoWaterMarkImage/")
                     If Not Directory.Exists(filePath) Then
                         Directory.CreateDirectory(filePath)
                     End If
@@ -807,7 +805,7 @@ Partial Class Admin_AddNewItem
         Try
             'Dim str As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/" & flname)
             Dim html As String = ""
-            html = "<img src='../ProductImages/Large/" & flname & "' alt='" & flname & "' Height='auto' style='float: left;max-width: 720px;padding: 20px;'>"
+            html = "<img src='../ProductImages/Large/Images/" & flname & "' alt='" & flname & "' Height='auto' style='float: left;max-width: 720px;padding: 20px;'>"
             ImageContainer.InnerHtml = html
         Catch ex As Exception
         End Try
@@ -940,7 +938,6 @@ Partial Class Admin_AddNewItem
     Protected Sub addimg_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles addimg.Click
         Try
             Response.Redirect("ProductImage.aspx?ProductId=" & Session("ProductId").ToString())
-            'Response.Redirect("ProductImage.aspx?ProductId=" & Session("ProductId").ToString() & "&ItemNo='" & Session("ItemNo") & "'" & "&Title='" & Session("Title") & "'")
         Catch ex As Exception
 
         End Try

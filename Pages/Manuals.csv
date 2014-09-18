@@ -1,2 +1,2 @@
-Title,Make,Model,ItemNo,Location,Description,CategoryName,ParentCategory,Hold,DateCreated,Deleted,WSMWhereManualCameFromID,WhereManualCameFromLink,AssociatedItemNo
-Buchi RE 121 111 RotoeVaporator Manual,Buchi,RE 121 111 EL 131,M-001100731,,The is a manual for the older Buchi Brinkmann Rotavaporator line of products,Pumps,Chromatograph-Liquid,0,7/31/2010,0,,,
+Title,Make,Model,ItemNo,Location,Description,CategoryName,ParentCategory,Hold,DateCreated,Deleted,WSMWhereManualCameFromID,WhereManualCameFromLink,AssociatedItemNo,MANUALFILE
+Buchi RE 121 111 RotoeVaporator Manual,Buchi,RE 121 111 EL 131,M-001100731,,The is a manual for the older Buchi Brinkmann Rotavaporator line of products,Pumps,Chromatograph-Liquid,0,7/31/2010,0,,,,

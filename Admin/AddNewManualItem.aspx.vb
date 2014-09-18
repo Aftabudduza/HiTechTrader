@@ -530,9 +530,9 @@ Partial Class Admin_AddNewManualItem
                         For Each dr As DataRow In ds.Tables(0).Rows
                             If Not dr("ImageUrl") Is Nothing And dr("ImageUrl").ToString() <> String.Empty Then
                                 If Not dr("Name") Is Nothing And dr("Name").ToString() <> String.Empty Then
-                                    strFile &= "<a target='_blank' style='font-wight:bold;' href='http://192.82.249.221/ProductImages/Large/" & dr("ImageUrl").ToString() & "'>" & dr("Name").ToString() & " </a><br />"
+                                    strFile &= "<a target='_blank' style='font-wight:bold;' href='http://192.82.249.221/ProductImages/Large/Manual/" & dr("ImageUrl").ToString() & "'>" & dr("Name").ToString() & " </a><br />"
                                 Else
-                                    strFile &= "<a target='_blank' style='font-wight:bold;' href='http://192.82.249.221/ProductImages/Large/" & dr("ImageUrl").ToString() & "'> -- No Tile -- </a><br />"
+                                    strFile &= "<a target='_blank' style='font-wight:bold;' href='http://192.82.249.221/ProductImages/Large/Manual/" & dr("ImageUrl").ToString() & "'> -- No Tile -- </a><br />"
                                 End If
                             End If
                         Next

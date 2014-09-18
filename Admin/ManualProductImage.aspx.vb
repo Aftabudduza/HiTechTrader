@@ -61,7 +61,7 @@ Partial Class Admin_ManualProductImage
                     filelength = filelength / (1024 * 1024)
                     If filelength <= 1 Then
                         Dim filePath As String = ""
-                        filePath = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/")
+                        filePath = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/Manual/")
                         If Not Directory.Exists(filePath) Then
                             Directory.CreateDirectory(filePath)
                         End If
@@ -174,7 +174,7 @@ Partial Class Admin_ManualProductImage
     Function getString(ByVal ImageName As String) As String
         Dim imgurl As String = ""
         If Not String.IsNullOrEmpty(ImageName) Then
-            imgurl = "http://192.82.249.221/ProductImages/Large/<a target='_blank' href='http://192.82.249.221/ProductImages/Large/" & ImageName & "'>" & ImageName & "</a>"
+            imgurl = "http://192.82.249.221/ProductImages/Large/Manual/<a target='_blank' href='http://192.82.249.221/ProductImages/Large/Manual/" & ImageName & "'>" & ImageName & "</a>"
         End If
         Return (imgurl.ToString())
     End Function
@@ -187,7 +187,7 @@ Partial Class Admin_ManualProductImage
             deletedimage = labelText.ToString()
             Dim obj As ManualProductImageCrossRef = New ManualProductImageCrossRef(appGlobal.CONNECTIONSTRING)
             If (hdId.Value > 0) Then
-                Dim filePath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/")
+                Dim filePath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/Manual/")
                 Dim File As String = ""
                 File = filePath & deletedimage.ToString()
                 Try

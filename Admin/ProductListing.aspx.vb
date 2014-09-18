@@ -237,12 +237,12 @@ Partial Class Admin_ProductListing
                     Dim sStrFile As String = ""
                     If strImg.Length > 0 Then
                         If Not String.IsNullOrEmpty(strImageFilePath) Then
-                            sStrFile = strImageFilePath & "\" & strImg
+                            sStrFile = strImageFilePath & "\Images\" & strImg
                         Else
-                            sStrFile = "C:\inetpub\wwwroot\sysadmin\products\Images\" & strImg
+                            sStrFile = "C:\inetpub\wwwroot\ProductImages\Large\Images\" & strImg
                         End If
                         If Not String.IsNullOrEmpty(strImageURL) Then
-                            sStr = strImageURL & "/" & strImg
+                            sStr = strImageURL & "/Images/" & strImg
                         Else
                             sStr = strImageURL & "/not_found_image.jpg"
                         End If

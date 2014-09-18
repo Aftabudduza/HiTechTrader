@@ -56,7 +56,7 @@ Partial Class Admin_WatermarkImages
                 If Not ds Is Nothing Then
                     If ds.Tables(0).Rows.Count > 0 Then
                         If Not ds.Tables(0).Rows(0)("ImageFileName") Is Nothing And ds.Tables(0).Rows(0)("ImageFileName").ToString() <> String.Empty Then
-                            html &= "<img src='../ProductImages/Large/" & ds.Tables(0).Rows(0)("ImageFileName").ToString() & "' alt='" & ds.Tables(0).Rows(0)("ImageFileName").ToString() & "' >"
+                            html &= "<img src='../ProductImages/Large/Images/" & ds.Tables(0).Rows(0)("ImageFileName").ToString() & "' alt='" & ds.Tables(0).Rows(0)("ImageFileName").ToString() & "' >"
                             imgdiv.InnerHtml = html
                         End If
                     Else
