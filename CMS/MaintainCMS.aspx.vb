@@ -436,7 +436,7 @@ Partial Class CMS_MaintainCMS
             End If
             .Append(",[AffiliateID] ")
             .Append(",[CustomerID] ")
-            .Append(",1 as [CMSCategoryId] ")
+            .Append(",0 as [CMSCategoryId] ")
             .Append("," & iVersion & " as [CMSVersion] ")
             .Append(",'N' as [Live], [PageURL] FROM CMSPAGEREF WHERE CMSPAGE='" & sPageRef.Replace("'", "''") & "')")
         End With
