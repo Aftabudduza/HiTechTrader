@@ -71,6 +71,7 @@ Public Class ManualProduct
     Public Watermarkimg As String
     Public History As String
     Public Link As String
+    Public DateDeleted As DateTime
 
 #Region " User Variables "
     REM Add your variables to this object here. Adding them here ensures
@@ -164,6 +165,7 @@ Public Class ManualProduct
         ColInfo.Add(New ColumnInfo("Watermarkimg", "String", 200, True, True))
         ColInfo.Add(New ColumnInfo("History", "String", 100, True, True))
         ColInfo.Add(New ColumnInfo("Link", "String", 200, True, True))
+        ColInfo.Add(New ColumnInfo("DateDeleted", "DateTime", 19, True, True))
         ColInfo.Sort()
     End Sub
 
@@ -238,6 +240,7 @@ Public Class ManualProduct
         Watermarkimg = ""
         History = ""
         Link = ""
+        DateDeleted = Nothing
         Valid = False
     End Sub
 
@@ -819,6 +822,7 @@ Public Class ManualProduct
         p &= Watermarkimg.ToString() & ","
         p &= History.ToString() & ","
         p &= Link.ToString() & ","
+        p &= DateDeleted.ToString() & ", "
         p &= CStr(EditorID)
         Return p
     End Function

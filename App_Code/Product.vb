@@ -69,6 +69,11 @@ Public Class Product
     Public LastEdited As DateTime
     Public EditorID As Integer
     Public Watermarkimg As String
+    Public DateSold As DateTime
+    Public DateDeleted As DateTime
+    Public ClientIP As String
+    Public TotalViews As Integer
+
 
 #Region " User Variables "
     REM Add your variables to this object here. Adding them here ensures
@@ -160,6 +165,10 @@ Public Class Product
         ColInfo.Add(New ColumnInfo("LastEdited", "DateTime", 19, True, True))
         ColInfo.Add(New ColumnInfo("EditorID", "Integer", 11, True, True))
         ColInfo.Add(New ColumnInfo("Watermarkimg", "String", 200, True, True))
+        ColInfo.Add(New ColumnInfo("DateSold", "DateTime", 19, True, True))
+        ColInfo.Add(New ColumnInfo("DateDeleted", "DateTime", 19, True, True))
+        ColInfo.Add(New ColumnInfo("ClientIP", "String", 20, True, True))
+        ColInfo.Add(New ColumnInfo("TotalViews", "Integer", 11, True, True))
         ColInfo.Sort()
     End Sub
 
@@ -232,6 +241,10 @@ Public Class Product
         LastEdited = Nothing
         EditorID = 0
         Watermarkimg = ""
+        DateCreated = Nothing
+        DateDeleted = Nothing
+        ClientIP = ""
+        TotalViews = 0
         Valid = False
     End Sub
 
@@ -806,8 +819,14 @@ Public Class Product
         p &= DateCreated.ToString() & ", "
         p &= Cstr(CreatorID) & ", "
         p &= LastEdited.ToString() & ", "
+        p &= CStr(EditorID) & ", "
+        p &= ManualItemNo & ", "
         p &= Watermarkimg.ToString() & ","
-        p &= Cstr(EditorID)
+        p &= CStr(TotalPieces) & ","
+        p &= CStr(DateSold) & ","
+        p &= CStr(DateDeleted) & ","
+        p &= ClientIP & ","
+        p &= CStr(TotalViews)
         Return p
     End Function
 
