@@ -78,41 +78,6 @@ Partial Class Pages_ProductDetails
             End Try
         End If
     End Sub
-    'Public Sub GetSubImage(ByVal nproId As Integer)
-    '    If nproId > 0 Then
-    '        Try
-    '            Dim html As String = ""
-    '            Dim ds As DataSet = Nothing
-    '            Dim str As String = "SELECT p.Id,p.ImageFileName FROM Product p WHERE p.Id=" & nproId
-    '            ds = BRIClassLibrary.SQLData.generic_select(str, appGlobal.CONNECTIONSTRING)
-    '            If Not ds Is Nothing Then
-    '                If ds.Tables(0).Rows.Count > 0 Then
-    '                    html = "<img src='../ProductImages/Large/" & ds.Tables(0).Rows(0)("ImageFileName") & "' alt='" & ds.Tables(0).Rows(0)("ImageFileName") & "' Height='auto' class='GalleryImage' id='GalMainImg' style='float: left;max-width: 720px;max-height: 600px;padding: 20px;'>"
-    '                End If
-    '            End If
-    '            GalleryImg.InnerHtml = html
-    '            Dim str2 As String = ""
-    '            Dim ds2 As DataSet = Nothing
-    '            Dim sb As String = ""
-    '            str2 = "SELECT picr.ImageUrl FROM Product p,ProductImageCrossRef picr WHERE p.Id = picr.ProductId and p.Id=" & nproId
-    '            ds2 = BRIClassLibrary.SQLData.generic_select(str2, appGlobal.CONNECTIONSTRING)
-    '            If Not ds2 Is Nothing Then
-    '                If ds2.Tables(0).Rows.Count > 0 Then
-    '                    sb += "<div class='thumbnailGalleryFirstC3'><a hre=''><img src='../ProductImages/Large/" & ds.Tables(0).Rows(0)("ImageFileName") & "' alt='" & ds.Tables(0).Rows(0)("ImageFileName") & "' Height='auto' class='thumbnailImage' id='GalMainImg' style='float: left;padding: 13px;'></a></div>"
-    '                    For Each dr As DataRow In ds2.Tables(0).Rows
-    '                        If Not ds2.Tables(0).Rows(0)("ImageUrl") Is Nothing Then
-    '                            sb += "<div class='thumbnailGallery'><a href='#'><img src='../ProductImages/Large/" & ds2.Tables(0).Rows(0)("ImageUrl") & "' alt='" & ds2.Tables(0).Rows(0)("ImageUrl") & "' Height='auto' class='thumbnailImage' id='GalMainImg' style='float: left;padding: 13px;'></a></div>"
-    '                        End If
-    '                    Next
-    '                    GallSub.InnerHtml = sb
-    '                End If
-    '            End If
-
-    '        Catch ex As Exception
-
-    '        End Try
-    '    End If
-    'End Sub
     Public Sub GetSubImage(ByVal nproId As Integer)
         If nproId > 0 Then
             Try
@@ -154,35 +119,6 @@ Partial Class Pages_ProductDetails
             End Try
         End If
     End Sub
-    'Public Sub Category(ByVal nCatId As Integer)
-    '    Try
-    '        Dim html As String = ""
-    '        Dim sSQl As String = "SELECT * FROM Category c WHERE c.id =" & nCatId
-    '        Dim ds As DataSet = BRIClassLibrary.SQLData.generic_select(sSQl, appGlobal.CONNECTIONSTRING)
-    '        For Each dr As DataRow In ds.Tables(0).Rows
-    '            If CInt(dr("CategoryParentId").ToString()) > 0 Then
-    '                Dim str As String = "SELECT * FROM Category c WHERE c.Id =" & CInt(dr("CategoryParentId").ToString())
-    '                Dim ds2 As DataSet = BRIClassLibrary.SQLData.generic_select(str, appGlobal.CONNECTIONSTRING)
-    '                For Each dr2 As DataRow In ds2.Tables(0).Rows
-    '                    If CInt(dr2("CategoryParentId").ToString()) > 0 Then
-    '                        Dim str3 As String = "SELECT * FROM Category c WHERE c.Id =" & CInt(dr2("CategoryParentId").ToString())
-    '                        Dim ds3 As DataSet = BRIClassLibrary.SQLData.generic_select(str3, appGlobal.CONNECTIONSTRING)
-    '                        For Each dr3 As DataRow In ds3.Tables(0).Rows
-    '                            html += "<a href='ProductListing.aspx?sc_cat=" & dr3("Id") & "&" & "sc_ProductId=" & CInt(Session("ProductId").ToString()) & ">" & dr3("CategoryName") & "</a>" & "<span style='color:#000;'> >> </span>" & "<a href='ProductListing.aspx?sc_cat=" & dr2("Id") & "&" & "sc_ProductId=" & CInt(Session("ProductId").ToString()) & ">" & dr2("CategoryName") & "</a>" & "<span style='color:#000;'> >> </span>" & "<a href='ProductListing.aspx?sc_cat=" & dr("Id") & "&" & "sc_ProductId=" & CInt(Session("ProductId").ToString()) & ">" & dr("CategoryName") & "</a>"
-    '                        Next
-    '                    Else
-    '                        html += "<a href='ProductListing.aspx?sc_cat=" & dr2("Id") & "&" & "sc_ProductId=" & CInt(Session("ProductId").ToString()) & "'>" & dr2("CategoryName") & "</a>" & " <span style='color:#000;'> >> </span> " & "<a href='ProductListing.aspx?sc_cat=" & dr("Id") & "&" & "sc_ProductId=" & CInt(Session("ProductId").ToString()) & "'>" & dr("CategoryName") & "</a>"
-    '                    End If
-    '                Next
-    '            Else
-    '                html += "<a href='ProductListing.aspx?sc_cat=" & dr("Id") & "&" & "sc_ProductId=" & CInt(Session("ProductId").ToString()) & ">" & dr("CategoryName") & "</a>"
-    '            End If
-    '        Next
-    '        Cat.Text = html
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
     Protected Sub btnInquery_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnInquery.Click
         Try
             If Not Session("ProductId").ToString() Is Nothing Then
@@ -295,9 +231,9 @@ Partial Class Pages_ProductDetails
                                     For Each dr As DataRow In dsExcell.Tables(0).Rows
                                         sImgName = dr("ImageUrl").ToString()
                                         If sImgName.Contains(".xlsx") Or sImgName.Contains(".xls") Or sImgName.Contains(".doc") Or sImgName.Contains(".docx") Then
-                                            ExcellLink.InnerHtml = "<a href='../ProductImages/Large/" & sImgName.ToString() & "' target='_blank' ><img src='../App_Themes/Hitech/images/Ex.png' alt='Excel Image'/></a>"
+                                            ExcellLink.InnerHtml = "<a href='../ProductImages/Large/Images/" & sImgName.ToString() & "' target='_blank' ><img src='../App_Themes/Hitech/images/Ex.png' alt='Excel Image'/></a>"
                                         ElseIf sImgName.Contains(".pdf") Then
-                                            PdfLink.InnerHtml = "<a href='../ProductImages/Large/" & sImgName.ToString() & "' target='_blank' ><img src='../App_Themes/Hitech/images/pdf.png' alt='Pdf Image'/></a>"
+                                            PdfLink.InnerHtml = "<a href='../ProductImages/Large/Images/" & sImgName.ToString() & "' target='_blank' ><img src='../App_Themes/Hitech/images/pdf.png' alt='Pdf Image'/></a>"
                                         End If
                                     Next
                                 End If

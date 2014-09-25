@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="VB" MasterPageFile="~/Master Pages/Home.master" AutoEventWireup="false"
-    Debug="true" CodeFile="ProductDetails.aspx.vb" Inherits="Pages_ProductDetails"
+    Debug="true" CodeFile="ProductDetails_.aspx.vb" Inherits="Pages_ProductDetails"
     Title="Product ProductDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -47,7 +47,8 @@
                 <%--<a title="30 day warranty" id="A1" runat="server">
                     <img alt="30 day warranty" src="../App_Themes/Hitech/images/30daywarrenty_ty.gif"
                         class="warrenty_img" />
-                </a>--%></span>
+                </a>--%>
+                </span>
         </div>
         <br />
         <div style="float: left; width: 100%; margin-bottom: 10px; margin-top: 10px; color: Red;">
