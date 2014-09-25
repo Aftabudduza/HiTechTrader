@@ -129,7 +129,8 @@ Partial Class Admin_ProductImage
                     filelength = filelength / (1024 * 1024)
                     If filelength <= 1 Then
                         Dim filePath As String = ""
-                        Dim thumbPath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Thumb/")
+                        'Dim thumbPath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Thumb/")
+                        Dim thumbPath As String = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/Images/")
                         filePath = Path.Combine(Request.PhysicalApplicationPath, "ProductImages/Large/Images/")
                         If Not Directory.Exists(filePath) Then
                             Directory.CreateDirectory(filePath)
