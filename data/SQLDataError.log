@@ -1,1 +1,1 @@
-﻿
+﻿9/25/2014 6:35:18 PM: ERROR GENERIC COMMAND (Shopping Cart - SQL SERVER) -> Details => Incorrect syntax near 'value'. SQL:INSERT INTO UserLog ([UserId] ,[Username],[LoginTime]) value (1,'admin','9/25/2014 12:35:17 PM')
