@@ -1,0 +1,594 @@
+ID,Manufacturer,Misspelling
+1000,3M,NULL
+1001,Aalborc,NULL
+1002,ABB Goerz,NULL
+1003,ABC Laboratories,ABC Laborotories
+1004,ABI Prism,AIB Prism
+1005,Accumet,Accumat
+1006,AccuRate,Acurate
+1007,Ace Glass,Ace
+1008,Ace Glass,Ace-Glass
+1009,Ace Glass,Ace glas
+1010,Ace Glass,Aec Glass
+1011,Activational Systems,Actvational systems
+1012,Agilent,Agilent Tech
+1013,Agilent,Agilent
+1014,Agilent,Agelent
+1015,Agilent,Aglent
+1016,Alcatel,Acatel
+1017,Aldrich,NULL
+1018,Aldrich Chemical,adrich chemical
+1019,Aldrich Chemical,Aldrich-Chemical
+1020,Aldrich Kugelrohr,adrich kugelrohr
+1021,Alfa,afa
+1022,Allen Bradley,Allan Bradley
+1023,Allen Bradley,Alen Bradley
+1024,Allen Bradley,Allen Bradly
+1025,Alltech,Altech
+1026,American Lewa,American leua
+1027,American Optical,American Optical Corp.
+1028,American Optical,American Otical
+1029,American Optical,American Opticl
+1030,American Scientific,American Scientific Products
+1031,American Scientific,American Sci
+1032,American Scientific,American Sci.
+1033,American Ultraviolet Co.,American Ultravolet
+1034,Amersham,amershem
+1035,Amersham Pharmacia,Amersham Pharmacia
+1036,Amersham Pharmacia,Amersham Pharmaca
+1037,Ametek,Ametec
+1038,Ametek,Amatek
+1039,Amicon,Amecon
+1040,Amsco,Amisco
+1041,Amsco Eagle,Amso
+1042,Amsco Eagle,Amasco
+1043,AND Weighing,A&D
+1044,AND Weighing,AND
+1045,AND Weighing,A N D
+1046,Antek,Andtek
+1047,Antek,antec
+1048,API Ketoma Inc,NULL
+1049,Applied Biosystems,Appled Biosytems
+1050,Applied Biosystems,aplied biosystems
+1051,Applied Biosystems,applied bio-systems
+1052,Appligene,Apligene
+1053,Aquafine,Aquefine
+1054,Aquasonic,Aguasonic
+1055,Areomatic,Aroematic
+1056,Argonaut Technologies,Argonot Technologies
+1057,Argonaut Technologies,Aregonaut
+1058,Arrow Engineering,Aarrow
+1059,Arrow Engineering,Arow Engineering
+1060,Arrow Engineering,Arrow Enginering
+1061,Arrow Engineering,Arrow Eng.
+1062,Arrow Engineering,Arrow
+1063,Artek Systems,Arteck Systems
+1064,ATI Unicam,ati uncam
+1065,ATI Unicam,ati uncame
+1066,ATI Unicam,ait unicam
+1067,ATLANTIC RESEARCH CO.,NULL
+1068,Atlantic Ultraviolet Corp.,Atantic
+1069,Atlas,Atlis
+1070,ATM,ATM Corporation
+1071,Autoclave Engineers,Autoclave Eng.
+1072,Autoclave Engineers,auto clave
+1073,Autoclave Engineers,autoclave engineer
+1074,Autoclave Engineers,Autoclave Engineering
+1075,Autoclave Engineers,Autoclave Enginering
+1076,Automated Design Corporation,Atomated 
+1077,Avestin,Avesten
+1078,Aviv,Avw
+1079,B Braun Biotech ,bbraun
+1080,B Braun Biotech ,braun 
+1081,B Braun Biotech ,braun 
+1082,B Braun Biotech ,B. Braun Biotech Inc
+1083,B Braun Biotech ,B Braun
+1084,B Braun Biotech ,B-Braun Biotech Inc
+1085,B Braun Biotech ,Bruan
+1086,B P Perkings,NULL
+1087,B&L,B & L
+1088,B/R Instrument,B. R. Instrument Corp
+1089,B/R Instrument ,B-R Instrument
+1090,Bacharach,Bakarach
+1091,Baker Co,backer
+1092,Bantex,Batntec
+1093,Barber Colman,Barber-colman
+1094,Barber Colman,Barber kolman
+1095,Barnes,Banes
+1096,Barnstead,Barmstead
+1097,Barnstead,barnted
+1098,Barnstead,barnsted
+1099,Barnstead,barnstad
+1100,Barnstead,banstead
+1101,Barnstead,barn stead
+1102,Barnstead,Bamstead
+1103,Bausch & Lomb,Bash and lomb
+1104,Bausch & Lomb,Baush and lomb
+1105,Baxter,Baxter Scientific Products
+1106,Bayer,beyer
+1107,BBC Goerz,NULL
+1108,Beckman,Beckmann
+1109,Beckman,Becman
+1110,Beckman,Bekman
+1111,Beckman,Beckman Coulter 
+1112,Beckman,Beckman-Coulter 
+1113,Beckman,Beckman / Coulter 
+1114,Bel Art,bell art
+1115,Bel-Art,Bel Art
+1116,Bellco,Belco 
+1117,Bellco,bel co
+1118,Berghof,Bergof
+1119,Beta Scientific Corp,beeta scientific
+1120,Biolafitte,biolafite
+1121,Bio-Rad,Bio Rad
+1122,Bio-Rad,Bio-Rad
+1123,Bio-Rad,BioRad
+1124,Biotek ,Bio-Tek
+1125,Biotek ,Bio Tec Instruments
+1126,Biotek ,Boitek
+1127,Biotek ,biotec
+1128,Blue M,BlueM
+1129,Blue M,Blue-M
+1130,Blue M,Blue M Lindberg
+1131,Blue M,Blue M / Lindberg
+1132,Blue M,Blue-M / Lindberg
+1133,BOC Edwards,B O C
+1134,BOC Edwards,BOC Edwords
+1135,Boekel,Bokel
+1136,Bohdan,bodan
+1137,Bohlin Rheometer,Bolin Rhermeter
+1138,Brandtech Scientific,Brantec
+1139,Branson ,Bransin
+1140,Branson ,brannson
+1141,Branson ,Branson Ultrasonics
+1142,Branson ,barnson
+1143,Brinkmann,Brinkamn 
+1144,Brinkmann,Brinkman
+1145,Brinkmann,Brink man
+1146,Brinkmann,Brinkaman
+1147,Brinkmann,Brenkman
+1148,Brinkmann,Brincmann
+1149,Brinkmann,brincman 
+1150,BRL life Technologies,BLR Life Technologies
+1151,Brogli,Brogle
+1152,Brookfield Engineering ,Brofield 
+1153,Brookfield Engineering ,Brookfeeld
+1154,Brookfield Engineering ,Brickfield 
+1155,Brookfield Engineering ,Brookfield Enginering
+1156,Brookfield Engineering ,Brookfield Engineerng
+1157,Brookhaven Instruments,Brookhavan
+1158,Brooks Instrument ,Brooks
+1159,Brooks Instrument ,Broks
+1160,Brooks Instrument ,Brook
+1161,Brooks Instrument ,Brokes Instruments
+1162,Buchi,buch
+1163,Buchi,Buche
+1164,Buchi,boochi
+1165,Buchi,Buchii
+1166,Buchi,Bukey
+1167,Buck Scientific ,Buk Scientific
+1168,Burrell Scientific  ,Burrel
+1169,Burrell Scientific  ,Burrell
+1170,Burrell Scientific  ,Burele
+1171,Burrell Scientific  ,Burrel Sci
+1172,BYK-Gardner ,BYK  
+1173,BYK-Gardner ,B Y K
+1174,BYK-Gardner ,Gardner
+1175,BYK-Gardner ,BKY
+1176,BYK-Gardner ,B.Y.K.
+1177,Caframo,Ca framo
+1178,Caframo,catframo
+1179,Caframo,Kaframo
+1180,Cahn,Kahn
+1181,Cahn,Con
+1182,Camag Nanonmat,NULL
+1183,Cannon Instrument,Cannon
+1184,Cannon Instrument,Canon
+1185,Capco,Cappco
+1186,Carbolite,Karbolite
+1187,Carbolite,Car bo lite
+1188,Caron,Carron
+1189,Carthage Foundry,Karthage foundry
+1190,Carver,Carver
+1191,Carver,Karber 
+1192,Carver,karver
+1193,Carver,Carver Inc.
+1194,CDC,NULL
+1195,CDC Analytical,CDC Analitical
+1196,CE Tyler,CY Tyler
+1197,CE Tyler,CE Tiler
+1198,CE Tyler,cytyler
+1199,Cell Pharm,Cel Pharm
+1200,CEM,NULL
+1201,CEM Corp.,NULL
+1202,Cenco-DuNuoy,Cinco Dunouy
+1203,CEPA,Ceppa
+1204,Cetac,seetac
+1205,Cetac,cetac
+1206,Cetac,seatack
+1207,Charles Ross,Charles Ros
+1208,Charles Ross,Carles Ross
+1209,Charles Ross,Charls Ross
+1210,Charles Ross,Charles Ros's
+1211,Chatillon,Chatillon
+1212,Chatillon,chatilon
+1213,Chatillon,Chatelon
+1214,Chemglass,Chemglass Inc
+1215,Chemglass,Chemglas
+1216,Chemglass,kemglass
+1217,Chemglass,kemglass
+1218,Chemglass,chem glass
+1219,Chemineer,keminer
+1220,Chemineer,keminere
+1221,Chemineer,cheminere
+1222,Chemineer,Cheminer
+1223,Chessel,chesel
+1224,Chessel,chessell
+1225,Chromalox,kromalox
+1226,Chromalox,chromolox
+1227,Chromalox,chromalock
+1228,Cincinnati Milacron,Cininati Milacron
+1229,Claisse,Claise
+1230,Clay Adams,Cla Adams
+1231,Clay Adams,Clay Adams
+1232,Clay Adams,Clay Admans
+1233,Clay Adams,Clay Adans
+1234,Cole Parmer ,Cole-Parmer
+1235,Cole Parmer ,kole parmer
+1236,Cole Parmer ,col parmer
+1237,Cole Parmer ,cole palmer
+1238,Cole Parmer ,cole pamer
+1239,Cole Parmer ,cole parmers
+1240,Cole Parmer ,cole parmr
+1241,Cole Parmer ,cole pallmer 
+1242,Corning,korning
+1243,Corning,corening
+1244,Corning,corrning
+1245,Corning,corenig
+1246,Corning,cornig
+1247,Corning,korening
+1248,Coulter,colter
+1249,Coulter,kolter
+1250,Coulter,coutir
+1251,Coulter,Coolter
+1252,Coulter,koulter
+1253,Cryofab,cryfab
+1254,Cryofab ,kriofab
+1255,Cryofab ,cry ofab
+1256,Cryofab ,cryo fab
+1257,Cryofab ,Gryofab
+1258,CW Brabender,C.W.Brabender
+1259,CW Brabender,C.W.Brabender
+1260,CW Brabender,CW Bradender 
+1261,CW Brabender,Bradender 
+1262,CW Brabender,CWBrabender Instruments
+1263,CW Brabender,C.W. Brabender
+1264,CW Brabender,CW Bradbinder
+1265,DeDietrick,DiDietrick
+1266,Denton,Dentin
+1267,Denver Instruments,Dener
+1268,Denver Instruments,Denfer Instruments
+1269,Denver Instruments,Denver Balance
+1270,Despatch,Despatch
+1271,Despatch,dispatch
+1272,Despatch,desspatch
+1273,Despatch,despath
+1274,Despatch,despach
+1275,Despatch,daspatch
+1276,Dionex,Dinex
+1277,Dionex,dionx
+1278,Distek,distek
+1279,Distek,disstek
+1280,Distek,distec
+1281,Distek,distex
+1282,DuPont,dewpont
+1283,DuPont,Du Pont
+1284,Duralab,Daralab
+1285,Dynacon,Dinacon
+1286,Dynamic Testing Consultants,Dynamik Testing Consultants
+1287,Dynatech,NULL
+1288,Eberbach,epperbach
+1289,Eberbach,eberbox
+1290,Eberbach,Elerbach
+1291,EC Appartus,EC Apartus
+1292,"ECO Gearchem, Pump",NULL
+1293,Edwards,Edwords
+1294,Edwards,edwirds
+1295,Edwards,Edward
+1296,EG&G,EG & G
+1297,Eiger Machinery,Eiger Machine
+1298,Eiger Machinery,iger machine
+1299,Ekectro Technic,Elkectro
+1300,Electro Technic,Electro Texnic
+1301,ElectroCraft,ElectroCraf
+1302,ElectroCraft,Electro Craf
+1303,Electromatic Equipment,NULL
+1304,Electronic Control Systems,NULL
+1305,Electrothermal,Electothermal
+1306,Electrothermal,Eletrothermal
+1307,Electrothermal,Elecrothermal
+1308,Electrothermal,Electrotermal
+1309,Electrothermal,Electrotheral
+1310,EllectroCell AB,Ellectro Cell AB
+1311,Encon,Enconn
+1312,Encon,Econ
+1313,Epoxyn Products,Epoxyn
+1314,Epoxyn Products,Ipoxyn products
+1315,Eppendorf,Ependorf
+1316,Eppendorf,eppedorf
+1317,Eppendorf,eppendorph
+1318,Eppendorf,eppendor
+1319,Erhart Technology,Ehart Technology
+1320,Erhart Technology,Eheart Technology
+1321,Erweka,Irwela
+1322,Erweka,Erweaka
+1323,Erweka,Earweka
+1324,Erweka,Erweak 
+1325,ESA,NULL
+1326,Espec,NULL
+1327,Esterline,Estirline
+1328,Eurotherm ,Urotherm
+1329,Eurotherm ,Erotherm
+1330,EuroVent,Euro Vent
+1331,EuroVent,Erovent
+1332,Extech,Ectech
+1333,Extech,Extex
+1334,Extech,Extec
+1335,Eyela,Eyila
+1336,Eyela,Eyella
+1337,Farrand Optical,Farand Optical
+1338,Farrand Optical,Farrend Optical
+1339,Finnigan,Finigan
+1340,Finnigan,Finnagan
+1341,Finnigan,Finnigen
+1342,Finnigan,Finigen
+1343,Fisher,Fischer Scientific
+1344,Fisher,Fischar
+1345,Fisher,Fischer sci
+1346,Fisher,Fishar
+1347,Fisons,Fesons
+1348,Fisons,Fisson
+1349,Fitzpatrick,fitspatrik
+1350,Fitzpatrick,fitzpatrik
+1351,Fitzpatrick,Fitspatrick
+1352,Fitzpatrick,Fitzpatric
+1353,Flow Sciences,flow science
+1354,Fluitron,flewitron
+1355,Fluitron,flueitron
+1356,Fluitron,fluetron
+1357,Fluitron,fluitrn
+1358,Fluke,f luke
+1359,Fluke,Flake
+1360,FMC Syntron,FMC Sytron
+1361,Forma,Foma
+1362,Forma,Foram
+1363,Forma,phorma
+1364,Fotodyne,photodyne
+1365,Fotodyne,fotodine
+1366,Fotodyne,fotdyne
+1367,Fotodyne,photodine
+1368,Foxboro,Foxbero
+1369,Foxy,Foxe
+1370,Fritsch,Fritish
+1371,Fritsch,Fritsh
+1372,Fritsch,Fristch
+1373,Fritsch,Fretsch
+1374,Fusion UV,phusion
+1375,Gaertner,Gaetner
+1376,Gaertner,Gartner
+1377,Gaertner,Gaertnar
+1378,Gallenkamp,Gallancamp
+1379,Gallenkamp,Gallencamp
+1380,Gallenkamp,Gallonkamp
+1381,Gallenkamp,Galloncamp
+1382,Gardner ,Garner
+1383,Gaulin,Gauliin
+1384,GCA Precision Scientific,Percision
+1385,Gelman Sciences,Gellman
+1386,Gelman Sciences,Gelmen
+1387,Genetic MicroSystems,Genetik Microsystems
+1388,Genetic MicroSystems,Genteic Microsystems
+1389,GeneVac,Geanvac
+1390,GeneVac,Genvac
+1391,Gilson,Gillson
+1392,Gilson,Gillison
+1393,Gilson,Gilsin
+1394,Glas Col,Glass Col
+1395,Glas Col,glas coal
+1396,Glas Col,glascol
+1397,Glas Col,glasscol
+1398,Glas Col,glasscoal
+1399,Glas Col,gla scol
+1400,Gottfert,NULL
+1401,Goulds,Gould
+1402,Goulds,Godls
+1403,Gow Mac,Gowmac
+1404,Gow Mac,Cow mac
+1405,Gow Mac,gow mak
+1406,Gralab,GrabLab
+1407,Gralab,gra lab
+1408,Gralab,grelab
+1409,Granville Phillips,grainvile phillips
+1410,Granville Phillips,granville philips
+1411,Granville Phillips,granvlle phillips
+1412,Granville Phillips,granvill phillips
+1413,Haake,hakke
+1414,Haake,haaky
+1415,Haake,hakey
+1416,Haake,hakey
+1417,Haake,haakee
+1418,haake,haaki
+1419,Hach,Hak
+1420,Hach,hawk
+1421,Hacker Instruments,haker
+1422,Hacker Instruments,hacer
+1423,Hamilton,Hamilon
+1424,Hamilton,Hameton
+1425,Hamilton,Hamiltin
+1426,Hanna,Hana
+1427,Hanna,Hannah
+1428,Hanson,Hansin
+1429,Hart Scientific,Heart 
+1430,Harvard Apparatus,Hardvard
+1431,Harvard Apparatus,Harvard Aparatus
+1432,Harvard Apparatus,Harvard Apparetus
+1433,Harvard Apparatus ,Harvared
+1434,Harvard NaviCyte ,Harvard NaviCite
+1435,Haskel,Hasskel
+1436,Haskel,haskell
+1437,Haskel,hascel
+1438,Heidolph,hideoff
+1439,Heidolph,heidolf
+1440,Heidolph,Hedolph
+1441,Heidolph,Heidoph
+1442,Heidolph ,hedolp
+1443,Hellma,NULL
+1444,Hemco,Hemko
+1445,Hemco,Heemco
+1446,Heraeus,Hereaus
+1447,Heraeus Quarzglas,NULL
+1448,Heraeus Votsch,NULL
+1449,Hermle,NULL
+1450,Hewlett Packard,Hewlet Packard
+1451,Hewlett Packard,HP
+1452,Hewlett Packard,Hewlat Packard
+1453,Hewlett Packard,Hewllet Packard
+1454,Hewlett Packard,Hewlett Pacard
+1455,Hewlett Packard,Hewlett Packarid
+1456,Hewlett Packard,Hewlett Packird
+1457,Hiac Royco,NULL
+1458,Hill Scientific,NULL
+1459,Hitachi,Hitaci
+1460,Hitachi,Hitacci
+1461,Hitachi-Kontro,NULL
+1462,HiTechTrader,HiTectrader
+1463,HiTechTrader,hightextrader
+1464,HiTechTrader,Hightechtrader
+1465,Hobart,ho-bart
+1466,Hobart,hoebart
+1467,Hockmeyer,hockmeir
+1468,Hockmeyer,Hokmeir
+1469,Hoefer Scientific,hoffer
+1470,Hoefer Scientific,hoeferr
+1471,Horiba,NULL
+1472,Horizon Technology,NULL
+1473,Hoskins,NULL
+1474,Hotpack,Hot Pack
+1475,Hotpack,hotpak
+1476,HS Martin,HS. Martin
+1477,HS Martin,hsmartin
+1478,HS Martin,HS Marten
+1479,HS Martin,H.S. Martin
+1480,HT Chemicals,NULL
+1481,Humidaire,NULL
+1482,Hybaid OmniSlide,NULL
+1483,HYD Surgery,NULL
+1484,I2R,NULL
+1485,IBI,NULL
+1486,ICI Chlor-Chemicals,NULL
+1487,Idaho Technology,NULL
+1488,IEC,NULL
+1489,IKA,NULL
+1490,Industrial Heaters ,NULL
+1491,Ingold,NULL
+1492,Inotech,NULL
+1493,Inotech Sterrguard,Inotech Steriguard
+1494,Instrument Laboratory,NULL
+1495,Integra Bioscience,Inegra Bioscience
+1496,Integrated Air Systems,NULL
+1497,Integrated Separations Systems,NULL
+1498,Isco,Isso
+1499,Isco,Iscc
+1500,Isco,isso
+1501,ISS Enprotech,NULL
+1502,ITT Jabsco,NULL
+1503,IVEK,NULL
+1504,J & W Scientific,NULL
+1505,Jasco,Jasko
+1506,Jasco,Jazco
+1507,Jasco,NULL
+1508,JEOL,NULL
+1509,J-Kem Scientific,J Kem Scientific
+1510,J-Kem Scientific,j Chem scientific 
+1511,Jones Chromatography ,NULL
+1512,Jordon,Jordan
+1513,Jouan,Jouin
+1514,Joyce Loebel,NULL
+1515,Julabo,jalabo
+1516,Julabo,Julobo
+1517,K Tron Corporation,NULL
+1518,Kalmus,NULL
+1519,Kason,NULL
+1520,Kaye,NULL
+1521,Kayeness,NULL
+1522,KD Scientific,NULL
+1523,Keithley,kethly
+1524,Keithley,keithly
+1525,Keithley,keithlee
+1526,Kelvinator,Kelvinater
+1527,Kelvinator,Celvinator
+1528,Kemp,NULL
+1529,Kernco Instruments,NULL
+1530,Kewaunee,NULL
+1531,Kimax,NULL
+1532,Kimble Kontes,Kimbal Kontes
+1533,Kimble Kontes,cimble contes
+1534,Kimble Kontes,Kinble Kontes
+1535,Kinematic,NULL
+1536,Kinetic Dispersion,NULL
+1537,Kipp & Zonen,Kip & Zone
+1538,Kipp & Zonen,Kipp & Zonen
+1539,Kipp & Zonen,Cipp & Zonen
+1540,Klett Summerson,NULL
+1541,Knauer,NULL
+1542,KNF Neuberger,K&F Neuberger
+1543,KNF Neuberger,K and F Newberger
+1544,KNF Neuberger,K-F Neuberger
+1545,KNF Neuberger,KNF
+1546,KNF Neuberger,KNF Newburger
+1547,KNF Neuberger,KNF Neuburger
+1548,Kodak,NULL
+1549,Kokusan Corp,NULL
+1550,Koldwave,NULL
+1551,Kontes,Contes
+1552,Ktron,Ctron
+1553,Ktron,Kaytron
+1554,Kugelrohr,cugelroar
+1555,Kugelrohr,Cugelrohr
+1556,KUHL Corporation,NULL
+1557,Kulite Semiconductor,NULL
+1558,Labconco,Labkonco
+1559,Labconco,labkonko
+1560,Labconco,lab-conco
+1561,Labconco,lab conco
+1562,Labconco,lapconco
+1563,Lab-Line,Lab  line
+1564,Lab-Line,labline
+1565,Lab-Line,lapline
+1566,Labnet,NULL
+1567,Laboratory Devices,NULL
+1568,Laboratory Supplies Co.,NULL
+1569,LaPine Scientific,NULL
+1570,Lauda,Lawda
+1571,Lauda,law da
+1572,Lavin,NULL
+1573,Lavin,NULL
+1574,Leco,Leko
+1575,Leeds and Northrup,NULL
+1576,Leica,lika
+1577,Leica JUNG,NULL
+1578,Letsch/Precision Stainless Inc,NULL
+1579,Lexel,NULL
+1580,Leybold,laybold
+1581,Liberty,NULL
+1582,Life Technologies,NULL
+1583,Lightnin,lighting
+1584,Lightnin,liteing
+1585,Lightnin,litenin
+1586,Lightnin,lightnen
+1587,Lindberg,linberg
+1588,Lindberg,lindburg
+1589,Lindberg,lineburg
+1590,Lindberg,lidberg
+1591,Lindberg Blue M,Linberg/BlueM
+1592,Lindberg Blue M,Linberg/Blue M

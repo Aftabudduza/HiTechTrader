@@ -1,0 +1,311 @@
+ManufacturerAKAID,Manufacturer,AlsoKnownAs
+1000,A&D,AND Weighing
+1001,A&D,A&D Balance
+1002,A&D Balance,AND Weighing
+1003,A&D Balance,A&D
+1004,AB,Applied Biosystems
+1005,Affymetrix ,Genetic MicroSystems
+1006,Agilent,HP
+1007,Agilent,Hewlett Packard
+1008,Aldrich Chemical,Aldrich Kugelrohr
+1009,Aldrich Chemical,Sigma-Aldrich 
+1010,Aldrich Kugelrohr,Aldrich Chemical
+1011,Aldrich Kugelrohr,Sigma-Aldrich 
+1012,American Lewa,Lewa
+1013,American Optical,AO
+1014,Amersham,Pharmacia
+1015,Amersham,Amersham Pharmacia
+1016,Amersham Pharmacia,Pharmacia
+1017,Amersham Pharmacia,GE Healthcare Life Sciences
+1018,Amersham Pharmacia,GE Healthcare
+1019,Amersham Pharmacia,Hoefer
+1020,Ametek,Princeton Applied Research 
+1021,Ametek,Chatillon Force Measurement Systems
+1022,Aminco,Newport Scientific 
+1023,Amsco,Amsco Eagel
+1024,Amsco Eagel,Amsco
+1025,AND Weighing,A&D Balance
+1026,Antek,Antek Instruments
+1027,Antek Instruments,Antek
+1028,AO,American Optical
+1029,Applied Biosystems,AB
+1030,APV,Gaulin
+1031,Argonaut,Argonaut Technologies
+1032,Argonaut Technologies,Argonaut
+1033,Argonaut Technologies ,Jones Chromatography 
+1034,ATI,ATI Unicam
+1035,ATI Unicam,ATI
+1036,ATI-Unicam,Thermo Electron Corp
+1037,ATI-Unicam,Thermo ONIX 
+1038,ATM,ATM Corporation
+1039,ATM,ATM Corp 
+1040,ATM Corp ,ATM
+1041,ATM Corporation,ATM
+1042,Autoclave Eng.,Snap-tite
+1043,autoclave engineer,Autoclave Eng.
+1044,autoclave engineer,Snap-tite
+1045,autoclave engineer,Autoclave Hoppes
+1046,B Braun Biotech ,Braun & Diessel
+1047,B Braun Biotech ,Sartorius 
+1048,B&L,Bausch & Lomb
+1049,Barber Colman,Eurotherm 
+1050,Barnstead,pyro-clean
+1051,Barnstead,material testing
+1052,Barnstead,Labindustries
+1053,Barnstead,Linear
+1054,Barnstead,Thermo
+1055,Barnstead,Thermo Fisher Scientific Inc.
+1056,Barnstead,Thermolyne
+1057,Barnstead,Lab-line
+1058,Barnstead,Electrothermal
+1059,Barnstead,Ertco
+1060,Barnstead,stem
+1061,Barnstead,turner
+1062,Barnstead,PMC
+1063,Barnstead,Harvey
+1064,Bausch & Lomb,B&L
+1065,Bausch & Lomb,B&L
+1066,BBC Goerz,ABB Goerz
+1067,BD,Clay Adams
+1068,BD Clay Adams,Clay Adams
+1069,Beckman,"Beckman Coulter, Inc."
+1070,Beckman,Beckman Biosystems
+1071,Beckman Coulter,Beckman
+1072,Beckman Coulter ,Coulter
+1073,Bellco,Bellco Glass Inc
+1074,Bellco,Bellco Biotechnology
+1075,Bio-Rad,Bio-Rad Laboratories
+1076,Biotek ,Bio Tek Instruments
+1077,Blue M,Thermo Electron Corporation
+1078,Blue M,Thermo Furnace
+1079,Blue M,Lindberg
+1080,BOC Edwards,Edwards
+1081,BOC Edwards,Edwards
+1082,Bohdan,Bohdan Automation
+1083,Branson,Branson Ultrasonics Corporation
+1084,Branson,Branson/ IPC
+1085,Braum Biotech,B Braum Biotech 
+1086,Brinkmann,Brinkmann Instruments 
+1087,Brinkmann,Lauda
+1088,Brinkmann,Metrohm
+1089,Brinkmann,Eppendorf
+1090,Brinkmann,Buchi
+1091,Brinkmann,Radleys
+1092,Brinkmann,Retsch
+1093,Brinkmann,Heidolph 
+1094,Brooks Automation ,Granville-Phillips
+1095,Buchi,Brinkmann
+1096,BYK,BYK-Gardner 
+1097,BYK-Gardner ,BYK
+1098,BYK-Gardner ,Gardner
+1099,Cahn,Thermo Electron Corporation
+1100,CDC,CDC Analytical
+1101,CDC Analytical,CDC
+1102,CE Tyler,W.S. TYLER
+1103,CEM,CEM Corp.
+1104,CEM Corp.,CEM
+1105,Charles Ross,Charles Ross & Son Company
+1106,Charles Ross,Ross
+1107,Charles Ross,Ross mixing
+1108,Charles Ross,Ross engineering
+1109,Charles Ross & Son Company,Charles Ross
+1110,Chatillon,Ametek
+1111,Chatillon,Chatillon Force Measurement Systems
+1112,Clay Adams,BD
+1113,Clay Adams,BD Clay Adams
+1114,Cole Parmer,Cole-Parmer Instrument Company 
+1115,Cole-Parmer Instrument Company ,Cole Parmer
+1116,Coulter,Beckman-Coulter 
+1117,DuPont,DuPont Instruments
+1118,DuPont Instruments,DuPont
+1119,Dynisco Instruments,Kayeness
+1120,Edwards,BOC Edwards
+1121,Electro Tech Systems,ETS
+1122,Electrothermal,Barnstead
+1123,EllectroCell AB,Chematur Engineering Group
+1124,Encon,Encon Safety Products
+1125,Eppendorf,Brinkmann
+1126,Ertco,Barnstead
+1127,ESA,ESA Laboratories
+1128,ESA,Magellan Biosciences
+1129,ESA Laboratories,ESA
+1130,ETS,Electro Tech Systems
+1131,Eurotherm ,Chessel
+1132,Eurotherm ,Barber Colman
+1133,Eyela,Eyela Tokyo Rikakikai
+1134,Eyela Tokyo Rikakikai,Eyela
+1135,Farrand Optical,Ruhle
+1136,Finnigan,Thermo
+1137,Finnigan,Thermo Fisher
+1138,Fisher,Fisher Scientific
+1139,Fisher Scientific,Fisher
+1140,Fisher Scientific,Thermo Electron
+1141,Fisons,Fisons Instruments
+1142,Fisons,Fisons
+1143,Fisons,Thermo Electron
+1144,Fisons,Thermo Fisher
+1145,FitzMill,Fitzpatric
+1146,Fitzpatric,FitzMill
+1147,Fluid Metering Inc,FMI
+1148,Fluke ,Fluke's Hart Scientific
+1149,Fluke ,Hart Scientific
+1150,FMC,Syntron
+1151,FMI,Fluid Metering Inc
+1152,Forma,Forma Scientific
+1153,Forma,Thermo Fisher 
+1154,Forma Scientific,Forma
+1155,Foxy,Isco
+1156,FTS,SP Industries
+1157,FTS,FTS Systems
+1158,Gaertner,gaertner scientific corporation 
+1159,gaertner scientific corporation ,Gaertner
+1160,Gallenkamp,Weiss Gallenkamp 
+1161,Gardner,BYK-Gardner 
+1162,Gardner ,Paul N. Gardner Company
+1163,Gast,Gast Manufacturing 
+1164,Gast Manufacturing ,Gast
+1165,Gaulin,APV
+1166,GCA Precision Scientific,Thermo
+1167,GE Healthcare,Hoefer Scientific
+1168,GE Healthcare,Hoefer Scientific
+1169,Gelman Sciences,Pall 
+1170,Genetic MicroSystems,Affymetrix 
+1171,Glas Col,Glas-Col 
+1172,Glas-Col ,Glas Col
+1173,Goulds,Gould Pumps
+1174,Goulds,ITT
+1175,Gow Mac,Gow-Mac
+1176,Gow-Mac,Gow Mac
+1177,Granville Phillips,Granville-Phillips
+1178,Granville-Phillips,Helix Technology Corporation
+1179,Granville-Phillips,Brooks Automation 
+1180,Granville-Phillips,Granville Phillips
+1181,Haake,Thermo
+1182,Haake,Haake Buchler
+1183,Hach,Hach Company
+1184,Hacker instruments,HACKER Instruments & Industries Inc
+1185,Hamilton,Hamilton Laboratory Workstations
+1186,Hamilton,Thermo Fisher 
+1187,Hanna,Hanna Instruments
+1188,Hanson,Hanson Lab Furniture
+1189,Hart Scientific,Fluke's Hart Scientific
+1190,Hart Scientific,Fluke 
+1191,Harvard Apparatus ,Harvard Bioscience
+1192,Harvard NaviCyte ,Harvard Bioscience
+1193,Harvey,Barnstead
+1194,Haskel,Haskel International Inc
+1195,Haskel,Milton Roy
+1196,Haskel,Milton Roy
+1197,Heidolph ,Brinkmann
+1198,Helix Technology Corporation,Granville-Phillips
+1199,Hemco,HEMCO Corporation 
+1200,Hewlett Packard,Agilent
+1201,Hewlett Packard,H.P.
+1202,Hitachi,Hitachi Life Sciences Products
+1203,Hockmeyer,Hockmeyer Equipment Corporation
+1204,Hoefer,Amersham Pharmacia
+1205,Hoefer Scientific,GE Healthcare
+1206,Horiba,Horiba Instruments
+1207,Hotpack,SP Industries
+1208,HS Martin,"H.S. Martin Company, Inc"
+1209,I2R,Instruments for Research and Industry 
+1210,I2R,Glas-Col
+1211,IEC ,Thermo
+1212,IKA,IKA WERKE
+1213,IKA,IKA Works
+1214,Inotech,Inotech Biosystems International
+1215,Isco,Foxy
+1216,Isco,"Teledyne Isco, Inc "
+1217,Isco,Teledyne Technologies
+1218,ITT,Goulds
+1219,IVEK,IVEK Corporation 
+1220,Jones Chromatography ,Argonaut Technologies 
+1221,Jordon,Jordon Scientific
+1222,Jordon Scientific,Aegis Scientific 
+1223,Jouan,Thermo
+1224,Kaye,GE Industrial Sensing
+1225,Kayeness,Kayeness Inc.
+1226,Kayeness,Dynisco Instruments
+1227,Keithley,Keithley Instruments Inc
+1228,Kelvinator ,National Refrigeration Company 
+1229,Kelvinator ,Carrier Commercial Refrigeration 
+1230,Kewaunee,Kewaunee Scientific Corporation 
+1231,Kimax,KIMBLE / KONTES
+1232,KIMBLE / KONTES,Kontes
+1233,KNF Neuberger,KNF Neuberger Inc
+1234,Kontes,KIMBLE / KONTES
+1235,Ktron,K-Tron International
+1236,Labconco,Labconco Corporation
+1237,Labindustries,Barnstead
+1238,Lab-line,Barnstead
+1239,Lab-line,Thermo
+1240,Lauda,Brinkmann
+1241,Leco,LECO Corporation 
+1242,Leeds and Northrup,Honeywell
+1243,Leeds and Northrup,Microtrac
+1244,Lewa,American Lewa
+1245,Leybold,Oerlikon Leybold Vacuum
+1246,Lightnin,SPX Corporation
+1247,Lindberg,Blue M
+1248,Lindberg,Lindberg Blue M
+1249,Linear,Barnstead
+1250,Magellan Biosciences,ESA
+1251,Metrohm,Brinkmann
+1252,Oerlikon Leybold Vacuum,Leybold
+1253,Pall,Gelman Sciences
+1254,Pharmacia,Amersham
+1255,Pharmacia,GE Healthcare Life Sciences
+1256,Pharmacia,Amersham Pharmacia
+1257,Pharmacia,GE Healthcare
+1258,PMC,Barnstead
+1259,PMC,Barnstead
+1260,PMC,Thermo
+1261,Princeton Applied Research ,Ametek
+1262,pyro-clean,Barnstead
+1263,Radleys,Brinkmann
+1264,Retsch,Brinkmann
+1265,Ross,Charles Ross
+1266,Ross engineering,Charles Ross
+1267,Ross mixing,Charles Ross
+1268,Ruhle,Farrand Optical
+1269,Sartorius ,B Braun Biotech 
+1270,Sigma-Aldrich ,Aldrich Chemical
+1271,Sigma-Aldrich ,Aldrich Kugelrohr
+1272,Snap-tite,Snap tite
+1273,Snap-tite,Autoclave Eng.
+1274,Snap-tite,Autoclave Hoppes
+1275,SP Industries,FTS
+1276,SP Industries,Hotpack
+1277,SP Industries,Hull
+1278,SP Industries,Virtis
+1279,SP Industries,Wilamd
+1280,SP Industries,Sp Techcare
+1281,SPX Corporation,Lindberg/Blue M
+1282,SPX Corporation,Lindberg
+1283,SPX Corporation,Lightnin
+1284,Syntron,FMC
+1285,Thermo,Finnigan
+1286,Thermo,Barnstead
+1287,Thermo,Thermo ONIX 
+1288,Thermo,ATI Unicam
+1289,Thermo,Jouan
+1290,Thermo,Haake
+1291,Thermo ,IEC
+1292,Thermo ,Thermo Electron Corporation
+1293,Thermo ,Blue M
+1294,Thermo ,IEC
+1295,Thermo Electron,Fisher Scientific
+1296,Thermo Electron,Fisher Scientific
+1297,Thermo Electron Corporation,Cahn
+1298,Thermo Fisher,Fisons
+1299,Thermo Fisher,Finnigan
+1300,Thermo Fisher,Barnstead
+1301,Thermo Fisher ,Thermo Fisher Scientific Inc.
+1302,Thermo Fisher ,Forma
+1303,Thermo Fisher ,Hamilton Laboratory Workstations
+1304,Thermo Furnace,Blue M
+1305,Thermolyne,Barnstead
+1306,turner,Barnstead
+1307,Tuttnauer,Brinkmann
+1308,W.S. TYLER,CE Tyler
+1309,W.S. TYLER,CE Tyler
