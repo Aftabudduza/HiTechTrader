@@ -1,1 +1,5 @@
 ﻿9/25/2014 6:35:18 PM: ERROR GENERIC COMMAND (Shopping Cart - SQL SERVER) -> Details => Incorrect syntax near 'value'. SQL:INSERT INTO UserLog ([UserId] ,[Username],[LoginTime]) value (1,'admin','9/25/2014 12:35:17 PM')
+9/25/2014 7:02:23 PM: ERROR GENERIC COMMAND (Shopping Cart - SQL SERVER) -> Details => Incorrect syntax near 'value'. SQL:INSERT INTO UserLog ([UserId] ,[Username],[LoginTime]) value (1,'admin','9/25/2014 1:02:23 PM')
+9/25/2014 7:38:47 PM: ERROR GENERIC COMMAND (Shopping Cart - SQL SERVER) -> Details => Incorrect syntax near 'value'. SQL:INSERT INTO UserLog ([UserId] ,[Username],[LoginTime]) value (1,'admin','9/25/2014 1:38:47 PM')
+9/25/2014 7:42:27 PM: ERROR GENERIC COMMAND (Shopping Cart - SQL SERVER) -> Details => Incorrect syntax near 'value'. SQL:INSERT INTO ProductLog ([UserId] ,[Username],[ProductId],[ModifiedOn]) value (1,'admin','86448','9/25/2014 1:42:26 PM')
+9/25/2014 7:47:08 PM: ERROR GENERIC COMMAND (Shopping Cart - SQL SERVER) -> Details => Incorrect syntax near 'value'. SQL:INSERT INTO UserLog ([UserId] ,[Username],[LoginTime]) value (1,'admin','9/25/2014 1:47:08 PM')
