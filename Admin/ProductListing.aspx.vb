@@ -230,8 +230,8 @@ Partial Class Admin_ProductListing
             strSQL = "select * from Product where Id=" & nId
             UserDS = SQLData.generic_select(strSQL, strConnection)
             If Not UserDS Is Nothing And UserDS.Tables(0).Rows.Count > 0 Then
-                If Not UserDS.Tables(0).Rows(0)("MainImage").ToString() Is Nothing AndAlso UserDS.Tables(0).Rows(0)("MainImage").ToString() <> String.Empty Then
-                    strImg = UserDS.Tables(0).Rows(0)("MainImage").ToString()
+                If Not UserDS.Tables(0).Rows(0)("ImageFileName").ToString() Is Nothing AndAlso UserDS.Tables(0).Rows(0)("ImageFileName").ToString() <> String.Empty Then
+                    strImg = UserDS.Tables(0).Rows(0)("ImageFileName").ToString()
                     Dim imgArray() As String = Nothing
                     Dim sStr As String = ""
                     Dim sStrFile As String = ""
