@@ -42,8 +42,8 @@
                         <Fields>
                             <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowNextPageButton="false"
                                 ShowPreviousPageButton="true" FirstPageText="First" />
-                            <asp:NumericPagerField ButtonType="Link" ButtonCount="10" NumericButtonCssClass="noteIndex" />
-                            <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="false" ShowNextPageButton="true"
+                            <asp:NumericPagerField ButtonType="Link" ButtonCount="10"  NumericButtonCssClass="noteIndex" />
+                            <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="false" ShowNextPageButton="false"
                                 ShowPreviousPageButton="false" LastPageText="Last" />
                             <asp:TemplatePagerField>
                                 <PagerTemplate>

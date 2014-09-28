@@ -20,32 +20,50 @@ Partial Class Admin_InquiryEmail
     Private Shared rePassword As New Regex("^[A-Za-z0-9]*$", RegexOptions.Compiled Or RegexOptions.ExplicitCapture Or RegexOptions.IgnoreCase)
     Private Shared reUsername As New Regex("^[A-Za-z0-9_.@]*$", RegexOptions.Compiled Or RegexOptions.ExplicitCapture Or RegexOptions.IgnoreCase)
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Not Session("Id") Is Nothing Then
-            If Not Page.IsPostBack Then
-                Session("pagerSQL") = Nothing
-                Session("strOrder") = Nothing
-                Session("strOrderValue") = Nothing
-                Session("strwhere") = Nothing
-                Session("pagerSQL") = " SELECT * FROM OrderHistory oh "
-                If Not Session("strwhere") Is Nothing Then
-                    If Not Session("strOrder") Is Nothing Then
-                        sSQL = Session("pagerSQL") & Session("strwhere") & Session("strOrder").ToString()
-                        SqlDataSource1.SelectCommand = sSQL
+        Try
+            If Not Session("Id") Is Nothing Then
+                If Not Page.IsPostBack Then
+                    Session("pagerSQL") = Nothing
+                    Session("strOrder") = Nothing
+                    Session("strOrderValue") = Nothing
+                    Session("strwhere") = Nothing
+                    Session("pagerSQL") = " SELECT * FROM OrderHistory oh "
+                    If Not Session("strwhere") Is Nothing Then
+                        If Not Session("strOrder") Is Nothing Then
+                            sSQL = Session("pagerSQL") & Session("strwhere") & "  " & Session("strOrder").ToString()
+                            SqlDataSource1.SelectCommand = sSQL
+                        Else
+                            SqlDataSource1.SelectCommand = Session("pagerSQL") & Session("strwhere") & " ORDER BY oh.Orderdate DESC "
+                        End If
                     Else
-                        SqlDataSource1.SelectCommand = Session("pagerSQL") & Session("strwhere") & " ORDER BY oh.Orderdate DESC "
+                        Session("strOrderValue") = 6
+                        Session("strOrder") = "  DESC"
+                        SqlDataSource1.SelectCommand = Session("pagerSQL") & " WHERE oh.OrderDate BETWEEN DATEADD(dd, -30, GETDATE()) AND GETDATE() ORDER BY oh.Orderdate DESC "
+                        ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
+                        lnk30days.Attributes("Class") = "lnkdays"
+                        lnk30days.Enabled = False
                     End If
                 Else
-                    Session("strOrderValue") = 6
-                    Session("strOrder") = "DESC"
-                    SqlDataSource1.SelectCommand = Session("pagerSQL") & " WHERE oh.OrderDate BETWEEN DATEADD(dd, -30, GETDATE()) AND GETDATE() ORDER BY oh.Orderdate DESC "
-                    ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
-                    lnk30days.Attributes("Class") = "lnkdays"
-                    lnk30days.Enabled = False
+                    If Not Session("pagerSQL") Is Nothing Then
+                        If Not Session("strwhere") Is Nothing Then
+                            If Not Session("strOrder") Is Nothing Then
+                                sSQL = Session("pagerSQL") & Session("strwhere") & "  " & Session("strOrder").ToString()
+                                SqlDataSource1.SelectCommand = sSQL
+                            Else
+                                SqlDataSource1.SelectCommand = Session("pagerSQL") & Session("strwhere") & " ORDER BY oh.Orderdate DESC "
+                            End If
+                        Else
+                            SqlDataSource1.SelectCommand = Session("pagerSQL") & " ORDER BY oh.Orderdate DESC "
+                        End If
+                    End If
                 End If
+            Else
+                Response.Redirect("Login.aspx")
             End If
-        Else
-            Response.Redirect("Login.aspx")
-        End If
+        Catch ex As Exception
+
+        End Try
+       
     End Sub
     Private Sub DisplayAlert(ByVal msg As String)
         Page.ClientScript.RegisterStartupScript(Me.GetType(), Guid.NewGuid().ToString(), String.Format("alert('{0}');", msg.Replace("'", "\'").Replace(vbCrLf, "\n")), True)
@@ -139,7 +157,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC "
                     sOrdervalue = "ORDER BY oh.[Type] "
                 ElseIf Session("strOrderValue").ToString() = 2 Then
                     ImgArrowType.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
@@ -147,7 +165,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC "
                     sOrdervalue = "ORDER BY oh.[Type] "
 
                 ElseIf Session("strOrderValue").ToString() = 3 Then
@@ -156,7 +174,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC "
+                    sOrderBy = " ASC "
                     sOrdervalue = "ORDER BY oh.PONumber "
 
                 ElseIf Session("strOrderValue").ToString() = 4 Then
@@ -165,7 +183,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC "
+                    sOrderBy = " DESC "
                     sOrdervalue = "ORDER BY oh.PONumber "
 
                 ElseIf Session("strOrderValue").ToString() = 5 Then
@@ -174,7 +192,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = "ORDER BY oh.Orderdate "
 
                 ElseIf Session("strOrderValue").ToString() = 6 Then
@@ -183,7 +201,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                     sOrdervalue = "ORDER BY oh.Orderdate "
 
                 ElseIf Session("strOrderValue").ToString() = 7 Then
@@ -192,7 +210,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = "ORDER BY oh.[Name] "
                 ElseIf Session("strOrderValue").ToString() = 8 Then
                     ImgArrowType.Attributes("src") = ""
@@ -200,7 +218,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                     sOrdervalue = "ORDER BY oh.[Name] "
                 ElseIf Session("strOrderValue").ToString() = 9 Then
                     ImgArrowType.Attributes("src") = ""
@@ -208,7 +226,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = "ORDER BY oh.Email "
                 ElseIf Session("strOrderValue").ToString() = 10 Then
                     ImgArrowType.Attributes("src") = ""
@@ -216,7 +234,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                     sOrdervalue = "ORDER BY oh.Email "
                 End If
 
@@ -268,7 +286,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "ASC"
+                        sOrderBy = " ASC"
                         sOrdervalue = "ORDER BY oh.[Type] "
                     ElseIf Session("strOrderValue").ToString() = 2 Then
                         ImgArrowType.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
@@ -276,7 +294,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "DESC"
+                        sOrderBy = " DESC"
                         sOrdervalue = "ORDER BY oh.[Type] "
 
                     ElseIf Session("strOrderValue").ToString() = 3 Then
@@ -285,7 +303,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "ASC "
+                        sOrderBy = " ASC "
                         sOrdervalue = "ORDER BY oh.PONumber "
 
                     ElseIf Session("strOrderValue").ToString() = 4 Then
@@ -294,7 +312,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "DESC "
+                        sOrderBy = " DESC "
                         sOrdervalue = "ORDER BY oh.PONumber "
 
                     ElseIf Session("strOrderValue").ToString() = 5 Then
@@ -303,7 +321,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "ASC"
+                        sOrderBy = " ASC"
                         sOrdervalue = "ORDER BY oh.Orderdate "
 
                     ElseIf Session("strOrderValue").ToString() = 6 Then
@@ -312,7 +330,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "DESC"
+                        sOrderBy = " DESC"
                         sOrdervalue = "ORDER BY oh.Orderdate "
 
                     ElseIf Session("strOrderValue").ToString() = 7 Then
@@ -321,7 +339,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "ASC"
+                        sOrderBy = " ASC"
                         sOrdervalue = "ORDER BY oh.[Name] "
                     ElseIf Session("strOrderValue").ToString() = 8 Then
                         ImgArrowType.Attributes("src") = ""
@@ -329,7 +347,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "DESC"
+                        sOrderBy = " DESC"
                         sOrdervalue = "ORDER BY oh.[Name] "
                     ElseIf Session("strOrderValue").ToString() = 9 Then
                         ImgArrowType.Attributes("src") = ""
@@ -337,7 +355,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
-                        sOrderBy = "ASC"
+                        sOrderBy = " ASC"
                         sOrdervalue = "ORDER BY oh.Email "
                     ElseIf Session("strOrderValue").ToString() = 10 Then
                         ImgArrowType.Attributes("src") = ""
@@ -345,7 +363,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
-                        sOrderBy = "DESC"
+                        sOrderBy = " DESC"
                         sOrdervalue = "ORDER BY oh.Email "
                     End If
 
@@ -398,7 +416,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = "ORDER BY oh.[Type] "
                 ElseIf Session("strOrderValue").ToString() = 2 Then
                     ImgArrowType.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
@@ -406,7 +424,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                     sOrdervalue = "ORDER BY oh.[Type] "
 
                 ElseIf Session("strOrderValue").ToString() = 3 Then
@@ -415,7 +433,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC "
+                    sOrderBy = " ASC "
                     sOrdervalue = "ORDER BY oh.PONumber "
 
                 ElseIf Session("strOrderValue").ToString() = 4 Then
@@ -424,7 +442,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC "
+                    sOrderBy = " DESC "
                     sOrdervalue = "ORDER BY oh.PONumber "
 
                 ElseIf Session("strOrderValue").ToString() = 5 Then
@@ -433,7 +451,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = "ORDER BY oh.Orderdate "
 
                 ElseIf Session("strOrderValue").ToString() = 6 Then
@@ -442,7 +460,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                     sOrdervalue = "ORDER BY oh.Orderdate "
 
                 ElseIf Session("strOrderValue").ToString() = 7 Then
@@ -451,7 +469,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = "ORDER BY oh.[Name] "
                 ElseIf Session("strOrderValue").ToString() = 8 Then
                     ImgArrowType.Attributes("src") = ""
@@ -459,7 +477,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                     sOrdervalue = "ORDER BY oh.[Name] "
                 ElseIf Session("strOrderValue").ToString() = 9 Then
                     ImgArrowType.Attributes("src") = ""
@@ -467,7 +485,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = "ORDER BY oh.Email "
                 ElseIf Session("strOrderValue").ToString() = 10 Then
                     ImgArrowType.Attributes("src") = ""
@@ -475,8 +493,8 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
-                    sOrderBy = "DESC"
-                    sOrdervalue = "ORDER BY oh.Email "
+                    sOrderBy = " DESC"
+                    sOrdervalue = " ORDER BY oh.Email "
                 End If
 
                 Session("strOrder") = sOrderBy.ToString().Trim
@@ -526,7 +544,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = " ORDER BY oh.[Type] "
                 ElseIf Session("strOrderValue").ToString() = 2 Then
                     ImgArrowType.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
@@ -534,7 +552,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                     sOrdervalue = "ORDER BY oh.[Type] "
 
                 ElseIf Session("strOrderValue").ToString() = 3 Then
@@ -543,7 +561,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC "
+                    sOrderBy = " ASC "
                     sOrdervalue = "ORDER BY oh.PONumber "
 
                 ElseIf Session("strOrderValue").ToString() = 4 Then
@@ -552,7 +570,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC "
+                    sOrderBy = " DESC "
                     sOrdervalue = "ORDER BY oh.PONumber "
 
                 ElseIf Session("strOrderValue").ToString() = 5 Then
@@ -561,7 +579,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = "ORDER BY oh.Orderdate "
 
                 ElseIf Session("strOrderValue").ToString() = 6 Then
@@ -570,7 +588,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                     sOrdervalue = "ORDER BY oh.Orderdate "
 
                 ElseIf Session("strOrderValue").ToString() = 7 Then
@@ -579,7 +597,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = "ORDER BY oh.[Name] "
                 ElseIf Session("strOrderValue").ToString() = 8 Then
                     ImgArrowType.Attributes("src") = ""
@@ -587,7 +605,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                     sOrdervalue = "ORDER BY oh.[Name] "
                 ElseIf Session("strOrderValue").ToString() = 9 Then
                     ImgArrowType.Attributes("src") = ""
@@ -595,7 +613,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
-                    sOrderBy = "ASC"
+                    sOrderBy = " ASC"
                     sOrdervalue = "ORDER BY oh.Email "
                 ElseIf Session("strOrderValue").ToString() = 10 Then
                     ImgArrowType.Attributes("src") = ""
@@ -603,7 +621,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                     sOrdervalue = "ORDER BY oh.Email "
                 End If
 
@@ -644,7 +662,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "DESC"
+                        sOrderBy = " DESC"
                     Else
                         Session("strOrderValue") = 1
                         ImgArrowType.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
@@ -652,7 +670,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "ASC"
+                        sOrderBy = " ASC"
 
                     End If
                 Else
@@ -662,7 +680,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC"
+                    sOrderBy = " DESC"
                 End If
             Else
                 Session("strOrderValue") = 1
@@ -671,7 +689,7 @@ Partial Class Admin_InquiryEmail
                 ImgArrowDate.Attributes("src") = ""
                 imgArrowName.Attributes("src") = ""
                 imgArrowEmail.Attributes("src") = ""
-                sOrderBy = "DESC"
+                sOrderBy = " DESC"
             End If
 
 
@@ -705,7 +723,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "DESC "
+                        sOrderBy = " DESC "
                     Else
                         Session("strOrderValue") = 3
                         ImgArrowType.Attributes("src") = ""
@@ -713,7 +731,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "ASC "
+                        sOrderBy = " ASC "
                     End If
                 Else
                     Session("strOrderValue") = 3
@@ -722,7 +740,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC "
+                    sOrderBy = " DESC "
                 End If
             Else
                 Session("strOrderValue") = 3
@@ -731,7 +749,7 @@ Partial Class Admin_InquiryEmail
                 ImgArrowDate.Attributes("src") = ""
                 imgArrowName.Attributes("src") = ""
                 imgArrowEmail.Attributes("src") = ""
-                sOrderBy = "DESC "
+                sOrderBy = " DESC "
             End If
 
             Session("strOrder") = sOrderBy.ToString().Trim
@@ -762,7 +780,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "DESC"
+                        sOrderBy = " DESC"
                     Else
                         Session("strOrderValue") = 5
                         ImgArrowType.Attributes("src") = ""
@@ -770,7 +788,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "ASC"
+                        sOrderBy = " ASC"
                     End If
                 Else
                     Session("strOrderValue") = 5
@@ -779,7 +797,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC "
+                    sOrderBy = " DESC "
                 End If
             Else
                 Session("strOrderValue") = 5
@@ -788,7 +806,7 @@ Partial Class Admin_InquiryEmail
                 ImgArrowDate.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                 imgArrowName.Attributes("src") = ""
                 imgArrowEmail.Attributes("src") = ""
-                sOrderBy = "DESC "
+                sOrderBy = " DESC "
             End If
             Session("strOrder") = sOrderBy.ToString().Trim
             If Not Session("pagerSQL") Is Nothing Then
@@ -819,7 +837,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "DESC"
+                        sOrderBy = " DESC"
                     Else
                         Session("strOrderValue") = 7
                         ImgArrowType.Attributes("src") = ""
@@ -827,7 +845,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
                         imgArrowEmail.Attributes("src") = ""
-                        sOrderBy = "ASC"
+                        sOrderBy = " ASC"
                     End If
                 Else
                     Session("strOrderValue") = 7
@@ -836,7 +854,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                     imgArrowEmail.Attributes("src") = ""
-                    sOrderBy = "DESC "
+                    sOrderBy = " DESC "
                 End If
             Else
                 Session("strOrderValue") = 7
@@ -845,7 +863,7 @@ Partial Class Admin_InquiryEmail
                 ImgArrowDate.Attributes("src") = ""
                 imgArrowName.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
                 imgArrowEmail.Attributes("src") = ""
-                sOrderBy = "DESC "
+                sOrderBy = " DESC "
             End If
 
             Session("strOrder") = sOrderBy.ToString().Trim
@@ -878,7 +896,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
-                        sOrderBy = "DESC"
+                        sOrderBy = " DESC"
                     Else
                         Session("strOrderValue") = 9
                         ImgArrowType.Attributes("src") = ""
@@ -886,7 +904,7 @@ Partial Class Admin_InquiryEmail
                         ImgArrowDate.Attributes("src") = ""
                         imgArrowName.Attributes("src") = ""
                         imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortAsc.gif"
-                        sOrderBy = "ASC"
+                        sOrderBy = " ASC"
                     End If
                 Else
                     Session("strOrderValue") = 9
@@ -895,7 +913,7 @@ Partial Class Admin_InquiryEmail
                     ImgArrowDate.Attributes("src") = ""
                     imgArrowName.Attributes("src") = ""
                     imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
-                    sOrderBy = "DESC "
+                    sOrderBy = " DESC "
                 End If
             Else
                 Session("strOrderValue") = 9
@@ -904,7 +922,7 @@ Partial Class Admin_InquiryEmail
                 ImgArrowDate.Attributes("src") = ""
                 imgArrowName.Attributes("src") = ""
                 imgArrowEmail.Attributes("src") = "../App_Themes/Hitech/images/SortDesc.gif"
-                sOrderBy = "DESC "
+                sOrderBy = " DESC "
             End If
             Session("strOrder") = sOrderBy.ToString().Trim
 

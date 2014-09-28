@@ -151,7 +151,7 @@
                         <div class="Left_Menu_bot">
                             <span id="spanCatTitle" runat="server"></span>
                         </div>
-                       <div class="Left_Menu_Last">
+                        <div class="Left_Menu_Last">
                             <span id="spanAllCat" style="width: 100%; float: left;" runat="server"><a href="../Pages/InventoryList.aspx">
                                 All Categories</a></span>
                         </div>
@@ -159,7 +159,7 @@
                     <!-- End menu-->
                     <!-- End main -->
                     <div class="content_Admin">
-                        <div style="float: left; padding: 5px;">
+                        <div style="float: left;  padding: 5px 0px 5px 15px;">
                             <asp:ContentPlaceHolder ID="body" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
@@ -176,8 +176,8 @@
                         <p style="float: right; font-size: 11px;" id="currentdatetime" runat="server">
                         </p>
                         <p class="footerCopy">
-                            &copy; 1997 - <span id="curentyear" runat="server"></span>&nbsp; HiTechTrader.com. All
-                            rights reserved.
+                            &copy; 1997 - <span id="curentyear" runat="server"></span>&nbsp; HiTechTrader.com.
+                            All rights reserved.
                         </p>
                     </div>
                     <!-- End footer -->
