@@ -177,4 +177,13 @@
         <li style="margin-left: 1.2em; padding: 0.2em; background-color: #9f9fff; color: #000066">
             Has Location and NO Barcode - Blue</li>
     </ul>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            var subcat = '<%=subcat_id %>';
+            $("#subcat-" + subcat).parent().slideDown('normal');
+            $("#subcat-" + subcat + " a").css("color", "#cc0000");
+        });
+    </script>
 </asp:Content>

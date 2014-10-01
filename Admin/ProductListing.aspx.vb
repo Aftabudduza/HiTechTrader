@@ -20,6 +20,9 @@ Partial Class Admin_ProductListing
     Public sql As String = String.Empty
     Private strImageFilePath As String = System.Configuration.ConfigurationManager.AppSettings.Get("ImageFilePath")
     Private strImageURL As String = System.Configuration.ConfigurationManager.AppSettings.Get("ImageURL")
+
+    Protected subcat_id As String
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Session("Id") Is Nothing Then
             nUserID = CInt(Session("Id").ToString())
@@ -30,6 +33,7 @@ Partial Class Admin_ProductListing
             End Try
             Try
                 ProductCategoryId = CInt(Request.QueryString("sc_cat").ToString())
+                subcat_id = Request.QueryString("sc_cat").ToString()
             Catch ex As Exception
                 ProductCategoryId = 0
             End Try
@@ -216,7 +220,7 @@ Partial Class Admin_ProductListing
         Else
             Response.Redirect("Login.aspx")
         End If
-       
+
     End Sub
     Private Sub DisplayAlert(ByVal msg As String)
         Page.ClientScript.RegisterStartupScript(Me.GetType(), Guid.NewGuid().ToString(), String.Format("alert('{0}');", msg.Replace("'", "\'").Replace(vbCrLf, "\n")), True)
