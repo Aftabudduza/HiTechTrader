@@ -1,14 +1,14 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="Footer.ascx.vb" Inherits="User_Controls_Footer" %>
 <div class="FooterMenu">
-    <ul>
-        <li><a href="../Pages/SiteMap.aspx">Site Map</a> : </li>
+    <ul id="FooterManueCMS" runat="server">
+        <%--<li><a href="../Pages/SiteMap.aspx">Site Map</a> : </li>
         <li><a title="Information Page" href="../Pages/Information.aspx">Information Page</a>:</li>
         <li><a title="International Shipping" href="../Pages/InternationalShipping.aspx">International
             Shipping</a>:</li>
         <li><a title="POD™ Price" href="../Pages/PODPrice.aspx">POD&trade; Price</a>:</li>
         <li><a title="POD™ Shippers" href="../Pages/PODShippers.aspx">POD&trade; Shippers</a>:</li>
         <li><a title="Warranty &amp; Credit Terms" href="../Pages/Warranty.aspx">Warranty &amp;
-            Credit Terms</a> </li>
+            Credit Terms</a> </li>--%>
     </ul>
 </div>
 <div class="footer_address">

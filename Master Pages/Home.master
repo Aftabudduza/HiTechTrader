@@ -82,9 +82,11 @@
                                 <li><a href="../Pages/ProductListing.aspx?sc_state=3&sc_page=0&sc_cat=0">Just Off the
                                     Truck</a></li>
                                 <li><a href="../Pages/InventoryList_UI.aspx">Inventory List</a></li>
-                                <li><a href="../Pages/AboutUs.aspx">About Us</a></li>
+                             <%--   <li><a href="../Pages/AboutUs.aspx">About Us</a></li>--%>
                                 <li><a href="../Pages/ContactUs.aspx">Contact Us</a></li>
                                 <li><a href="../Default.aspx">Home</a></li>
+                            </ul>
+                            <ul id="CMSPageLeftMenu" runat="server">
                             </ul>
                         </div>
                         <div id='cssmenu'>

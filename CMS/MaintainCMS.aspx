@@ -195,6 +195,44 @@
                 </tr>
                 <tr>
                     <td>
+                       Want To Show In Left Side Bar:
+                    </td>
+                    <td>
+                        <asp:RadioButtonList ID="rdoIsLeftSideBar" RepeatDirection="Horizontal" runat="server">
+                        <asp:ListItem Value="1">Yes</asp:ListItem>
+                          <asp:ListItem Value="2">No</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                       Want To Show In Footer:
+                    </td>
+                    <td>
+                        <asp:RadioButtonList ID="rdoIsFooter" RepeatDirection="Horizontal" runat="server">
+                        <asp:ListItem Value="1">Yes</asp:ListItem>
+                          <asp:ListItem Value="2">No</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        Left Menu Order:
+                    </td>
+                    <td>
+                        <asp:TextBox runat="server" ID="txtLeftMenuOrder" MaxLength="250" Width="50px"></asp:TextBox>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        Footer Menu Order:
+                    </td>
+                    <td>
+                        <asp:TextBox runat="server" ID="txtFooterMenuOrder" MaxLength="250" Width="50px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         SEO Page Title:
                     </td>
                     <td>

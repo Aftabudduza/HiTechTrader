@@ -18,7 +18,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "trunk", ".", "{2F6A1C67-BA8
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "13475"
+		VWDPort = "8119"
 		VWDVirtualPath = "/"
 	EndProjectSection
 EndProject

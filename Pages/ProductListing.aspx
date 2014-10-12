@@ -10,7 +10,7 @@
         <img width="468" height="60" border="0" align="middle" alt="BIG SAVINGS Sale: up to 50% OFF"
             src="../App_Themes/Hitech/images/SummerSale.gif" />
     </div>
-     <div class="productcont">
+    <div class="productcont">
         <div style="float: left; width: 60%; font-weight: bold;">
             <h1 class="pagetitle" runat="server" id="lblCategory">
             </h1>
@@ -73,11 +73,10 @@
     <%--start Data Pager--%>
     <%  If Session("pagerSQL") Is Nothing Then%>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ appSettings:ConnectionString %>"
-        SelectCommand="SELECT  p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'')  FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0">
+        SelectCommand="SELECT  p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.IsSold,0) Sold,  isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'')  FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL) ">
     </asp:SqlDataSource>
     <% End If%>
     <%--end Data Pager--%>
-   
     <div class="productcont">
         <%--start grid view --%>
         <asp:ListView ID="InventoryItems" DataKeyNames="Id" runat="server" ItemContainerID="layoutTemplate"
@@ -99,8 +98,7 @@
                             <tbody>
                                 <tr>
                                     <td class="ListingTableNumber">
-                                      <%#If(Eval("ItemNumber").ToString().Length < 9, (Eval("ItemNumber").ToString().PadLeft(9, "0")), Eval("ItemNumber").ToString())%>
-
+                                        <%#If(Eval("ItemNumber").ToString().Length < 9, (Eval("ItemNumber").ToString().PadLeft(9, "0")), Eval("ItemNumber").ToString())%>
                                     </td>
                                     <td colspan="4" class="ListingTableTitle">
                                         <span style="width: 300px; height: auto;"><a style="text-decoration: underline;"
@@ -108,6 +106,8 @@
                                             class="ListingTableTitle">
                                             <%#Eval("ProductName")%></a> </span>&nbsp;&nbsp;&nbsp;
                                         <%#ShowPrice(Eval("Price"), Eval("LowestPrice"))%>
+                                          &nbsp;&nbsp;&nbsp;
+                                      <span class="ListingListPrice">  <%#If(Eval("Sold").ToString() = "1", " - SOLD", "")%></span>
                                     </td>
                                 </tr>
                                 <tr valign="top">
@@ -122,7 +122,7 @@
                                         <%#ShowDescription(Eval("Id"), Eval("Description")) %>
                                         <br />
                                         <br />
-                                         <%#ShowCategoryName(Eval("CatId"))%>
+                                        <%#ShowCategoryName(Eval("CatId"))%>
                                     </td>
                                     <td align="left" class="ListingTableInquire" style="float: right;">
                                         <a href='../Pages/ProductInquiry.aspx?Id=<%#Eval("Id")%>' class="Inquire">Inquire/Order</a>
@@ -158,4 +158,13 @@
             </Fields>
         </asp:DataPager>
     </div>
+     <script type="text/javascript">
+         $(document).ready(function() {
+
+             var subcat = '<%=subcat_id %>';
+             $("#subcat-" + subcat).parent().slideDown('normal');
+             $("#subcat-" + subcat).parent().css("color", "#cc0000");
+             $("#subcat-" + subcat + " a").css("color", "#cc0000");
+         });
+    </script>
 </asp:Content>

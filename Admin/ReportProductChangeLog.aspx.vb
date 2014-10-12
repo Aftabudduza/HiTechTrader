@@ -20,9 +20,13 @@ Partial Class Admin_ReportProductChangeLog
             Response.Redirect("Login.aspx")
         End If
     End Sub
-    Private Sub fill_Product()
+    Private Sub fill_Product(Optional ByVal sQuery As String = "")
         Try
-            Dim sSQl As String = "SELECT p.ProductName, p.Id FROM Product p WHERE p.CreatorID =  " & CInt(Session("Id").ToString()) & " order by p.ProductName asc "
+            Dim sSQl As String = "SELECT p.ProductName, p.Id FROM Product p where p.IsDeleteItem <> 1 and p.IsSold <> 1 and  p.ProductName <>  '' and p.ProductName is NOT NULL  "
+            If sQuery.Length > 0 Then
+                sSQl &= sQuery
+            End If
+            sSQl &= "  order by p.ProductName asc "
             Dim ds As DataSet = BRIClassLibrary.SQLData.generic_select(sSQl, appGlobal.CONNECTIONSTRING)
             ddlProduct.Items.Clear()
             ddlProduct.AppendDataBoundItems = True
@@ -123,7 +127,19 @@ Partial Class Admin_ReportProductChangeLog
                 DisplayAlert("You Have Nothing to Export")
             End If
         Catch ex As Exception
-            DisplayAlert("Opetation Not Proceed")
+            DisplayAlert("Operation Not Proceed")
+        End Try
+    End Sub
+
+    Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSearch.Click
+        Try
+            Dim sWhere As String = String.Empty
+            If txtSearch.Text.ToString().Trim.Length > 0 Then
+                sWhere = " and  (p.ItemNumber like '%" & txtSearch.Text.ToString().Trim & "%' or  p.ProductName like '%" & txtSearch.Text.ToString().Trim & "%'  or  p.Make like '%" & txtSearch.Text.ToString().Trim & "%'  or  p.Model like '%" & txtSearch.Text.ToString().Trim & "%'  or  p.Description like '%" & txtSearch.Text.ToString().Trim & "%'  or  p.Location like '%" & txtSearch.Text.ToString().Trim & "%'  or  p.Barcode like '%" & txtSearch.Text.ToString().Trim & "%'  or  p.BarcodeParent like '%" & txtSearch.Text.ToString().Trim & "%' or  p.AdminNotes like '%" & txtSearch.Text.ToString().Trim & "%')"
+            End If
+            fill_Product(sWhere)
+        Catch ex As Exception
+
         End Try
     End Sub
 End Class

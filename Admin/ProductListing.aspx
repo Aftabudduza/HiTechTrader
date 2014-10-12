@@ -73,7 +73,7 @@
     <%--start Data Pager--%>
     <%  If Session("pagerSQL") Is Nothing Then%>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ appSettings:ConnectionString %>"
-        SelectCommand="SELECT  p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'')  FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0">
+        SelectCommand="SELECT  p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.IsSold,0) Sold, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'')  FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL) ">
     </asp:SqlDataSource>
     <% End If%>
     <%--end Data Pager--%>
@@ -106,6 +106,8 @@
                                             class="ListingTableTitle">
                                             <%#Eval("ProductName")%></a> </span>&nbsp;&nbsp;&nbsp;
                                         <%#ShowPrice(Eval("Price"), Eval("LowestPrice"))%>
+                                        &nbsp;&nbsp;&nbsp;
+                                      <span class="ListingListPrice"> <%#If(Eval("Sold").ToString() = "1", " - SOLD", "")%></span>
                                     </td>
                                 </tr>
                                 <tr valign="top">
@@ -136,6 +138,10 @@
                                         <span>
                                             <%#ShowNotOnWeb(Eval("IsNotOnWeb"))%></span>
                                             <br />
+                                         <span>
+                                            <%#If(Eval("Sold").ToString() = "1", " Item Sold ", "")%></span>
+                                            <br />
+                                            
                                         <asp:Label ID="lblVideo" runat="server" Text='<%#ShowVideo(Eval("Id"), Eval("ProductName"), Eval("VideoURL")) %>' />
                                     </td>
                                 </tr>

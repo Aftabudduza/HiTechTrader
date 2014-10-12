@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="VB" MasterPageFile="~/Master Pages/Home.master" AutoEventWireup="false"
-    CodeFile="ContactUs.aspx.vb" Inherits="Pages_ContactUs" Title="Contract Us - HiTechTrader.com" %>
+    CodeFile="ContactUs.aspx.vb" Inherits="Pages_ContactUs" Title="Contact Us - HiTechTrader.com" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

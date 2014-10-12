@@ -311,7 +311,7 @@ Partial Class Admin_UploadManufacturerMisspelling
                 DisplayAlert("You Have Nothing to Export")
             End If
         Catch ex As Exception
-            DisplayAlert("Opetation Not Proceed")
+            DisplayAlert("Operation Not Proceed")
         End Try
     End Sub
     Private Sub DisplayAlert(ByVal msg As String)

@@ -314,7 +314,7 @@ Partial Class Admin_UploadInquiry
                 DisplayAlert("You Have Nothing to Export")
             End If
         Catch ex As Exception
-            DisplayAlert("Opetation Not Proceed")
+            DisplayAlert("Operation Not Proceed")
         End Try
     End Sub
    

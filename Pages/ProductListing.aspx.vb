@@ -18,6 +18,7 @@ Partial Class Pages_ProductListing
     Public sql As String = String.Empty
     Private strImageFilePath As String = System.Configuration.ConfigurationManager.AppSettings.Get("ImageFilePath")
     Private strImageURL As String = System.Configuration.ConfigurationManager.AppSettings.Get("ImageURL")
+    Protected subcat_id As String
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             sSearch = CInt(Request.QueryString("sc_search").ToString())
@@ -26,6 +27,7 @@ Partial Class Pages_ProductListing
         End Try
         Try
             ProductCategoryId = CInt(Request.QueryString("sc_cat").ToString())
+            subcat_id = Request.QueryString("sc_cat").ToString()
         Catch ex As Exception
             ProductCategoryId = 0
         End Try
@@ -47,14 +49,14 @@ Partial Class Pages_ProductListing
 
             If ProductCategoryId > 0 Then
                 Session("sCat") = ProductCategoryId
-                Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(C.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0  and (c.CategoryParentId = " & ProductCategoryId & " OR c.Id = " & ProductCategoryId & " OR c.CategoryParentId IN (SELECT c2.Id  FROM Category c2 WHERE c2.CategoryParentId IN (SELECT c3.CategoryParentId  FROM Category c3 WHERE c3.CategoryParentId =" & ProductCategoryId & ")))"
+                Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(C.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL)  and (c.CategoryParentId = " & ProductCategoryId & " OR c.Id = " & ProductCategoryId & " OR c.CategoryParentId IN (SELECT c2.Id  FROM Category c2 WHERE c2.CategoryParentId IN (SELECT c3.CategoryParentId  FROM Category c3 WHERE c3.CategoryParentId =" & ProductCategoryId & ")))"
                 If Not Session("strOrder") Is Nothing Then
                     sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                     SqlDataSource1.SelectCommand = sSQl
                 Else
                     SqlDataSource1.SelectCommand = Session("pagerSQL") & " order by  p.ProductName asc "
                 End If
-
+              
                 Try
                     lblCategory.InnerHtml = ShowCategoryById(ProductCategoryId)
                 Catch ex As Exception
@@ -62,11 +64,11 @@ Partial Class Pages_ProductListing
                 End Try
             Else
                 If sSearch.Length > 0 Then
-                    strWhere = " and  (c.CategoryName like '%" & sSearch.Trim & "%'  or p.ItemNumber like '%" & sSearch.Trim & "%' or  p.ProductName like '%" & sSearch.Trim & "%'  or  p.Make like '%" & sSearch.Trim & "%'  or  p.Model like '%" & sSearch.Trim & "%'  or  p.Description like '%" & sSearch.Trim & "%'  or  p.Location like '%" & sSearch.Trim & "%'  or  p.Barcode like '%" & sSearch.Trim & "%'  or  p.BarcodeParent like '%" & sSearch.Trim & "%' or  p.AdminNotes like '%" & sSearch.Trim & "%')"
+                    strWhere = " and  (c.CategoryName like '%" & sSearch.Trim & "%'  or p.ItemNumber like '%" & sSearch.Trim & "%' or  p.ProductName like '%" & sSearch.Trim & "%'  or  p.Make like '%" & sSearch.Trim & "%'  or  p.Model like '%" & sSearch.Trim & "%'  or  p.Description like '%" & sSearch.Trim & "%'  or  p.Location like '%" & sSearch.Trim & "%'  or  p.Barcode like '%" & sSearch.Trim & "%'  or  p.BarcodeParent like '%" & sSearch.Trim & "%'  or  p.AdminNotes like '%" & sSearch.Trim & "%')"
                 End If
                 If ProductStateId = 0 Then
                     lblCategory.InnerHtml = ""
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL)" & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -75,7 +77,7 @@ Partial Class Pages_ProductListing
                     End If
                 ElseIf ProductStateId = 1 Then
                     lblCategory.InnerHtml = "New Arrivals"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsNewArrivalsPage = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL) and p.IsNewArrivalsPage = 1  " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -84,7 +86,7 @@ Partial Class Pages_ProductListing
                     End If
                 ElseIf ProductStateId = 2 Then
                     lblCategory.InnerHtml = "On Consignment"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsConsignmentItem = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL) and p.IsConsignmentItem = 1  " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -93,7 +95,7 @@ Partial Class Pages_ProductListing
                     End If
                 ElseIf ProductStateId = 3 Then
                     lblCategory.InnerHtml = "Just Off the Truck"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsJustOfftheTruck = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL) and p.IsJustOfftheTruck = 1  " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -102,7 +104,7 @@ Partial Class Pages_ProductListing
                     End If
                 ElseIf ProductStateId = 4 Then
                     lblCategory.InnerHtml = "Third Party Website"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsLabX = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & " and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1  AND c.IsMainorLabX = 0 and p.IsLabX = 1  " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -111,7 +113,7 @@ Partial Class Pages_ProductListing
                     End If
                 ElseIf ProductStateId = 5 Then
                     lblCategory.InnerHtml = "Mike SR Stuff"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsDoNotRelease = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and p.IsDoNotRelease = 1 and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL)  " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -120,7 +122,7 @@ Partial Class Pages_ProductListing
                     End If
                 ElseIf ProductStateId = 6 Then
                     lblCategory.InnerHtml = "Marked Featured Items"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsFeaturedItem = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and p.IsFeaturedItem = 1  and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL) " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -129,7 +131,7 @@ Partial Class Pages_ProductListing
                     End If
                 ElseIf ProductStateId = 7 Then
                     lblCategory.InnerHtml = "Recently Sold"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsSold = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and p.IsSold = 1 and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND (p.IsLabX = 0 OR p.IslabX IS NULL) and p.DateSold BETWEEN DATEADD(dd, -30, GETDATE()) AND GETDATE()   " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -138,16 +140,16 @@ Partial Class Pages_ProductListing
                     End If
                 ElseIf ProductStateId = 8 Then
                     lblCategory.InnerHtml = "Deleted Items"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsDeleteItem = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and p.IsDeleteItem = 1 AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL)  and p.DateDeleted BETWEEN DATEADD(dd, -30, GETDATE()) AND GETDATE() " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
                     Else
-                        SqlDataSource1.SelectCommand = Session("pagerSQL") & " order by  p.ProductName asc "
+                        SqlDataSource1.SelectCommand = Session("pagerSQL") & " order by p.ProductName asc "
                     End If
                 ElseIf ProductStateId = 9 Then
                     lblCategory.InnerHtml = "Archived Sold"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsSold = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and p.IsSold = 1  and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND (p.IsLabX = 0 OR p.IslabX IS NULL) " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -156,7 +158,7 @@ Partial Class Pages_ProductListing
                     End If
                 ElseIf ProductStateId = 10 Then
                     lblCategory.InnerHtml = "Archived Deleted"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsDeletePermanently = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0  and (p.IsDeleteItem = 1  or p.IsDeletePermanently = 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL) " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -165,7 +167,7 @@ Partial Class Pages_ProductListing
                     End If
                 ElseIf ProductStateId = 11 Then
                     lblCategory.InnerHtml = "Specials"
-                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId  AND c.IsMainorLabX = 0 and p.IsSpecial = 1  " & strWhere.Trim
+                    Session("pagerSQL") = " SELECT p.Id, p.ItemNumber, p.ProductName, p.Description, isnull(p.Price,0) Price, isnull(p.LowestPrice,0) LowestPrice, isnull(p.Location,'') Location, isnull(p.Barcode,'') Barcode, isnull(p.BarcodeParent,'') BarcodeParent, isnull(p.IsLabX,0) IsNotOnWeb, isnull(p.IsConsignmentItem,0) IsConsignmentItem, isnull(p.VideoURL,'') VideoURL, isnull(C.Id,0) CatId, isnull(c.CategoryName,'') CategoryName, isnull(c.CategoryParentId,'') ParentCategory, Parent = isnull((SELECT TOP 1 c2.CategoryName FROM Category c2 WHERE c2.Id = c.CategoryParentId),'') FROM Product p, Category c, ProductCategoryCrossRef pccr WHERE c.Id = pccr.ProductCategoryId AND p.Id = pccr.ProductId and p.CreatorID = " & CInt(Session("Id").ToString()) & "  AND c.IsMainorLabX = 0 and p.IsSpecial = 1  and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL) " & strWhere.Trim
                     If Not Session("strOrder") Is Nothing Then
                         sSQl = Session("pagerSQL") & Session("strOrder").ToString()
                         SqlDataSource1.SelectCommand = sSQl
@@ -173,6 +175,7 @@ Partial Class Pages_ProductListing
                         SqlDataSource1.SelectCommand = Session("pagerSQL") & " order by p.ProductName asc "
                     End If
                 End If
+              
                 If sSearch.Length > 0 Then
                     lblCategory.InnerHtml = "<h1 class='pagetitle'>Search Inventory - Results</h1> <br /><br /> <strong>Search term:</strong> " & sSearch.Trim
                     spanHelp.InnerHtml = "<a href='../Pages/Help.aspx'>Search Help</a>"

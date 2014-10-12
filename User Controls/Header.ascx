@@ -32,8 +32,11 @@
         </li>
         <li><a title="Inventory List: All Categories" href="../Pages/Inventorylist_UI.aspx">
             Inventory List</a> </li>
-        <li><a title="About Us" href="../Pages/AboutUs.aspx">About Us</a></li>
+       <%-- <li><a title="About Us" href="../Pages/AboutUs.aspx">About Us</a></li>--%>
         <li><a title="Contact Us" href="../Pages/ContactUs.aspx">Contact Us</a></li>
         <li><a title="Home" href="../Default.aspx">Home</a></li>
+    </ul>
+    <ul id="HeaderLeftMenuCMS" runat="server" style="margin-top:10px;">
+    
     </ul>
 </div>

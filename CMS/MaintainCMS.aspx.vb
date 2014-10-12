@@ -312,7 +312,7 @@ Partial Class CMS_MaintainCMS
             Return
         End If
 
-        Dim sUpd As String = "UPDATE CMSPAGEREF SET CMSTITLE='" & Me.txtCMSTitle.Text.Replace("'", "''") & "', MetaTitle='" & Me.metaTitle.Text.Replace("'", "''") & "', metaKeywords='" & Me.metaKeywords.Text.Replace("'", "''") & "', metadescription='" & Me.metaDescription.Text.Replace("'", "''") & "', metatag='" & Me.metaTag.Text.Replace("'", "''") & "', PageURL='" & Me.txtPageURL.Text.Replace("'", "''") & "', CMSContent='" & txtContent.Text.ToString().Trim & "' WHERE CMSPAGE='" & Me.hidCurCMSPage.Value.Replace("'", "''") & "' "
+        Dim sUpd As String = "UPDATE CMSPAGEREF SET CMSTITLE='" & Me.txtCMSTitle.Text.Replace("'", "''") & "', IsFooter='" & CInt(Me.rdoIsFooter.SelectedValue.ToString().Replace("'", "''")) & "',IsLeftMenu='" & CInt(Me.rdoIsLeftSideBar.SelectedValue.ToString().Replace("'", "''")) & "',LeftMenuOrder='" & CInt(Me.txtLeftMenuOrder.Text.ToString().Replace("'", "''")) & "',FooterMenuOrder='" & CInt(Me.txtFooterMenuOrder.Text.ToString().Replace("'", "''")) & "', MetaTitle='" & Me.metaTitle.Text.Replace("'", "''") & "', metaKeywords='" & Me.metaKeywords.Text.Replace("'", "''") & "', metadescription='" & Me.metaDescription.Text.Replace("'", "''") & "', metatag='" & Me.metaTag.Text.Replace("'", "''") & "', PageURL='" & Me.txtPageURL.Text.Replace("'", "''") & "', CMSContent='" & txtContent.Text.ToString().Trim & "' WHERE CMSPAGE='" & Me.hidCurCMSPage.Value.Replace("'", "''") & "' "
         If SQLData.generic_command(sUpd, SQLData.ConnectionString) Then
             Me.PageHeader1.ErrorMessage = "Page Information Updated Successfully."
             fill_treeview()
@@ -334,8 +334,8 @@ Partial Class CMS_MaintainCMS
     Protected Sub btnbtnAdd_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         If valid_CMSMessage() Then
             'Generate the Insert Statement
-            Dim sIns As String = "INSERT INTO CMSPAGEREF (CMSPAGE, WEBSITEID,CMSCONTENT, CMSTITLE, DATECREATED, DATEMODIFIED,LIVE, METATITLE, METAKEYWORDS, METADESCRIPTION, METATAG) VALUES " & _
-                " ('" & Me.txtNewCMSPage.Text.Replace("'", "''") & "', '1','Please Add Content','" & Me.txtNewCMSTitle.Text.Replace("'", "''") & "', GetDate(), GetDate(), 'Y'" & ",'" & metaTitle.Text.Replace("'", "''") & "','" & metaKeywords.Text.Replace("'", "''") & "','" & metaDescription.Text.Replace("'", "''") & "','" & metaTag.Text.Replace("'", "''") & "');"
+            Dim sIns As String = "INSERT INTO CMSPAGEREF (CMSPAGE, WEBSITEID,CMSCONTENT, CMSTITLE, DATECREATED, DATEMODIFIED,LIVE, METATITLE, METAKEYWORDS, METADESCRIPTION, METATAG, ISFOOTER,ISLEFTMENU,LEFTMENUORDER,FOOTERMENUORDER) VALUES " & _
+                " ('" & Me.txtNewCMSPage.Text.Replace("'", "''") & "', '1','Please Add Content','" & Me.txtNewCMSTitle.Text.Replace("'", "''") & "', GetDate(), GetDate(), 'Y'" & ",'" & metaTitle.Text.Replace("'", "''") & "','" & metaKeywords.Text.Replace("'", "''") & "','" & metaDescription.Text.Replace("'", "''") & "','" & metaTag.Text.Replace("'", "''") & "','" & CInt(rdoIsFooter.SelectedValue.ToString().Replace("'", "''")) & "','" & CInt(rdoIsLeftSideBar.SelectedValue.ToString().Replace("'", "''")) & "','" & CInt(txtLeftMenuOrder.Text.ToString().Replace("'", "''")) & "','" & CInt(txtFooterMenuOrder.Text.ToString().Replace("'", "''")) & "');"
             If SQLData.generic_command(sIns, SQLData.ConnectionString) Then
                 Me.PageHeader1.ErrorMessage = "Content Page Added Successfully."
                 Me.hidCurCMSPage.Value = Me.txtNewCMSPage.Text
@@ -370,6 +370,18 @@ Partial Class CMS_MaintainCMS
         End If
         If Me.txtNewCMSTitle.Text = "" Then
             sError &= "You Must Enter a Content Page Display Title.<br>"
+        End If
+        If Me.rdoIsFooter.SelectedIndex = -1 Then
+            sError &= "You Must Select Want to show in footer or not.<br>"
+        End If
+        If Me.rdoIsLeftSideBar.SelectedIndex = -1 Then
+            sError &= "You Must Select Want to show in Left Side Bar or not.<br>"
+        End If
+        If Me.txtLeftMenuOrder.Text = "" Then
+            sError &= "You Must Enter a Left Menu Order Position.<br>"
+        End If
+        If Me.txtFooterMenuOrder.Text = "" Then
+            sError &= "You Must Enter a Footer Menu Order Position.<br>"
         End If
         'test if it exists
         Dim sSQL As String = "SELECT COUNT(*) FROM CMSPAGEREF WHERE CMSPAGE='" & Me.txtNewCMSPage.Text.Replace("'", "''") & "'"

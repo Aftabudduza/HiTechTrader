@@ -1444,7 +1444,7 @@ Partial Class Admin_UploadProduct
         Try
 
             Dim fileName As String = String.Empty
-            Dim str As String = "SELECT p.*, c.CategoryName ParentCategoryName   FROM Product p, Category c WHERE p.ParentCategory = c.Id ORDER BY p.ItemNumber asc "
+            Dim str As String = "SELECT p.*, c.CategoryName ParentCategoryName   FROM Product p, Category c WHERE p.ParentCategory = c.Id and (p.IsDeleteItem <> 1  or p.IsDeletePermanently <> 1) AND p.IsSold <> 1 AND (p.IsLabX = 0 OR p.IslabX IS NULL)  ORDER BY p.ItemNumber asc "
 
 
             If str.Length > 0 Then
@@ -1637,7 +1637,7 @@ Partial Class Admin_UploadProduct
                 DisplayAlert("You Have Nothing to Export")
             End If
         Catch ex As Exception
-            DisplayAlert("Opetation Not Proceed")
+            DisplayAlert("Operation Not Proceed")
         End Try
     End Sub
     Private Function Create_Category(ByVal nProductId As Integer) As String

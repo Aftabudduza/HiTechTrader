@@ -904,7 +904,7 @@ Partial Class Admin_UploadManualProduct
                 DisplayAlert("You Have Nothing to Export")
             End If
         Catch ex As Exception
-            DisplayAlert("Opetation Not Proceed")
+            DisplayAlert("Operation Not Proceed")
         End Try
     End Sub
     Private Function Create_Category(ByVal nProductId As Integer) As String
