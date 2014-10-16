@@ -102,14 +102,14 @@
                     <!-- end content -->
                     <div class="footer" style="width: 96%; border-top: 1px solid #c7defc; float: right !important;">
                         <!-- start footer -->
-                        <p style="float: left; font-weight: bold;">
+                        <p class="footerName" style="float: left; font-weight: bold;">
                             <%  If Not Session("Id") Is Nothing Then%>
                             Logged In : <span id="UserName" runat="server" style="color: Red;"></span>
                             <%End If%>
                         </p>
                         <p style="float: right; font-size: 11px;" id="currentdatetime" runat="server">
                         </p>
-                        <p class="footerCopy">
+                        <p class="footerCopy" >
                             &copy; 1997 - <span id="curentyear" runat="server"></span> HiTechTrader.com. All
                             rights reserved.
                         </p>
