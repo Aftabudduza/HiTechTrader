@@ -1285,8 +1285,14 @@ and (max-width : 767px) {
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-width : 320px) 
-and (max-width : 639px) {
+and (max-width : 640px) {
 
+
+
+.footerName
+{
+	font-size:12px !important;	
+}
 .wrapper 
 {
     padding: 0 5%;
@@ -1538,7 +1544,7 @@ width: 100%;
 }
 
 .content_Admin {
-    width: 96% !important;
+    width: 97% !important;
 }
 .content_Admin_inner
 {
@@ -2655,4 +2661,25 @@ h3.ProductHilite {
 .thirtpartyboxcss
 {
 	float:left;	
+}
+@media only screen and (min-width : 660px) 
+and (max-width : 745px) 
+{
+	
+	.GlobalOutline 
+	{
+		width:100% !important;
+	}
+	.logo_Admin {
+    float: none !important;
+    margin: 0 auto !important;
+       width: 68% !important;
+}
+.MobileText 
+{
+	margin-left:36%;
+}
+.content_Admin {   
+    margin-left: 8% !important;
+}
 }
